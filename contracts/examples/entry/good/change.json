@@ -1,0 +1,23 @@
+{
+  "id": "e3",
+  "type": "change",
+  "text": "Hooly AI Pro went from €49 per month to €59 per month.",
+  "form": {
+    "subject": "Hooly AI Pro",
+    "attribute": "price",
+    "from": {
+      "kind": "money",
+      "value": 49,
+      "currency": "EUR",
+      "per": "month"
+    },
+    "to": {
+      "kind": "money",
+      "value": 59,
+      "currency": "EUR",
+      "per": "month"
+    }
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

@@ -1,0 +1,19 @@
+{
+  "id": "e1",
+  "type": "compare",
+  "text": "Hooly Workspace costs more than Hooly AI Pro.",
+  "form": {
+    "left": {
+      "subject": "Hooly Workspace",
+      "attribute": "price"
+    },
+    "right": {
+      "subject": "Hooly AI Pro",
+      "attribute": "price"
+    },
+    "op": "gt"
+  },
+  "label": true,
+  "tag": "true",
+  "confidence": 0.9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "e5",
+  "type": "relation",
+  "text": "The CTO of Hooly joined on 1 July 2026.",
+  "form": {
+    "subject": "Hooly",
+    "target": "Bertram Gilfoil",
+    "attribute": "joined",
+    "value": {
+      "kind": "date",
+      "value": "2026-07-01"
+    }
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

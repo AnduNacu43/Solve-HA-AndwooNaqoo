@@ -1,0 +1,18 @@
+{
+  "id": "summit-before-outage",
+  "type": "compare",
+  "text": "Hooly I/O 2026 took place before the May 2026 outage.",
+  "form": {
+    "left": {
+      "subject": "Hooly I/O 2026",
+      "attribute": "date"
+    },
+    "right": {
+      "subject": "The May 2026 outage",
+      "attribute": "date"
+    },
+    "op": "lt"
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

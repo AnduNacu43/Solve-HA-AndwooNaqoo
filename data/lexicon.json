@@ -1,0 +1,183 @@
+{
+  "subjects": [
+    {
+      "name": "Bertram Gilfoil",
+      "aliases": [],
+      "attributes": [
+        "joined"
+      ]
+    },
+    {
+      "name": "Brightline Labs",
+      "aliases": [
+        "Brightline"
+      ],
+      "attributes": [
+        "integration_partner_of_flawless"
+      ]
+    },
+    {
+      "name": "Hooly",
+      "aliases": [
+        "Hooly AI",
+        "Hooly Inc."
+      ],
+      "attributes": [
+        "annual_recurring_revenue",
+        "ceo",
+        "cto",
+        "data_processing_agreement",
+        "employees",
+        "founded",
+        "fully_remote",
+        "had_major_outage",
+        "head_of_product",
+        "headquarters",
+        "incidents_this_year",
+        "net_promoter_score",
+        "offices",
+        "paying_customers",
+        "raised_series_a",
+        "raised_series_b",
+        "series_a_amount",
+        "series_a_lead",
+        "soc2_certified",
+        "support_satisfaction"
+      ]
+    },
+    {
+      "name": "Hooly AI Free",
+      "aliases": [],
+      "attributes": [
+        "daily_requests",
+        "history_retention",
+        "max_upload_size"
+      ]
+    },
+    {
+      "name": "Hooly AI Pro",
+      "aliases": [],
+      "attributes": [
+        "annual_price",
+        "free_trial",
+        "included_seats",
+        "price",
+        "refund_window",
+        "support_first_response"
+      ]
+    },
+    {
+      "name": "Hooly Gemini",
+      "aliases": [
+        "Gemini"
+      ],
+      "attributes": [
+        "api_version",
+        "cloud_provider",
+        "context_window",
+        "data_retention",
+        "encryption_at_rest",
+        "eu_hosted",
+        "hallucination_rate",
+        "hosting_regions",
+        "integrations",
+        "languages",
+        "launched",
+        "max_upload_size",
+        "median_response_time",
+        "official_sdks",
+        "open_source",
+        "primary_region",
+        "requests_per_day",
+        "requests_per_minute",
+        "single_sign_on",
+        "supported_file_types",
+        "uptime_last_quarter",
+        "version",
+        "webhook_events"
+      ]
+    },
+    {
+      "name": "Hooly I/O 2026",
+      "aliases": [
+        "Hooly I/O"
+      ],
+      "attributes": [
+        "attendees",
+        "city",
+        "date",
+        "sponsors",
+        "talks",
+        "ticket_price"
+      ]
+    },
+    {
+      "name": "Hooly Jules",
+      "aliases": [
+        "Jules"
+      ],
+      "attributes": [
+        "annual_price",
+        "beta_date",
+        "free_trial",
+        "general_availability_date",
+        "lead",
+        "price",
+        "programming_languages",
+        "suggestion_acceptance_rate",
+        "supported_ides",
+        "users",
+        "version"
+      ]
+    },
+    {
+      "name": "Hooly Vault",
+      "aliases": [
+        "Vault"
+      ],
+      "attributes": [
+        "generally_available"
+      ]
+    },
+    {
+      "name": "Hooly Workspace",
+      "aliases": [
+        "Workspace plan"
+      ],
+      "attributes": [
+        "customers",
+        "extra_seat_price",
+        "free_trial",
+        "included_seats",
+        "minimum_seats",
+        "price",
+        "uptime_sla"
+      ]
+    },
+    {
+      "name": "Hooly Workspace Enterprise",
+      "aliases": [
+        "Workspace Enterprise"
+      ],
+      "attributes": [
+        "included_seats",
+        "price",
+        "uptime_sla"
+      ]
+    },
+    {
+      "name": "The May 2026 outage",
+      "aliases": [
+        "outage"
+      ],
+      "attributes": [
+        "date",
+        "duration"
+      ]
+    }
+  ],
+  "events": [
+    "Hooly I/O 2026",
+    "The May 2026 outage"
+  ]
+}

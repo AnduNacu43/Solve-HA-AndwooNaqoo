@@ -1,0 +1,17 @@
+{
+  "id": "e1",
+  "type": "fact",
+  "text": "Hooly AI Pro costs €59 per month.",
+  "form": {
+    "subject": "Hooly AI Pro",
+    "attribute": "price",
+    "value": {
+      "kind": "money",
+      "value": 59,
+      "currency": "EUR",
+      "per": "month"
+    }
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

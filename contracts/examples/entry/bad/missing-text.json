@@ -1,0 +1,17 @@
+{
+  "id": "e1",
+  "type": "compare",
+  "form": {
+    "left": {
+      "subject": "Hooly Workspace",
+      "attribute": "price"
+    },
+    "right": {
+      "subject": "Hooly AI Pro",
+      "attribute": "price"
+    },
+    "op": "gt"
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

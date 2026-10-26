@@ -1,0 +1,11 @@
+{
+  "id": "e6",
+  "type": "rank",
+  "text": "Hooly AI Free is the cheapest plan.",
+  "form": {
+    "subject": "Hooly AI Free",
+    "attribute": "price"
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

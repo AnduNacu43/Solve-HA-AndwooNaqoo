@@ -1,0 +1,15 @@
+{
+  "id": "e2",
+  "type": "fact",
+  "text": "Bertram Gilfoil is the CTO of Hooly.",
+  "form": {
+    "subject": "Hooly",
+    "attribute": "cto",
+    "value": {
+      "kind": "name",
+      "value": "Bertram Gilfoil"
+    }
+  },
+  "tag": "true",
+  "confidence": 0.9
+}

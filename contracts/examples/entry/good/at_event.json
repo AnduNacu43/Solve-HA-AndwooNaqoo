@@ -1,0 +1,17 @@
+{
+  "id": "e4",
+  "type": "at_event",
+  "text": "Hooly Gemini spoke 12 languages at Hooly I/O 2026.",
+  "form": {
+    "subject": "Hooly Gemini",
+    "attribute": "languages",
+    "event": "Hooly I/O 2026",
+    "value": {
+      "kind": "quantity",
+      "value": 12,
+      "unit": "language"
+    }
+  },
+  "tag": "true",
+  "confidence": 0.9
+}
