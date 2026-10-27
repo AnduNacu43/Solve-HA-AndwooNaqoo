@@ -396,9 +396,7 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
     mentions = lexicon.find_mentions(sentence, any_case=False)
     spans = [(m.start, m.end) for m in mentions]
     words = _sentence_words(sentence)
-    raw_lower = {w.lower() for w in re.findall(r"[A-Za-z0-9]+", sentence)}
     cues = _cues(row.text, sentence, ri == 0, mentions)
-    prev_for_sentence = prev
     readings = [r for r in V.read(sentence) if not _value_inside(r, spans)]
     groups: dict[int, list[V.Reading]] = {}
     for r in readings:
@@ -411,7 +409,7 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
     for pos in sorted(groups):
         best = None
         for r in groups[pos]:
-            cands = _candidates(mentions, r.start, ctx, prev_for_sentence, lexicon, set())
+            cands = _candidates(mentions, r.start, ctx, prev, lexicon, set())
             if r.value.kind == "version":  # `Hooly Gemini 2.2`: the name right before the number
                 adj = [m for m in mentions if m.end <= r.num_start and not sentence[m.end:r.num_start].strip()]
                 if adj:
@@ -428,7 +426,7 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
         used.add((subject, attr))
         resolved_subject = resolved_subject or subject
         obs.append(_obs(subject, attr, r.value, page, row, sentence, in_sentence, cues, label))
-    obs += _names_and_booleans(sentence, mentions, ctx, prev_for_sentence, lexicon, attrs, words, raw_lower,
+    obs += _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words,
                                used, page, row, cues, label)
     named = [m.subject for m in mentions if m.subject in lexicon.subjects]
     new_prev = resolved_subject or (named[0] if named else prev)
@@ -442,7 +440,7 @@ def _obs(subject, attr, value, page, row, sentence, in_sentence, cues, label) ->
     )
 
 
-def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, raw_lower, used, page, row, cues, label):
+def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
     obs = []
     neg_spans = S.find_negations(sentence)
     # names: a name-like phrase, given to the attribute of a nearby subject that its words point at
@@ -453,13 +451,20 @@ def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, ra
         canon = lexicon.resolve(value)
         cands = _candidates([m for m in mentions if m.start != a], a, ctx, prev, lexicon, {canon} if canon else set())
         local = _local_words(sentence, a, b)
+        after_in = bool(re.search(r"(?<![A-Za-z])in\s+$", sentence[:a]))
         best = None
         for subject, prior, ins in cands:
             for attr in lexicon.subjects.get(subject, ()):
                 if _g(_spec(attrs, subject, attr), "kind") != "name" or (subject, attr) in used:
                     continue
+                if canon and attr in lexicon.subjects.get(canon, ()):
+                    continue  # `Davis Bannerchek leads Android`: Android owns a lead, it is not one
+                own = [_stem(t) for t in _attr_words(attr)]
+                own_local = sum(1 for t in own if any(_match(t, w) for w in local))
                 s = _attr_score(attr, words, local)
-                if s < 2.0:
+                if attr == "city" and after_in:
+                    own_local, s = 1, s + 3.0  # `... in Dublin` on an event's page
+                if own_local == 0 or s < 2.0:
                     continue
                 score = prior + s
                 if best is None or score > best[0]:
