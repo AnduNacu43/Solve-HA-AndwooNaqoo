@@ -1,0 +1,3863 @@
+{
+ "by_attribute": {
+  "active_devices": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "device"
+  },
+  "active_users": {
+   "kind": "quantity",
+   "n_seen": 22,
+   "unit": "user"
+  },
+  "ad_free_option": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "ad_free_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6,
+   "per": "month"
+  },
+  "adaptive_noise_cancelling": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "advertising_share": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "ai_answers": {
+   "kind": "boolean",
+   "n_seen": 8
+  },
+  "ai_editing": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "ai_sidebar": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "announced": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "annual_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 10,
+   "per": "year"
+  },
+  "annual_recurring_revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1,
+   "per": "year"
+  },
+  "anonymous": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "api_version": {
+   "kind": "version",
+   "n_seen": 4
+  },
+  "applicants": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "applicant"
+  },
+  "appointment_booking": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "apps_included": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "app"
+  },
+  "ar_walking": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "archive_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "attachment_limit": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "MB"
+  },
+  "attendance": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "attendees": {
+   "kind": "quantity",
+   "n_seen": 17,
+   "unit": "attendee"
+  },
+  "audit_committee": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "audit_retention": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "availability_zones": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "zone"
+  },
+  "base_storage": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "GB"
+  },
+  "battery_capacity": {
+   "kind": "quantity",
+   "n_seen": 15,
+   "unit": "mAh"
+  },
+  "battery_life": {
+   "kind": "duration",
+   "n_seen": 10,
+   "unit": "h"
+  },
+  "beta_date": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "beta_opened": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "beta_testers": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "tester"
+  },
+  "bike_racks": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "rack"
+  },
+  "browser_market_share": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "business_listings": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "listing"
+  },
+  "call_length": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "min"
+  },
+  "camera_translation": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "capacity": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "seat"
+  },
+  "caption_languages": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "language"
+  },
+  "carbon_neutral": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "cash": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7
+  },
+  "cellular_option": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "ceo": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "chair": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "chair_since": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "chairs": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "chairs_audit_committee": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "charging_power": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "W"
+  },
+  "charging_stations_listed": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "station"
+  },
+  "city": {
+   "kind": "name",
+   "n_seen": 24
+  },
+  "cli_version": {
+   "kind": "version",
+   "n_seen": 7
+  },
+  "cloud_provider": {
+   "kind": "name",
+   "n_seen": 12
+  },
+  "cloud_recording": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "cold_start_time": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "s"
+  },
+  "colours": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "colour"
+  },
+  "concurrent_chats": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "chat"
+  },
+  "context_files": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "module"
+  },
+  "context_window": {
+   "kind": "quantity",
+   "n_seen": 21,
+   "unit": "token"
+  },
+  "cool_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "copilot_included": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "cost_per_hire": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5
+  },
+  "countries_covered": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "country"
+  },
+  "countries_served": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "country"
+  },
+  "cover_screen_size": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "inch"
+  },
+  "cto": {
+   "kind": "name",
+   "n_seen": 10
+  },
+  "customer_countries": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "country"
+  },
+  "customers": {
+   "kind": "quantity",
+   "n_seen": 19,
+   "unit": "customer"
+  },
+  "customers_in_the_eu": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "cycling_commuters": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "daily_requests": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "request"
+  },
+  "data_centres": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "site"
+  },
+  "data_processing_agreement": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "data_residency_regions": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "region"
+  },
+  "data_retention": {
+   "kind": "duration",
+   "n_seen": 13,
+   "unit": "day"
+  },
+  "date": {
+   "kind": "date",
+   "n_seen": 27
+  },
+  "desks": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "desk"
+  },
+  "desks_managed": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "desk"
+  },
+  "desktop_mode": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "devices_keynote_speaker": {
+   "kind": "name",
+   "n_seen": 3
+  },
+  "devices_recycled": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "device"
+  },
+  "dialects_supported": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "dialect"
+  },
+  "discontinued": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "duration": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "h"
+  },
+  "emissions_cut_target": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "employees": {
+   "kind": "quantity",
+   "n_seen": 28,
+   "unit": "employee"
+  },
+  "encryption_at_rest": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "end_to_end_encrypted_backups": {
+   "kind": "boolean",
+   "n_seen": 7
+  },
+  "end_to_end_encryption": {
+   "kind": "boolean",
+   "n_seen": 7
+  },
+  "eu_hosted": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "executive_owner": {
+   "kind": "name",
+   "n_seen": 8
+  },
+  "executive_sponsor": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "extensions_in_store": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "extension"
+  },
+  "externally_audited": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "extra_seat_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5,
+   "per": "month"
+  },
+  "facilities_team": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "employee"
+  },
+  "family_group_size": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "member"
+  },
+  "features_launched": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "feature"
+  },
+  "first_reply": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "h"
+  },
+  "flawbench_score": {
+   "kind": "percent",
+   "n_seen": 6
+  },
+  "flawless_seats": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "seat"
+  },
+  "footprint": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "tonne"
+  },
+  "founded": {
+   "kind": "date",
+   "n_seen": 10
+  },
+  "founders": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "founder"
+  },
+  "free_credit": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4
+  },
+  "free_egress_per_month": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "free_storage": {
+   "kind": "quantity",
+   "n_seen": 16,
+   "unit": "GB"
+  },
+  "free_trial": {
+   "kind": "duration",
+   "n_seen": 42,
+   "unit": "day"
+  },
+  "full_charge_time": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "min"
+  },
+  "fully_remote": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "functions": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "function"
+  },
+  "gemini_formula_assist": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "general_availability_date": {
+   "kind": "date",
+   "n_seen": 9
+  },
+  "generally_available": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "german_premium_phone_share": {
+   "kind": "percent",
+   "n_seen": 9
+  },
+  "growth_opportunities": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "guidance": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "had_major_outage": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "hallucination_rate": {
+   "kind": "percent",
+   "n_seen": 14
+  },
+  "head": {
+   "kind": "name",
+   "n_seen": 15
+  },
+  "head_of_product": {
+   "kind": "name",
+   "n_seen": 5
+  },
+  "head_of_security": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "head_of_workspace": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "headcount": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "employee"
+  },
+  "headquarters": {
+   "kind": "name",
+   "n_seen": 17
+  },
+  "help_guides": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "guide"
+  },
+  "hinge_rating": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "fold"
+  },
+  "hires": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "hire"
+  },
+  "history_retention": {
+   "kind": "duration",
+   "n_seen": 10,
+   "unit": "day"
+  },
+  "home_region": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "host": {
+   "kind": "name",
+   "n_seen": 3
+  },
+  "hosting_regions": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "region"
+  },
+  "image_input": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "images_indexed": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "image"
+  },
+  "incidents_this_year": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "incident"
+  },
+  "included_seats": {
+   "kind": "quantity",
+   "n_seen": 28,
+   "unit": "seat"
+  },
+  "independent_director": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "independent_members": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "member"
+  },
+  "index_size": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "page"
+  },
+  "inner_screen_size": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "inch"
+  },
+  "integration_partner_of_flawless": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "integrations": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "integration"
+  },
+  "interview_rounds": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "round"
+  },
+  "is_engineering_hub": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "is_headquarters": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "joined": {
+   "kind": "date",
+   "n_seen": 11
+  },
+  "keynote_length": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "min"
+  },
+  "keynote_speaker": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "languages": {
+   "kind": "quantity",
+   "n_seen": 40,
+   "unit": "language"
+  },
+  "languages_served": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "language"
+  },
+  "languages_supported": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "language"
+  },
+  "latest_release_date": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "launched": {
+   "kind": "date",
+   "n_seen": 28
+  },
+  "lead": {
+   "kind": "name",
+   "n_seen": 21
+  },
+  "lease_end": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "length": {
+   "kind": "duration",
+   "n_seen": 8,
+   "unit": "day"
+  },
+  "livestream_viewers": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "viewer"
+  },
+  "livestreamed": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "mailbox_storage": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "main_camera": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "megapixel"
+  },
+  "manageable_workload": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "manager_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "manufacturing_partner": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "mapped_distance": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "km"
+  },
+  "max_call_length": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "h"
+  },
+  "max_cells": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "cell"
+  },
+  "max_file_size": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "GB"
+  },
+  "max_guests": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "guest"
+  },
+  "max_output_length": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "token"
+  },
+  "max_participants": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "participant"
+  },
+  "max_trade_in_credit": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7
+  },
+  "max_upload_size": {
+   "kind": "quantity",
+   "n_seen": 21,
+   "unit": "MB"
+  },
+  "maximum_seats": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "seat"
+  },
+  "median_response_time": {
+   "kind": "duration",
+   "n_seen": 33,
+   "unit": "s"
+  },
+  "median_time_to_recover": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "min"
+  },
+  "meetings_per_year": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "sitting"
+  },
+  "memory": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "memory_saver": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "minimum_nodes": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "node"
+  },
+  "minimum_seats": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "seat"
+  },
+  "monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 38,
+   "unit": "user"
+  },
+  "net_promoter_score": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "point"
+  },
+  "net_zero_date": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "newest_region": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "news_refresh_interval": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "h"
+  },
+  "newsletter_subscribers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "subscriber"
+  },
+  "next_meeting": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "next_round": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "offer_acceptance": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "offers": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "offer"
+  },
+  "offices": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "office"
+  },
+  "offices_run": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "office"
+  },
+  "official_sdks": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "sdk"
+  },
+  "offline_area_limit": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "offline_editing": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "offline_languages": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "language"
+  },
+  "offline_maps": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "on_device_gemini": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "onboarding_time": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "open_engineering_roles": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "engineer"
+  },
+  "open_for": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "open_roles": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "role"
+  },
+  "open_source": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "opened": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "opening_keynote": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "operating_margin": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "owner": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "p99_response_time": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "s"
+  },
+  "passkey_sync": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "paying_customers": {
+   "kind": "quantity",
+   "n_seen": 28,
+   "unit": "customer"
+  },
+  "personalised_ads_by_default": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "photos_stored": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "photo"
+  },
+  "places_listed": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "place"
+  },
+  "planned_general_availability": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "previous_employer": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 147,
+   "per": "month"
+  },
+  "price_per_user": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7,
+   "per": "month"
+  },
+  "primary_region": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "pro_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "pro_tier": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "programming_languages": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "language"
+  },
+  "published": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "publisher_revenue_share": {
+   "kind": "percent",
+   "n_seen": 11
+  },
+  "raised_series_a": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "raised_series_b": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "rated_accuracy": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "raviqa_seat": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "recruiters": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "recruiter"
+  },
+  "referral_bonus": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5
+  },
+  "referral_share": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "refresh_rate": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "Hz"
+  },
+  "refund_window": {
+   "kind": "duration",
+   "n_seen": 13,
+   "unit": "day"
+  },
+  "region_outside_europe": {
+   "kind": "boolean",
+   "n_seen": 7
+  },
+  "regions": {
+   "kind": "quantity",
+   "n_seen": 15,
+   "unit": "region"
+  },
+  "registrations": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "registration"
+  },
+  "release_cadence": {
+   "kind": "duration",
+   "n_seen": 8,
+   "unit": "week"
+  },
+  "released": {
+   "kind": "date",
+   "n_seen": 14
+  },
+  "reliability_lead": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "renewable_electricity": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "rent": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7,
+   "per": "month"
+  },
+  "repair_centres": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "centre"
+  },
+  "replay_available": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "requests_per_day": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "request"
+  },
+  "requests_per_minute": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "request"
+  },
+  "respondents": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "respondent"
+  },
+  "response_rate": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7
+  },
+  "revenue_growth": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "run_by": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "satellite_messaging": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "saved_projects": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "project"
+  },
+  "screen_size": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "inch"
+  },
+  "seats": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "seat"
+  },
+  "sensors": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "sensor"
+  },
+  "series_a_amount": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "series_a_co_investor": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "series_a_lead": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "services": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "service"
+  },
+  "sessions": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "session"
+  },
+  "sessions_held": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "session"
+  },
+  "share_of_ad_revenue": {
+   "kind": "percent",
+   "n_seen": 14
+  },
+  "share_of_devices": {
+   "kind": "percent",
+   "n_seen": 15
+  },
+  "shipping_android": {
+   "kind": "version",
+   "n_seen": 5
+  },
+  "signed_in_devices": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "device"
+  },
+  "simultaneous_editors": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "editor"
+  },
+  "single_sign_on": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "soc2_audit_start": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "soc2_auditor": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "soc2_certified": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "spam_catch_rate": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "speakers": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "speaker"
+  },
+  "sponsors": {
+   "kind": "quantity",
+   "n_seen": 13,
+   "unit": "sponsor"
+  },
+  "stable_release": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "stable_release_date": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "stable_version": {
+   "kind": "version",
+   "n_seen": 11
+  },
+  "staff": {
+   "kind": "quantity",
+   "n_seen": 15,
+   "unit": "employee"
+  },
+  "standard_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6,
+   "per": "month"
+  },
+  "storage": {
+   "kind": "quantity",
+   "n_seen": 27,
+   "unit": "TB"
+  },
+  "storage_per_user": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "GB"
+  },
+  "storage_tiers": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "tier"
+  },
+  "store_rating": {
+   "kind": "quantity",
+   "n_seen": 27,
+   "unit": "star"
+  },
+  "stream_viewers": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "viewer"
+  },
+  "suggestion_acceptance_rate": {
+   "kind": "percent",
+   "n_seen": 9
+  },
+  "support_first_response": {
+   "kind": "duration",
+   "n_seen": 8,
+   "unit": "h"
+  },
+  "support_satisfaction": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "support_tickets_per_week": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "ticket"
+  },
+  "supported_file_types": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "format"
+  },
+  "supported_ides": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "ide"
+  },
+  "supported_models": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "model"
+  },
+  "tab_sleep_delay": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "min"
+  },
+  "talks": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "talk"
+  },
+  "team_size": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "engineer"
+  },
+  "templates": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "template"
+  },
+  "text_limit": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "character"
+  },
+  "ticket_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 14
+  },
+  "time_to_hire": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "top_bug_bounty": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "trade_in_programme": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "training_data_cutoff": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "trash_retention": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "day"
+  },
+  "travel_emissions_cut": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "units_sold": {
+   "kind": "quantity",
+   "n_seen": 26,
+   "unit": "phone"
+  },
+  "update_promise": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "upgrade"
+  },
+  "update_size": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "GB"
+  },
+  "uptime_last_quarter": {
+   "kind": "percent",
+   "n_seen": 17
+  },
+  "uptime_sla": {
+   "kind": "percent",
+   "n_seen": 23
+  },
+  "users": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "user"
+  },
+  "venue": {
+   "kind": "name",
+   "n_seen": 11
+  },
+  "version": {
+   "kind": "version",
+   "n_seen": 101
+  },
+  "version_history": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "day"
+  },
+  "video_upload_limit": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "min"
+  },
+  "voice_guidance_languages": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "language"
+  },
+  "voice_latency": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "ms"
+  },
+  "voice_mode": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "waitlist": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "company"
+  },
+  "water_resistance_depth": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "m"
+  },
+  "webcast_viewers": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "viewer"
+  },
+  "webhook_events": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "event"
+  },
+  "webinars_held": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "webinar"
+  },
+  "weight": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "g"
+  },
+  "workshops": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "workshop"
+  },
+  "would_recommend": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "yearly_billing_discount": {
+   "kind": "percent",
+   "n_seen": 5
+  }
+ },
+ "pairs": {
+  "Bertram Gilfoil|joined": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Bertram Gilfoil|previous_employer": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "Brightline Labs|integration_partner_of_flawless": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Dinesh Chugtay|joined": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Erlich Bachmann|joined": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Gemini Launch Night|attendees": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "attendee"
+  },
+  "Gemini Launch Night|city": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Gemini Launch Night|date": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Holdan|joined": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Holdan|previous_employer": {
+   "kind": "name",
+   "n_seen": 3
+  },
+  "Holdan|team_size": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "engineer"
+  },
+  "Hooly AI Free|daily_requests": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "request"
+  },
+  "Hooly AI Free|history_retention": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "day"
+  },
+  "Hooly AI Free|max_upload_size": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "MB"
+  },
+  "Hooly AI Free|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "Hooly AI Pro|annual_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 8,
+   "per": "year"
+  },
+  "Hooly AI Pro|free_trial": {
+   "kind": "duration",
+   "n_seen": 26,
+   "unit": "day"
+  },
+  "Hooly AI Pro|history_retention": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "Hooly AI Pro|included_seats": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "seat"
+  },
+  "Hooly AI Pro|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 32,
+   "per": "month"
+  },
+  "Hooly AI Pro|refund_window": {
+   "kind": "duration",
+   "n_seen": 13,
+   "unit": "day"
+  },
+  "Hooly AI Pro|saved_projects": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "project"
+  },
+  "Hooly AI Pro|signed_in_devices": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "device"
+  },
+  "Hooly AI Pro|support_first_response": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "h"
+  },
+  "Hooly Android 16|desktop_mode": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Android 16|released": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Android 16|share_of_devices": {
+   "kind": "percent",
+   "n_seen": 10
+  },
+  "Hooly Android 16|supported_models": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "model"
+  },
+  "Hooly Android 16|update_size": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "Hooly Android 17|beta_opened": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Android 17|beta_testers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "tester"
+  },
+  "Hooly Android 17|on_device_gemini": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Android 17|satellite_messaging": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Android 17|share_of_devices": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Android 17|stable_release": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Android 17|supported_models": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "model"
+  },
+  "Hooly Android 17|update_size": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "Hooly Android|active_devices": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "device"
+  },
+  "Hooly Android|lead": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly Android|open_source": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Android|version": {
+   "kind": "version",
+   "n_seen": 15
+  },
+  "Hooly Berlin Office|bike_racks": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "rack"
+  },
+  "Hooly Berlin Office|desks": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "desk"
+  },
+  "Hooly Berlin Office|is_engineering_hub": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Berlin Office|is_headquarters": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Berlin Office|lease_end": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Berlin Office|opened": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Berlin Office|rent": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "Hooly Berlin Office|staff": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "employee"
+  },
+  "Hooly Board|attendance": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "Hooly Board|audit_committee": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "Hooly Board|chair": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Board|chair_since": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Board|independent_members": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "member"
+  },
+  "Hooly Board|meetings_per_year": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "sitting"
+  },
+  "Hooly Board|next_meeting": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "Hooly Board|raviqa_seat": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Board|seats": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "seat"
+  },
+  "Hooly Board|sessions_held": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "session"
+  },
+  "Hooly Calendar|active_users": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "user"
+  },
+  "Hooly Calendar|appointment_booking": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Calendar|launched": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Calendar|max_guests": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "guest"
+  },
+  "Hooly Calendar|version": {
+   "kind": "version",
+   "n_seen": 4
+  },
+  "Hooly Chrome|ai_sidebar": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "Hooly Chrome|browser_market_share": {
+   "kind": "percent",
+   "n_seen": 7
+  },
+  "Hooly Chrome|cold_start_time": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "s"
+  },
+  "Hooly Chrome|extensions_in_store": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "extension"
+  },
+  "Hooly Chrome|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Chrome|lead": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Chrome|memory_saver": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Chrome|monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "user"
+  },
+  "Hooly Chrome|passkey_sync": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Chrome|release_cadence": {
+   "kind": "duration",
+   "n_seen": 8,
+   "unit": "week"
+  },
+  "Hooly Chrome|stable_release_date": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "Hooly Chrome|stable_version": {
+   "kind": "version",
+   "n_seen": 11
+  },
+  "Hooly Chrome|tab_sleep_delay": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "min"
+  },
+  "Hooly Chrome|top_bug_bounty": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "Hooly Cloud Next 2026|attendees": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "attendee"
+  },
+  "Hooly Cloud Next 2026|city": {
+   "kind": "name",
+   "n_seen": 8
+  },
+  "Hooly Cloud Next 2026|date": {
+   "kind": "date",
+   "n_seen": 7
+  },
+  "Hooly Cloud Next 2026|length": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "Hooly Cloud Next 2026|opening_keynote": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Cloud Next 2026|registrations": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "registration"
+  },
+  "Hooly Cloud Next 2026|sessions": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "session"
+  },
+  "Hooly Cloud Next 2026|speakers": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "speaker"
+  },
+  "Hooly Cloud Next 2026|sponsors": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "sponsor"
+  },
+  "Hooly Cloud Next 2026|ticket_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5
+  },
+  "Hooly Cloud Next 2026|venue": {
+   "kind": "name",
+   "n_seen": 5
+  },
+  "Hooly Cloud|archive_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "Hooly Cloud|availability_zones": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "zone"
+  },
+  "Hooly Cloud|carbon_neutral": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Cloud|cli_version": {
+   "kind": "version",
+   "n_seen": 7
+  },
+  "Hooly Cloud|cool_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "Hooly Cloud|customers": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "customer"
+  },
+  "Hooly Cloud|data_centres": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "site"
+  },
+  "Hooly Cloud|free_credit": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4
+  },
+  "Hooly Cloud|free_egress_per_month": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "Hooly Cloud|free_trial": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "day"
+  },
+  "Hooly Cloud|home_region": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "Hooly Cloud|launched": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Cloud|median_time_to_recover": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "min"
+  },
+  "Hooly Cloud|newest_region": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Cloud|region_outside_europe": {
+   "kind": "boolean",
+   "n_seen": 7
+  },
+  "Hooly Cloud|regions": {
+   "kind": "quantity",
+   "n_seen": 15,
+   "unit": "region"
+  },
+  "Hooly Cloud|reliability_lead": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "Hooly Cloud|services": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "service"
+  },
+  "Hooly Cloud|standard_storage_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6,
+   "per": "month"
+  },
+  "Hooly Cloud|storage_tiers": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "tier"
+  },
+  "Hooly Cloud|uptime_last_quarter": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Cloud|uptime_sla": {
+   "kind": "percent",
+   "n_seen": 13
+  },
+  "Hooly Devices|countries_served": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "country"
+  },
+  "Hooly Devices|founded": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Devices|german_premium_phone_share": {
+   "kind": "percent",
+   "n_seen": 9
+  },
+  "Hooly Devices|head": {
+   "kind": "name",
+   "n_seen": 9
+  },
+  "Hooly Devices|manufacturing_partner": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly Devices|max_trade_in_credit": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7
+  },
+  "Hooly Devices|repair_centres": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "centre"
+  },
+  "Hooly Devices|staff": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "employee"
+  },
+  "Hooly Devices|trade_in_programme": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "Hooly Docs|active_users": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "user"
+  },
+  "Hooly Docs|languages": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "language"
+  },
+  "Hooly Docs|launched": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Docs|offline_editing": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Docs|simultaneous_editors": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "editor"
+  },
+  "Hooly Docs|templates": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "template"
+  },
+  "Hooly Docs|version": {
+   "kind": "version",
+   "n_seen": 8
+  },
+  "Hooly Drive|active_users": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "user"
+  },
+  "Hooly Drive|free_storage": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "GB"
+  },
+  "Hooly Drive|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Drive|max_file_size": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "GB"
+  },
+  "Hooly Drive|price_per_user": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 2,
+   "per": "month"
+  },
+  "Hooly Drive|version_history": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "day"
+  },
+  "Hooly Employee Survey|anonymous": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Employee Survey|growth_opportunities": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly Employee Survey|manageable_workload": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "Hooly Employee Survey|manager_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "Hooly Employee Survey|next_round": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Employee Survey|open_for": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "Hooly Employee Survey|respondents": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "respondent"
+  },
+  "Hooly Employee Survey|response_rate": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly Employee Survey|run_by": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Employee Survey|would_recommend": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "Hooly Gemini|api_version": {
+   "kind": "version",
+   "n_seen": 4
+  },
+  "Hooly Gemini|cloud_provider": {
+   "kind": "name",
+   "n_seen": 12
+  },
+  "Hooly Gemini|concurrent_chats": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "chat"
+  },
+  "Hooly Gemini|context_window": {
+   "kind": "quantity",
+   "n_seen": 21,
+   "unit": "token"
+  },
+  "Hooly Gemini|data_retention": {
+   "kind": "duration",
+   "n_seen": 13,
+   "unit": "day"
+  },
+  "Hooly Gemini|encryption_at_rest": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Gemini|eu_hosted": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Gemini|flawbench_score": {
+   "kind": "percent",
+   "n_seen": 6
+  },
+  "Hooly Gemini|hallucination_rate": {
+   "kind": "percent",
+   "n_seen": 14
+  },
+  "Hooly Gemini|hosting_regions": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "region"
+  },
+  "Hooly Gemini|image_input": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Gemini|integrations": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "integration"
+  },
+  "Hooly Gemini|languages": {
+   "kind": "quantity",
+   "n_seen": 36,
+   "unit": "language"
+  },
+  "Hooly Gemini|launched": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Gemini|max_output_length": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "token"
+  },
+  "Hooly Gemini|max_upload_size": {
+   "kind": "quantity",
+   "n_seen": 16,
+   "unit": "MB"
+  },
+  "Hooly Gemini|median_response_time": {
+   "kind": "duration",
+   "n_seen": 24,
+   "unit": "s"
+  },
+  "Hooly Gemini|official_sdks": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "sdk"
+  },
+  "Hooly Gemini|open_source": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Gemini|p99_response_time": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "s"
+  },
+  "Hooly Gemini|primary_region": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly Gemini|requests_per_day": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "request"
+  },
+  "Hooly Gemini|requests_per_minute": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "request"
+  },
+  "Hooly Gemini|single_sign_on": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Gemini|supported_file_types": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "format"
+  },
+  "Hooly Gemini|training_data_cutoff": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Gemini|uptime_last_quarter": {
+   "kind": "percent",
+   "n_seen": 12
+  },
+  "Hooly Gemini|version": {
+   "kind": "version",
+   "n_seen": 49
+  },
+  "Hooly Gemini|voice_mode": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "Hooly Gemini|webhook_events": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "event"
+  },
+  "Hooly Gmail|active_users": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "user"
+  },
+  "Hooly Gmail|attachment_limit": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "MB"
+  },
+  "Hooly Gmail|end_to_end_encryption": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "Hooly Gmail|launched": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Gmail|mailbox_storage": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "Hooly Gmail|price_per_user": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5,
+   "per": "month"
+  },
+  "Hooly Gmail|spam_catch_rate": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Hiring Programme|applicants": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "applicant"
+  },
+  "Hooly Hiring Programme|cost_per_hire": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5
+  },
+  "Hooly Hiring Programme|executive_sponsor": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Hiring Programme|first_reply": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "h"
+  },
+  "Hooly Hiring Programme|hires": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "hire"
+  },
+  "Hooly Hiring Programme|interview_rounds": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "round"
+  },
+  "Hooly Hiring Programme|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Hiring Programme|offer_acceptance": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Hiring Programme|offers": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "offer"
+  },
+  "Hooly Hiring Programme|open_engineering_roles": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "engineer"
+  },
+  "Hooly Hiring Programme|open_roles": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "role"
+  },
+  "Hooly Hiring Programme|recruiters": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "recruiter"
+  },
+  "Hooly Hiring Programme|referral_bonus": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5
+  },
+  "Hooly Hiring Programme|referral_share": {
+   "kind": "percent",
+   "n_seen": 4
+  },
+  "Hooly Hiring Programme|time_to_hire": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "Hooly I/O 2026|attendees": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "attendee"
+  },
+  "Hooly I/O 2026|city": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly I/O 2026|date": {
+   "kind": "date",
+   "n_seen": 7
+  },
+  "Hooly I/O 2026|keynote_length": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "min"
+  },
+  "Hooly I/O 2026|length": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "day"
+  },
+  "Hooly I/O 2026|livestream_viewers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "viewer"
+  },
+  "Hooly I/O 2026|sponsors": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "sponsor"
+  },
+  "Hooly I/O 2026|talks": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "talk"
+  },
+  "Hooly I/O 2026|ticket_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4
+  },
+  "Hooly I/O 2026|workshops": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "workshop"
+  },
+  "Hooly I/O 2027|city": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly I/O 2027|date": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Jules|annual_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 2,
+   "per": "year"
+  },
+  "Hooly Jules|beta_date": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "Hooly Jules|beta_testers": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "tester"
+  },
+  "Hooly Jules|context_files": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "module"
+  },
+  "Hooly Jules|free_trial": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "Hooly Jules|general_availability_date": {
+   "kind": "date",
+   "n_seen": 9
+  },
+  "Hooly Jules|lead": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "Hooly Jules|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 14,
+   "per": "month"
+  },
+  "Hooly Jules|programming_languages": {
+   "kind": "quantity",
+   "n_seen": 12,
+   "unit": "language"
+  },
+  "Hooly Jules|suggestion_acceptance_rate": {
+   "kind": "percent",
+   "n_seen": 9
+  },
+  "Hooly Jules|supported_ides": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "ide"
+  },
+  "Hooly Jules|users": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "user"
+  },
+  "Hooly Jules|version": {
+   "kind": "version",
+   "n_seen": 8
+  },
+  "Hooly Lisbon Office|announced": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Lisbon Office|bike_racks": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "rack"
+  },
+  "Hooly Lisbon Office|desks": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "desk"
+  },
+  "Hooly Lisbon Office|lease_end": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Lisbon Office|opened": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Lisbon Office|rent": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 3,
+   "per": "month"
+  },
+  "Hooly Lisbon Office|staff": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "employee"
+  },
+  "Hooly Maps Day|announced": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Maps Day|attendees": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "attendee"
+  },
+  "Hooly Maps Day|city": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|date": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|features_launched": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "feature"
+  },
+  "Hooly Maps Day|host": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|keynote_length": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "min"
+  },
+  "Hooly Maps Day|keynote_speaker": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|replay_available": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|sponsors": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "sponsor"
+  },
+  "Hooly Maps Day|stream_viewers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "viewer"
+  },
+  "Hooly Maps Day|talks": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "talk"
+  },
+  "Hooly Maps Day|ticket_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 2
+  },
+  "Hooly Maps Day|venue": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Maps|ar_walking": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Maps|business_listings": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "listing"
+  },
+  "Hooly Maps|charging_stations_listed": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "station"
+  },
+  "Hooly Maps|countries_covered": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "country"
+  },
+  "Hooly Maps|latest_release_date": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Maps|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Maps|lead": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly Maps|mapped_distance": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "km"
+  },
+  "Hooly Maps|monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "user"
+  },
+  "Hooly Maps|offline_area_limit": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "Hooly Maps|offline_maps": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Maps|places_listed": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "place"
+  },
+  "Hooly Maps|share_of_ad_revenue": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly Maps|store_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "Hooly Maps|version": {
+   "kind": "version",
+   "n_seen": 8
+  },
+  "Hooly Maps|voice_guidance_languages": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "language"
+  },
+  "Hooly Meet|active_users": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "user"
+  },
+  "Hooly Meet|caption_languages": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "language"
+  },
+  "Hooly Meet|cloud_recording": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Meet|end_to_end_encryption": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Meet|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Meet|livestream_viewers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "viewer"
+  },
+  "Hooly Meet|max_call_length": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "h"
+  },
+  "Hooly Meet|max_participants": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "participant"
+  },
+  "Hooly Photos Lite|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 9,
+   "per": "month"
+  },
+  "Hooly Photos Lite|storage": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "GB"
+  },
+  "Hooly Photos Max|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 9,
+   "per": "month"
+  },
+  "Hooly Photos Max|storage": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "TB"
+  },
+  "Hooly Photos Plus|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 11,
+   "per": "month"
+  },
+  "Hooly Photos Plus|storage": {
+   "kind": "quantity",
+   "n_seen": 8,
+   "unit": "TB"
+  },
+  "Hooly Photos|ai_editing": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Photos|end_to_end_encrypted_backups": {
+   "kind": "boolean",
+   "n_seen": 7
+  },
+  "Hooly Photos|family_group_size": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "member"
+  },
+  "Hooly Photos|free_storage": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "GB"
+  },
+  "Hooly Photos|head": {
+   "kind": "name",
+   "n_seen": 6
+  },
+  "Hooly Photos|latest_release_date": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "Hooly Photos|launched": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Photos|monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "user"
+  },
+  "Hooly Photos|photos_stored": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "photo"
+  },
+  "Hooly Photos|store_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "Hooly Photos|trash_retention": {
+   "kind": "duration",
+   "n_seen": 5,
+   "unit": "day"
+  },
+  "Hooly Photos|version": {
+   "kind": "version",
+   "n_seen": 6
+  },
+  "Hooly Photos|video_upload_limit": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "min"
+  },
+  "Hooly Photos|yearly_billing_discount": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Pixel 10 Pro|base_storage": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "Hooly Pixel 10 Pro|battery_capacity": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "mAh"
+  },
+  "Hooly Pixel 10 Pro|battery_life": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "h"
+  },
+  "Hooly Pixel 10 Pro|charging_power": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "W"
+  },
+  "Hooly Pixel 10 Pro|colours": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "colour"
+  },
+  "Hooly Pixel 10 Pro|main_camera": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "megapixel"
+  },
+  "Hooly Pixel 10 Pro|memory": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "GB"
+  },
+  "Hooly Pixel 10 Pro|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7
+  },
+  "Hooly Pixel 10 Pro|released": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Pixel 10 Pro|screen_size": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "inch"
+  },
+  "Hooly Pixel 10 Pro|units_sold": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "phone"
+  },
+  "Hooly Pixel 10 Pro|weight": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "g"
+  },
+  "Hooly Pixel 10|base_storage": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "GB"
+  },
+  "Hooly Pixel 10|battery_capacity": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "mAh"
+  },
+  "Hooly Pixel 10|battery_life": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "h"
+  },
+  "Hooly Pixel 10|charging_power": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "W"
+  },
+  "Hooly Pixel 10|colours": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "colour"
+  },
+  "Hooly Pixel 10|main_camera": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "megapixel"
+  },
+  "Hooly Pixel 10|memory": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "GB"
+  },
+  "Hooly Pixel 10|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 10
+  },
+  "Hooly Pixel 10|refresh_rate": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "Hz"
+  },
+  "Hooly Pixel 10|released": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Pixel 10|screen_size": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "inch"
+  },
+  "Hooly Pixel 10|shipping_android": {
+   "kind": "version",
+   "n_seen": 5
+  },
+  "Hooly Pixel 10|store_rating": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "star"
+  },
+  "Hooly Pixel 10|units_sold": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "phone"
+  },
+  "Hooly Pixel 10|update_promise": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "upgrade"
+  },
+  "Hooly Pixel 10|weight": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "g"
+  },
+  "Hooly Pixel 9|battery_capacity": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "mAh"
+  },
+  "Hooly Pixel 9|discontinued": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Pixel 9|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 8
+  },
+  "Hooly Pixel 9|released": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Pixel 9|screen_size": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "inch"
+  },
+  "Hooly Pixel 9|storage": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "Hooly Pixel 9|store_rating": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "star"
+  },
+  "Hooly Pixel 9|units_sold": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "phone"
+  },
+  "Hooly Pixel 9|update_promise": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "upgrade"
+  },
+  "Hooly Pixel Buds|adaptive_noise_cancelling": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Pixel Buds|battery_life": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "h"
+  },
+  "Hooly Pixel Buds|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4
+  },
+  "Hooly Pixel Buds|units_sold": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "pair"
+  },
+  "Hooly Pixel Fold|base_storage": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "GB"
+  },
+  "Hooly Pixel Fold|battery_capacity": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "mAh"
+  },
+  "Hooly Pixel Fold|cover_screen_size": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "inch"
+  },
+  "Hooly Pixel Fold|hinge_rating": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "fold"
+  },
+  "Hooly Pixel Fold|inner_screen_size": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "inch"
+  },
+  "Hooly Pixel Fold|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 8
+  },
+  "Hooly Pixel Fold|released": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Pixel Fold|store_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "Hooly Pixel Fold|units_sold": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "phone"
+  },
+  "Hooly Pixel Fold|weight": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "g"
+  },
+  "Hooly Pixel Watch|battery_life": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "h"
+  },
+  "Hooly Pixel Watch|cellular_option": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "Hooly Pixel Watch|full_charge_time": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "min"
+  },
+  "Hooly Pixel Watch|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "Hooly Pixel Watch|released": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Pixel Watch|screen_size": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "inch"
+  },
+  "Hooly Pixel Watch|sensors": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "sensor"
+  },
+  "Hooly Pixel Watch|store_rating": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "star"
+  },
+  "Hooly Pixel Watch|units_sold": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "watch"
+  },
+  "Hooly Pixel Watch|water_resistance_depth": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "m"
+  },
+  "Hooly Pixel Watch|weight": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "g"
+  },
+  "Hooly Q1 2026 Results|advertising_share": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Q1 2026 Results|call_length": {
+   "kind": "duration",
+   "n_seen": 2,
+   "unit": "min"
+  },
+  "Hooly Q1 2026 Results|cash": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 2
+  },
+  "Hooly Q1 2026 Results|customers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "customer"
+  },
+  "Hooly Q1 2026 Results|guidance": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q1 2026 Results|headcount": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "employee"
+  },
+  "Hooly Q1 2026 Results|operating_margin": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Q1 2026 Results|revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 2
+  },
+  "Hooly Q1 2026 Results|revenue_growth": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Q1 2026 Results|webcast_viewers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "viewer"
+  },
+  "Hooly Q2 2026 Results|advertising_share": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|call_length": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "min"
+  },
+  "Hooly Q2 2026 Results|cash": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|customers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "customer"
+  },
+  "Hooly Q2 2026 Results|guidance": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|operating_margin": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|revenue_growth": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q2 2026 Results|webcast_viewers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "viewer"
+  },
+  "Hooly Q3 2026 Results|advertising_share": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|call_length": {
+   "kind": "duration",
+   "n_seen": 1,
+   "unit": "min"
+  },
+  "Hooly Q3 2026 Results|cash": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|customers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "customer"
+  },
+  "Hooly Q3 2026 Results|guidance": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|operating_margin": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|revenue_growth": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q3 2026 Results|webcast_viewers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "viewer"
+  },
+  "Hooly Q4 2025 Results|advertising_share": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly Q4 2025 Results|call_length": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "min"
+  },
+  "Hooly Q4 2025 Results|cash": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 3
+  },
+  "Hooly Q4 2025 Results|customers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "customer"
+  },
+  "Hooly Q4 2025 Results|guidance": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 3
+  },
+  "Hooly Q4 2025 Results|headcount": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "employee"
+  },
+  "Hooly Q4 2025 Results|operating_margin": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly Q4 2025 Results|published": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Q4 2025 Results|revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 3
+  },
+  "Hooly Q4 2025 Results|revenue_growth": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly Q4 2025 Results|webcast_viewers": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "viewer"
+  },
+  "Hooly Search|ad_free_option": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Search|ad_free_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6,
+   "per": "month"
+  },
+  "Hooly Search|ai_answers": {
+   "kind": "boolean",
+   "n_seen": 8
+  },
+  "Hooly Search|executive_owner": {
+   "kind": "name",
+   "n_seen": 8
+  },
+  "Hooly Search|images_indexed": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "image"
+  },
+  "Hooly Search|index_size": {
+   "kind": "quantity",
+   "n_seen": 11,
+   "unit": "page"
+  },
+  "Hooly Search|languages_served": {
+   "kind": "quantity",
+   "n_seen": 10,
+   "unit": "language"
+  },
+  "Hooly Search|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Search|median_response_time": {
+   "kind": "duration",
+   "n_seen": 9,
+   "unit": "ms"
+  },
+  "Hooly Search|monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 9,
+   "unit": "user"
+  },
+  "Hooly Search|news_refresh_interval": {
+   "kind": "duration",
+   "n_seen": 7,
+   "unit": "h"
+  },
+  "Hooly Search|personalised_ads_by_default": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Search|publisher_revenue_share": {
+   "kind": "percent",
+   "n_seen": 11
+  },
+  "Hooly Search|share_of_ad_revenue": {
+   "kind": "percent",
+   "n_seen": 11
+  },
+  "Hooly Sheets|active_users": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "user"
+  },
+  "Hooly Sheets|functions": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "function"
+  },
+  "Hooly Sheets|gemini_formula_assist": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Sheets|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Sheets|max_cells": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "cell"
+  },
+  "Hooly Sheets|version": {
+   "kind": "version",
+   "n_seen": 3
+  },
+  "Hooly Sustainability Report|cycling_commuters": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|devices_recycled": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "device"
+  },
+  "Hooly Sustainability Report|emissions_cut_target": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|externally_audited": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|footprint": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "tonne"
+  },
+  "Hooly Sustainability Report|net_zero_date": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|owner": {
+   "kind": "name",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|published": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Sustainability Report|renewable_electricity": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Sustainability Report|travel_emissions_cut": {
+   "kind": "percent",
+   "n_seen": 2
+  },
+  "Hooly Translate|camera_translation": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Translate|dialects_supported": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "dialect"
+  },
+  "Hooly Translate|languages_supported": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "language"
+  },
+  "Hooly Translate|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Translate|monthly_active_users": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "user"
+  },
+  "Hooly Translate|offline_languages": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "language"
+  },
+  "Hooly Translate|pro_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 4,
+   "per": "month"
+  },
+  "Hooly Translate|pro_tier": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Translate|rated_accuracy": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Translate|text_limit": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "character"
+  },
+  "Hooly Translate|voice_latency": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "ms"
+  },
+  "Hooly Vault|announced": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly Vault|generally_available": {
+   "kind": "boolean",
+   "n_seen": 4
+  },
+  "Hooly Vault|minimum_nodes": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "node"
+  },
+  "Hooly Vault|planned_general_availability": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "Hooly Vault|waitlist": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "company"
+  },
+  "Hooly Workspace Enterprise|apps_included": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "app"
+  },
+  "Hooly Workspace Enterprise|audit_retention": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "Hooly Workspace Enterprise|customers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "customer"
+  },
+  "Hooly Workspace Enterprise|data_residency_regions": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "region"
+  },
+  "Hooly Workspace Enterprise|included_seats": {
+   "kind": "quantity",
+   "n_seen": 6,
+   "unit": "seat"
+  },
+  "Hooly Workspace Enterprise|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Workspace Enterprise|onboarding_time": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "day"
+  },
+  "Hooly Workspace Enterprise|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 7,
+   "per": "month"
+  },
+  "Hooly Workspace Enterprise|single_sign_on": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly Workspace Enterprise|storage_per_user": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "TB"
+  },
+  "Hooly Workspace Enterprise|support_first_response": {
+   "kind": "duration",
+   "n_seen": 3,
+   "unit": "h"
+  },
+  "Hooly Workspace Enterprise|uptime_sla": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly Workspace|apps_included": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "app"
+  },
+  "Hooly Workspace|copilot_included": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly Workspace|customers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "team"
+  },
+  "Hooly Workspace|extra_seat_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 5,
+   "per": "month"
+  },
+  "Hooly Workspace|free_trial": {
+   "kind": "duration",
+   "n_seen": 6,
+   "unit": "day"
+  },
+  "Hooly Workspace|included_seats": {
+   "kind": "quantity",
+   "n_seen": 18,
+   "unit": "seat"
+  },
+  "Hooly Workspace|launched": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "Hooly Workspace|maximum_seats": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "seat"
+  },
+  "Hooly Workspace|minimum_seats": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "seat"
+  },
+  "Hooly Workspace|price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 18,
+   "per": "month"
+  },
+  "Hooly Workspace|storage_per_user": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "GB"
+  },
+  "Hooly Workspace|uptime_sla": {
+   "kind": "percent",
+   "n_seen": 5
+  },
+  "Hooly|annual_recurring_revenue": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 1,
+   "per": "year"
+  },
+  "Hooly|ceo": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly|cto": {
+   "kind": "name",
+   "n_seen": 10
+  },
+  "Hooly|customer_countries": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "country"
+  },
+  "Hooly|customers_in_the_eu": {
+   "kind": "percent",
+   "n_seen": 1
+  },
+  "Hooly|data_processing_agreement": {
+   "kind": "boolean",
+   "n_seen": 3
+  },
+  "Hooly|employees": {
+   "kind": "quantity",
+   "n_seen": 28,
+   "unit": "employee"
+  },
+  "Hooly|founded": {
+   "kind": "date",
+   "n_seen": 8
+  },
+  "Hooly|founders": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "founder"
+  },
+  "Hooly|fully_remote": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly|had_major_outage": {
+   "kind": "boolean",
+   "n_seen": 6
+  },
+  "Hooly|head_of_product": {
+   "kind": "name",
+   "n_seen": 5
+  },
+  "Hooly|head_of_security": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly|head_of_workspace": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly|headquarters": {
+   "kind": "name",
+   "n_seen": 17
+  },
+  "Hooly|help_guides": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "guide"
+  },
+  "Hooly|incidents_this_year": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "incident"
+  },
+  "Hooly|net_promoter_score": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "point"
+  },
+  "Hooly|newsletter_subscribers": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "subscriber"
+  },
+  "Hooly|offices": {
+   "kind": "quantity",
+   "n_seen": 7,
+   "unit": "office"
+  },
+  "Hooly|paying_customers": {
+   "kind": "quantity",
+   "n_seen": 28,
+   "unit": "customer"
+  },
+  "Hooly|raised_series_a": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly|raised_series_b": {
+   "kind": "boolean",
+   "n_seen": 2
+  },
+  "Hooly|series_a_amount": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 6
+  },
+  "Hooly|series_a_co_investor": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "Hooly|series_a_lead": {
+   "kind": "name",
+   "n_seen": 7
+  },
+  "Hooly|soc2_audit_start": {
+   "kind": "date",
+   "n_seen": 3
+  },
+  "Hooly|soc2_auditor": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Hooly|soc2_certified": {
+   "kind": "boolean",
+   "n_seen": 5
+  },
+  "Hooly|support_satisfaction": {
+   "kind": "percent",
+   "n_seen": 3
+  },
+  "Hooly|support_tickets_per_week": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "ticket"
+  },
+  "Hooly|webinars_held": {
+   "kind": "quantity",
+   "n_seen": 1,
+   "unit": "webinar"
+  },
+  "Hoovar|desks_managed": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "desk"
+  },
+  "Hoovar|facilities_team": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "employee"
+  },
+  "Hoovar|joined": {
+   "kind": "date",
+   "n_seen": 2
+  },
+  "Hoovar|offices_run": {
+   "kind": "quantity",
+   "n_seen": 4,
+   "unit": "office"
+  },
+  "Made by Hooly 2026|attendees": {
+   "kind": "quantity",
+   "n_seen": 5,
+   "unit": "attendee"
+  },
+  "Made by Hooly 2026|city": {
+   "kind": "name",
+   "n_seen": 3
+  },
+  "Made by Hooly 2026|date": {
+   "kind": "date",
+   "n_seen": 5
+  },
+  "Made by Hooly 2026|devices_keynote_speaker": {
+   "kind": "name",
+   "n_seen": 3
+  },
+  "Made by Hooly 2026|host": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "Made by Hooly 2026|livestreamed": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "Made by Hooly 2026|replay_available": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "Made by Hooly 2026|sponsors": {
+   "kind": "quantity",
+   "n_seen": 3,
+   "unit": "sponsor"
+  },
+  "Made by Hooly 2026|stream_viewers": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "viewer"
+  },
+  "Made by Hooly 2026|talks": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "talk"
+  },
+  "Made by Hooly 2026|ticket_price": {
+   "currency": "EUR",
+   "kind": "money",
+   "n_seen": 3
+  },
+  "Made by Hooly 2026|venue": {
+   "kind": "name",
+   "n_seen": 4
+  },
+  "Meridian Health|flawless_seats": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "seat"
+  },
+  "Patreese|team_size": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "member"
+  },
+  "Peter Gregori|chairs": {
+   "kind": "name",
+   "n_seen": 1
+  },
+  "Peter Gregori|chairs_audit_committee": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "Peter Gregori|independent_director": {
+   "kind": "boolean",
+   "n_seen": 1
+  },
+  "Quayside Hall|capacity": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "seat"
+  },
+  "Rheinhalle|capacity": {
+   "kind": "quantity",
+   "n_seen": 2,
+   "unit": "seat"
+  },
+  "Ron LaFlame|joined": {
+   "kind": "date",
+   "n_seen": 1
+  },
+  "The May 2026 outage|date": {
+   "kind": "date",
+   "n_seen": 4
+  },
+  "The May 2026 outage|duration": {
+   "kind": "duration",
+   "n_seen": 4,
+   "unit": "h"
+  }
+ }
+}
