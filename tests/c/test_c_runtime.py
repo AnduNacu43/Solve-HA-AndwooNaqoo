@@ -87,6 +87,7 @@ def test_full_run_writes_a_valid_table_fast(universe, tmp_path, lexicon):
                        capture_output=True, text=True, timeout=120)
     assert p.returncode == 0, p.stderr
     assert time.time() - t < 60
+    assert sorted(f.name for f in tmp_path.iterdir()) == ["output.csv"]
     rows = _rows(tmp_path / "output.csv")
     assert len(rows) >= 1000, p.stderr
     assert len({r[0] for r in rows}) == len(rows)
@@ -108,7 +109,7 @@ def test_a_past_deadline_still_leaves_a_table(universe, tmp_path):
     _rows(tmp_path / "output.csv")
 
 
-def test_sigterm_mid_run_leaves_a_complete_table(universe, tmp_path):
+def test_sigterm_early_still_writes_rows_within_the_grace_period(universe, tmp_path):
     p = subprocess.Popen([sys.executable, "-m", "arena"], cwd=ROOT, env=_env(universe, tmp_path),
                          stderr=subprocess.PIPE, text=True)
     out = tmp_path / "output.csv"
@@ -116,6 +117,9 @@ def test_sigterm_mid_run_leaves_a_complete_table(universe, tmp_path):
         if out.exists():
             break
         time.sleep(0.02)
+    t = time.time()
     p.send_signal(signal.SIGTERM)
     assert p.wait(timeout=20) == 0
-    _rows(out)
+    assert time.time() - t < 10                  # done before the kill would come
+    assert len(_rows(out)) > 0                   # the seed claims made it in
+    assert sorted(f.name for f in tmp_path.iterdir()) == ["output.csv"]

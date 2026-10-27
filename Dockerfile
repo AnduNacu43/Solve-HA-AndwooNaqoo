@@ -4,8 +4,10 @@
 # that fails to import; with every module merged it is never loaded.
 FROM python:3.12-slim
 
+# user 10001 has no home and only /tmp and /output are writable
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    HOME=/tmp
 
 WORKDIR /app
 COPY arena/ arena/

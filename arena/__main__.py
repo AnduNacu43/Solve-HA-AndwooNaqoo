@@ -3,11 +3,12 @@
 pages -> extract -> seed + observations -> weights -> timelines -> weights
 (pass 2) -> timelines -> generate -> render -> calibrate -> validate -> write.
 
-The output file and its header exist before anything else runs, and every row
-is flushed as it is written, so a SIGTERM or a crash leaves a complete table.
-Extraction and timeline building run in forked workers with a time budget;
-when they fail or overrun, the run carries on from the seed (baked practice)
-timelines alone."""
+output.csv exists, with its header, before anything else runs, and is only
+ever replaced by a complete table (arena.writer), so a SIGTERM, a kill or a
+crash leaves a valid table. Extraction and timeline building run in forked
+workers, each with a share of the time to the deadline; when they fail or
+overrun, the run carries on from the seed (baked practice) timelines alone.
+After SIGTERM the run keeps writing for SIGTERM_GRACE_S, then publishes."""
 from __future__ import annotations
 
 import multiprocessing
@@ -19,18 +20,28 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+RUN_S = 30 * 60          # the contract's run time, when ARENA_DEADLINE is unset
 SAFETY_S = 30            # stop generating this long before ARENA_DEADLINE
-EXTRACT_BY_S = 300       # extraction must be done by minute 5
-TIMELINES_BY_S = 420     # timelines from the universe must be done by minute 7
+EXTRACT_SHARE = 0.5      # extraction must be done by half the run
+TIMELINES_SHARE = 0.7    # timelines from the universe by 70% of it
 GENERATE_RESERVE_S = 60  # always leave this long for generate+write
+SIGTERM_GRACE_S = 6      # keep writing this long after SIGTERM (the kill comes at 10 s)
 
 
 class _Stop:
+    """SIGTERM/SIGINT handler: records that, and when, the signal came."""
+
     def __init__(self):
         self.flag = False
+        self.at = None
 
     def __call__(self, signum, frame):
         self.flag = True
+        self.at = time.time()
+
+    def expired(self) -> bool:
+        """A signal came and its grace period is over."""
+        return self.flag and (self.at is None or time.time() > self.at + SIGTERM_GRACE_S)
 
 
 def log(msg: str) -> None:
@@ -113,7 +124,7 @@ def _seed_timelines(deps, seed):
 
 def main() -> int:
     t0 = time.time()
-    deadline = float(os.environ.get("ARENA_DEADLINE") or t0 + 540)
+    deadline = float(os.environ.get("ARENA_DEADLINE") or t0 + RUN_S)
     stop_at = deadline - SAFETY_S
     stop = _Stop()
     signal.signal(signal.SIGTERM, stop)
@@ -144,6 +155,7 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
     t = time.time()
     from arena.generate import deps, generate
     from arena.render import candidates, load_templates
+    from arena.writer import OutputFull
     if deps.stubbed():
         log(f"stubbed: {', '.join(deps.stubbed())}")
 
@@ -156,11 +168,12 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
     seed = deps.load_seed()
     t = stage(f"load: {len(lexicon.subjects)} subjects, {len(seed)} seed observations", t)
 
+    span = stop_at - t0
     observations = []
     try:
         pages = deps.load_universe(str(universe / "universe.csv"))
         t = stage(f"pages: {len(pages)}", t)
-        until = min(t0 + EXTRACT_BY_S, stop_at - GENERATE_RESERVE_S)
+        until = min(t0 + EXTRACT_SHARE * span, stop_at - GENERATE_RESERVE_S)
         workers = int(os.environ.get("ARENA_EXTRACT_WORKERS", "2"))
         parts = run_bounded([(deps.extract, (chunk, lexicon, attrs))
                              for chunk in _chunks(pages, workers)], until, stop)
@@ -173,7 +186,7 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
     timelines = None
     if observations and not stop.flag:
         try:
-            until = min(t0 + TIMELINES_BY_S, stop_at - GENERATE_RESERVE_S)
+            until = min(t0 + TIMELINES_SHARE * span, stop_at - GENERATE_RESERVE_S)
             timelines = run_bounded([(_timelines, (deps, seed, observations))], until, stop)[0]
             t = stage(f"timelines: {len(timelines)} pairs from seed + universe", t)
         except Exception as e:
@@ -186,7 +199,7 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
     templates = load_templates()
     kept, dropped, reasons = Counter(), Counter(), Counter()
     for claim in generate(timelines, lexicon, attrs, stats=stats):
-        if stop.flag or time.time() > stop_at:
+        if stop.expired() or time.time() > stop_at:
             log("deadline reached; stopping generation")
             break
         try:
@@ -204,6 +217,9 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
                 continue
             writer.write(claim)
             kept[(claim.type, claim.label)] += 1
+        except OutputFull as e:
+            log(f"table is full ({e}); stopping generation")
+            break
         except Exception as e:  # one bad claim never stops the run
             dropped[claim.type] += 1
             reasons[f"{type(e).__name__}: {e}"[:60]] += 1
