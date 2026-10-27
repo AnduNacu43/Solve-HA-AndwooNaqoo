@@ -4,7 +4,7 @@ What you get, how we run your system, and what it hands in. Nothing else is part
 
 ## What you get
 
-The practice dataset: one row per sentence of the practice part of the Hooly universe, 10% of the whole universe, as CSV, JSONL and XLSX, with its lexicon.
+The practice dataset: one row per sentence of the practice part of the Hooly universe, 10% of the whole universe, as one CSV file, `practice.csv`, with its lexicon, `lexicon.json`.
 
 | Column | Holds |
 | --- | --- |
@@ -26,7 +26,7 @@ After the freeze we run every team's system once, from the commit its pull reque
 - **Its `USER` is not root:** an image with no `USER`, or with `root` or `0`, is refused before it runs. End the `Dockerfile` with `USER 10001`, the user every run starts as.
 - **One run, offline:** no network, 2 CPUs, 6 GB of memory, at most 256 processes and threads, on a read-only root. `/tmp` is writable, up to 128 MB counted in the memory, and `/output` up to 256 MB.
 - **10 minutes.** At the deadline the run gets `SIGTERM`, and 10 seconds later it is stopped. `ARENA_DEADLINE` holds the deadline in Unix seconds.
-- **It reads `/universe/`,** read-only: `universe.csv` and `universe.jsonl`, the rows above, and `lexicon.json`. The practice dataset is not mounted: what your system needs of it goes into its image.
+- **It reads `/universe/`,** read-only: `universe.csv`, the rows above as one CSV file, and `lexicon.json`, their lexicon. The practice dataset is not mounted: what your system needs of it goes into its image.
 - **It writes its table to `/output/output.csv`.** The table on disk when the run ends counts, at the deadline too; a run that leaves no table there hands in nothing.
 
 ## What your system hands in
