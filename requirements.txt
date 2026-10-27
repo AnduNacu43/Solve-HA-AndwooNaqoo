@@ -1,0 +1,2 @@
+# Run time is stdlib only (Python 3.12); the image installs nothing.
+# Tests: pip install pytest
