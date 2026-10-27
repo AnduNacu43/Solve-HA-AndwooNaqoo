@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterator
 
 from arena.generate import deps
-from arena.generate.common import claim, contains, evidence, round_robin, usable_pairs
+from arena.generate.common import claim, contains, evidence, round_robin, usable_pairs, weak
 from arena.generate.perturb import perturbed_values
 from arena.model import Claim, Interval
 
@@ -25,7 +25,7 @@ def _transitions(intervals: list[Interval]) -> list[tuple[Interval, Interval]]:
     for gap in range(1, len(intervals)):
         for i in range(len(intervals) - gap):
             a, b = intervals[i], intervals[i + gap]
-            if deps.same_value(a.value, b.value):
+            if deps.same_value(a.value, b.value) or weak(a) or weak(b):
                 continue
             if any(deps.same_value(a.value, x.value) and deps.same_value(b.value, y.value)
                    for x, y in out):

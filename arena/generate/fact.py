@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterator
 
 from arena.generate import deps
-from arena.generate.common import claim, evidence, usable_pairs
+from arena.generate.common import claim, evidence, usable_pairs, weak
 from arena.generate.perturb import false_values
 from arena.model import Claim
 
@@ -24,12 +24,18 @@ def generate_facts(timelines, lexicon, attrs, config: dict) -> Iterator[Claim]:
     ranked.sort(key=lambda t: t[:4])
     for _, _, subject, attribute, intervals, cur in ranked:
         form = {"subject": subject, "attribute": attribute, "value": cur.value.to_json()}
-        yield claim("fact", form, True, evidence("fact", cur, intervals))
+        # a lone unlabelled sighting that displaced a pinned value is too thin to
+        # call true, and the value it displaced may still hold: made-up falses only
+        thin = weak(cur) and any(iv.anchored for iv in intervals if iv is not cur)
+        if not thin:
+            yield claim("fact", form, True, evidence("fact", cur, intervals))
         n = 0
         for value, perturbed, stale_iv in false_values(subject, attribute, intervals, cur,
                                                        timelines, lexicon):
             if n >= config["fact_false_per_pair"]:
                 break
+            if thin and not perturbed:
+                continue
             form = {"subject": subject, "attribute": attribute, "value": value.to_json()}
             ev = evidence("fact", cur, intervals, perturbed=perturbed,
                           stale=stale_iv is not None)

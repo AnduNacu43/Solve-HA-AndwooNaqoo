@@ -20,6 +20,12 @@ def exact(v: Value) -> bool:
     return v.op in (None, "eq")
 
 
+def weak(iv: Interval) -> bool:
+    """One unlabelled sighting: too little to state a true claim on. One
+    misread sentence would otherwise fan out into many wrong claims."""
+    return not iv.anchored and iv.n_obs < 2
+
+
 def usable_pairs(timelines, lexicon, attrs) -> list[tuple[str, str, list[Interval]]]:
     """(subject, attribute, intervals) whose subject and attribute exist in the
     run-time lexicon and whose values have the kind the attribute carries."""

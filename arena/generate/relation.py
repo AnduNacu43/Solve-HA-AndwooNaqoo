@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import Iterator
 
 from arena.generate import deps
-from arena.generate.common import claim, contains, evidence, merge_evidence, usable_pairs
+from arena.generate.common import claim, contains, evidence, merge_evidence, usable_pairs, weak
 from arena.generate.perturb import perturbed_values
 from arena.model import Claim, Interval
 
@@ -26,7 +26,7 @@ def generate_relations(timelines, lexicon, attrs, config: dict) -> Iterator[Clai
         by_subject.setdefault(subject, []).append((attribute, intervals))
     for subject, link, link_ivs in pairs:
         for link_iv in link_ivs:
-            if link_iv.value.kind != "name":
+            if link_iv.value.kind != "name" or weak(link_iv):
                 continue
             target = lexicon.resolve(link_iv.value.value)
             if not target or target == subject:
