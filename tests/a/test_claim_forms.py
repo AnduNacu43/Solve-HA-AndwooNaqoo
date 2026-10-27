@@ -11,8 +11,11 @@ def entry(type_, text, form):
     return {"id": "t1", "type": type_, "text": text, "form": form, "tag": "true", "confidence": 0.9}
 
 
+KNOWN = {"Richard Hendrix", "Gavin Bellson", "Berlin", "Lisbon"}
+
+
 def check(lexicon, attrs, e, accepted):
-    errs = validate_entry(e, lexicon, attrs)
+    errs = validate_entry(e, lexicon, attrs, known_names=KNOWN)
     if accepted:
         assert errs == [], errs
     else:
@@ -305,3 +308,13 @@ def test_soft_hyphen_inside_a_word_is_dropped(lexicon, attrs):
     form = {"subject": "Hooly Gemini", "attribute": "languages",
             "value": {"kind": "quantity", "value": 12, "unit": "language"}}
     check(lexicon, attrs, entry("fact", "Hooly Gemini speaks 12 lan­guages.", form), True)
+
+
+def test_unknown_names_are_refused_unless_known(lexicon, attrs):
+    form = {"subject": "Hooly", "attribute": "headquarters", "value": {"kind": "name", "value": "Lisbon"}}
+    e = entry("fact", "Hooly is headquartered in Lisbon.", form)
+    assert validate_entry(e, lexicon, attrs, known_names={"lisbon"}) == []
+    assert validate_entry(e, lexicon, attrs)  # not a lexicon name, nobody vouched for it
+    e["form"]["value"]["value"] = "Bertram Gilfoil"  # a lexicon subject needs no vouching
+    e["text"] = "Hooly is headquartered in Bertram Gilfoil."
+    assert validate_entry(e, lexicon, attrs) == []

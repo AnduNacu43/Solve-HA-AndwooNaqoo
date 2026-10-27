@@ -563,12 +563,36 @@ def _entry_from_claim(claim: Claim) -> dict:
             "tag": claim.label, "confidence": claim.confidence}
 
 
-def grammar_errors(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str] = None) -> list[str]:
+def _unknown_names(form: dict, lexicon: Lexicon, known_names) -> list[str]:
+    """Name values neither the lexicon nor known_names hold.
+
+    The referee resolves a claim's name through the lexicon's names and
+    aliases (value-forms.md, Name); a name it cannot resolve is a risk we do
+    not take unless the caller vouches for it (names the universe states, such
+    as those of the practice forms).
+    """
+    known = {name_key(n) for n in known_names} if known_names else set()
+    out = []
+    for k in ("value", "from", "to"):
+        v = form.get(k)
+        if isinstance(v, dict) and v.get("kind") == "name":
+            name = str(v.get("value"))
+            if lexicon.resolve(name) is None and name_key(name) not in known:
+                out.append(f"the name {name!r} is not in the lexicon nor among the known names")
+    return out
+
+
+def grammar_errors(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str] = None,
+                   known_names=None) -> list[str]:
     """Re-read the entry's text against its form (claim-forms.md, value-forms.md).
 
     Assumes shape_errors() found nothing. kind is the compared facts' kind for
-    a compare (else looked up in attrs).
+    a compare (else looked up in attrs). known_names are name values to accept
+    although the lexicon lacks them.
     """
+    unknown = _unknown_names(entry["form"], lexicon, known_names)
+    if unknown:
+        return unknown
     text = entry["text"]
     for i, ch in enumerate(text):
         if V.is_invisible(ch) and not (
@@ -596,26 +620,29 @@ def grammar_errors(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str
     return best or ["no sentence holds the claim"]
 
 
-def validate_entry(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str] = None) -> list[str]:
+def validate_entry(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str] = None,
+                   known_names=None) -> list[str]:
     """[] when the referee would accept the entry (as written in a JSON example or a CSV row)."""
     errs = shape_errors(entry, lexicon)
     if errs:
         return errs
     try:
-        return grammar_errors(entry, lexicon, attrs, kind)
+        return grammar_errors(entry, lexicon, attrs, kind, known_names)
     except Exception as exc:  # a crash is a rejection, never an acceptance
         return [f"validator error: {type(exc).__name__}: {exc}"]
 
 
-def validate(claim: Claim, lexicon: Lexicon, attrs=None) -> list[str]:
+def validate(claim: Claim, lexicon: Lexicon, attrs=None, known_names=None) -> list[str]:
     """[] means the referee would accept the claim; otherwise readable reasons.
 
     Checks the entry.schema.json shape and re-reads claim.text against
     claim.form by claim-forms.md and value-forms.md. A compare needs the kind of
-    its facts: claim.evidence["kind"], or attrs (B's AttrSpec map).
+    its facts: claim.evidence["kind"], or attrs (B's AttrSpec map). A name value
+    must be a lexicon name or alias, or be in known_names (an iterable of names
+    the universe states, e.g. every name value of the practice forms).
     """
     kind = (claim.evidence or {}).get("kind") if claim.type == "compare" else None
-    return validate_entry(_entry_from_claim(claim), lexicon, attrs, kind)
+    return validate_entry(_entry_from_claim(claim), lexicon, attrs, kind, known_names)
 
 
 # ------------------------------------------------------------------ CLI
@@ -637,6 +664,18 @@ def kinds_from_forms(practice_csv: str) -> dict[tuple[str, str], dict]:
         (kind, unit, cur, per), n = c.most_common(1)[0]
         out[key] = {"kind": kind, "unit": unit, "currency": cur, "per": per, "n_seen": n}
     return out
+
+
+def names_from_forms(practice_csv: str) -> set[str]:
+    """Every name value the practice forms hold (names the universe states)."""
+    from arena.pages import read_rows
+
+    return {
+        f["value"]["value"]
+        for row in read_rows(practice_csv)
+        for f in json.loads(row["form"])
+        if f["value"]["kind"] == "name"
+    }
 
 
 def _cli_attrs():
@@ -706,13 +745,14 @@ def main(argv: list[str]) -> int:
         lex_path = "/universe/lexicon.json" if os.path.exists("/universe/lexicon.json") else "data/lexicon.json"
     lexicon = Lexicon.load(lex_path)
     attrs = _cli_attrs()
+    known = names_from_forms("data/practice.csv") if os.path.exists("data/practice.csv") else None
     entries = [x for p in paths for x in _entries_from_path(p)]
     ids = Counter(
         (where.rsplit(":", 1)[0], e.get("id")) for where, e in entries if isinstance(e, dict) and not where.endswith(".json")
     )
     bad = 0
     for where, e in entries:
-        errs = validate_entry(e, lexicon, attrs) if isinstance(e, dict) else ["not an object"]
+        errs = validate_entry(e, lexicon, attrs, known_names=known) if isinstance(e, dict) else ["not an object"]
         if isinstance(e, dict) and ids.get((where.rsplit(":", 1)[0], e.get("id")), 0) > 1:
             errs = errs + [f"id {e.get('id')!r} is not unique"]
         if errs:
