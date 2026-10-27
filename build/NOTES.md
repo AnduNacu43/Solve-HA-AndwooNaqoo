@@ -12,13 +12,13 @@ python -m pytest tests/b -s     # 52 tests (+2 that run once A is merged); -s pr
 `data/baked/`.** With A's extractor importable, the bake takes each practice
 row's cues from A's `extract()` and measures A's precision per value kind
 (`build/extraction.py`). Until then, `tests/b/test_b_bake.py` fails with "stale:
-run python build/bake.py". In a merged A+B tree (A at 5143b83) the rebake
-gives this table, and all 1,132 tests of `tests/a` + `tests/b` pass:
+run python build/bake.py". In a merged A+B tree (A at 0f10197) the rebake
+gives this table, and all 1,133 tests of `tests/a` + `tests/b` pass:
 
 ```
 boolean:context 0.93  boolean:named 0.97  date:context 0.91  date:named 0.89
 duration:context 0.93 duration:named 0.98 money:context 0.97 money:named 0.98
-name:context 0.97     name:named 0.85     percent:context 0.96 percent:named 0.96
+name:context 0.98     name:named 0.92     percent:context 0.96 percent:named 0.96
 quantity:context 0.93 quantity:named 0.98 version:named 0.95
 ```
 
@@ -100,19 +100,17 @@ A's resolved names for the universe.
 | Replay | Accuracy | False-row recall | False-row precision | True-row accuracy |
 | --- | --- | --- | --- | --- |
 | labels hidden | 0.905 | 0.505 | 0.782 | 0.975 |
-| 5-fold CV (other folds anchor) | 0.904 | 0.700 | 0.671 | 0.940 |
+| 5-fold CV (other folds anchor) | 0.930 | 0.592 | 0.901 | 0.989 |
 | labels visible | 0.985 | 0.906 | 0.992 | 0.999 |
 
-The best proxy for the run is **A's extractor on the practice text, added
-unlabelled to the labelled seed** (`tests/b/test_b_with_extractor.py`, which
-runs once A is merged). There, the current value differs from the labels-only
-timeline on **1 of 514 pairs**: Android 16 `supported_models`, a table cell
-whose subject A can only guess from page context. It was 19 before the
-anchored-pair rule below; A's fixes (5143b83) and the labelled-op fix brought
-it from 5 to 1. CV
-was 0.930 / 0.596 before that rule. CV runs at practice density, where a real
-change is often seen once; the rule gives up those changes so that one misread
-sentence cannot overturn a labelled value.
+The best proxy for the run is **Agent C's held-out split**
+(`tests/b/test_b_with_extractor.py`, which runs once A is merged). Half of
+the practice pages are the labelled seed. The other half's text is read by
+A's extractor without labels. The key is the timelines built with every
+label. Over both halves, the seed half alone gets 274 of 1,028 current values
+wrong; adding the other half's text brings that to **88** (A at 0f10197).
+Changes after a pair's last labelled row reach B only through unlabelled
+text, as they will at run time.
 
 The five known timelines come out right with labels visible and with labels
 hidden: AI Pro price 49 -> 59 on 2026-04-01, Gemini languages 6 -> 12 on
@@ -150,12 +148,18 @@ bonus. Each traded one number for another with no net gain.
   labelled row pins it. Without these, a 10x simulation of the universe
   changed 16 current values: the 2026-10-26 stale nest (`founded 2024-06-01`,
   Series A EUR 25M) took over the end of the timeline. With them, 1 changes.
-- **Pairs with labelled rows** get the same two-day rule at any density: a
-  value no labelled row pins must be seen on two days to start an interval.
-  With A's extractor on the practice text, single misread sentences had
-  replaced 19 labelled current values (EUR 199 read as Workspace's
-  `extra_seat_price`, the Series A lead read as co-investor, and so on); with
-  the rule, 5 remained, and 1 after A's fixes and the labelled-op fix below.
+- **Tried and reverted: the two-day rule for every pair with labelled rows**
+  (052db28, reverted in the next commit). It stopped single misread
+  sentences from replacing labelled values when the practice text was fed
+  back unlabelled (19 -> 5 wrong). But on C's held-out split it blocked
+  real changes that appear only in unlabelled text after the last labelled
+  row. Wrong current values went from 90 to 120, and C's claim accuracy fell
+  about 0.8 points (24-25 more wrong true facts per half: Pixel Fold and
+  Pixel Watch prices, Pixel 10 Pro storage, Gmail attachment limit, and
+  others). C already abstains from a true claim on a value that rests on one
+  unlabelled sighting displacing a labelled one, so lone misreads cost
+  little. The dense-pair two-day rule stays: on the split it costs nothing
+  (90 vs 91), and it guards against the one-day stale nest.
 - **Extraction precision** (A's, measured at bake time once A is merged)
   multiplies unlabelled observations by value kind and named/context subject.
   Replays and calibration leave it out, because they judge the gold forms.
@@ -212,27 +216,27 @@ Interval correctness (the rows `confidence()` uses):
 
 ```
 label  anchored kind       right     n
-true   0        boolean    0.872    47
-true   0        date       0.919    37
-true   0        duration   0.909    22
-true   0        money      0.931    29
+true   0        boolean    0.836    55
+true   0        date       0.872    47
+true   0        duration   0.862    29
+true   0        money      0.909    44
 true   0        name       0.895    19
-true   0        percent    0.923    39
-true   0        quantity   0.908   142
+true   0        percent    0.904    52
+true   0        quantity   0.889   198
+true   0        version    1.000    18
 true   1        boolean    0.979    94
 true   1        date       0.981   104
 true   1        duration   0.982   171
-true   1        money      0.979   192
-true   1        name       0.994   167
+true   1        money      0.984   186
+true   1        name       0.994   168
 true   1        percent    0.953   127
-true   1        quantity   0.973   665
+true   1        quantity   0.973   659
 true   1        version    0.990    96
 ```
 
 The label=false rows (an observed value the timeline contradicts, judged
-false) are much lower, for example quantity 0.56 (n=111). In CV the
-anchored-pair rule rejects real one-sighting changes, which is one reason
-`confidence()` does not use those rows.
+false) are reported but not used, for example quantity anchored 0.855
+(n=62).
 
 The full table, with volatility and support buckets, is in
 `data/baked/calibration.json`. Print it with `python build/bake.py --report`

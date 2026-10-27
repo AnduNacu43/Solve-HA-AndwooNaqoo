@@ -19,10 +19,9 @@ per pair:
    A segment pays a change penalty (CHANGE_PENALTY, rising with the log of
    the pair's total weight; three times that for a revert), so a lone lie
    never becomes an interval inside a run, and in a dense pair a lie on the
-   last day does not become the current value. In a dense pair, and in a
-   pair with labelled rows, a new value must also be seen on two days: a
-   one-day nest of stale pages (2026-10-26) or one misread sentence never
-   replaces the current value.
+   last day does not become the current value. In a dense pair a new value
+   must also be seen on two days: a one-day nest of stale pages (2026-10-26)
+   never replaces the current value.
 3. Labelled practice rows are anchors: a true row pins its value at its date;
    a false single-fact row excludes its value at its date; a false multi-fact
    row and an unsure row count at half weight.
@@ -403,17 +402,18 @@ def _change_costs(obs: list[_Obs], cands: list[_Cand]) -> list[float]:
     CHANGE_PENALTY, growing with the log of the pair's total weight
     (BIC-like), so in a dense pair a new value needs more than one sighting;
     REVERT_PENALTY_FACTOR times that to return to an earlier value. In a
-    dense pair (DENSE_PAIR_WEIGHT), or in a pair with labelled rows, a new
-    value seen on fewer than CHANGE_MIN_DATES days, and pinned by no labelled
-    row, cannot start a segment: a one-day nest of stale pages, or one
-    misread sentence, must not replace a value the labels or the crowd hold.
+    dense pair (DENSE_PAIR_WEIGHT) a new value seen on fewer than
+    CHANGE_MIN_DATES days, and pinned by no labelled row, cannot start a
+    segment: a one-day nest of stale pages must not become the current value.
+    A sparse pair with labelled rows is deliberately not guarded: a change
+    after the last labelled row is only ever seen in unlabelled text.
     """
     total = sum(x.w for x in obs)
     base = max(CHANGE_PENALTY, PENALTY_PER_LOG_WEIGHT * math.log1p(total))
-    guarded = total >= DENSE_PAIR_WEIGHT or any(x.role == "pin" for x in obs)
+    dense = total >= DENSE_PAIR_WEIGHT
     out = []
     for c in cands:
-        if guarded and c.n_dates < CHANGE_MIN_DATES and not c.pinned:
+        if dense and c.n_dates < CHANGE_MIN_DATES and not c.pinned:
             out.append(float("inf"))
         else:
             out.append(base * (REVERT_PENALTY_FACTOR if c.revert else 1.0))

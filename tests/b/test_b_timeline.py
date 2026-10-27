@@ -91,12 +91,16 @@ def test_a_one_day_nest_of_a_new_value_does_not_take_over_a_dense_pair(make_obs)
     assert current(build(obs, {})[("Acme", "attr")]).value.value == "2024-06-01"
 
 
-def test_one_misread_sentence_does_not_overturn_a_labelled_value(make_obs):
-    obs = [make_obs(qty(1500, "user"), d, label="true") for d in ("2026-02-01", "2026-05-01")]
-    obs.append(make_obs(qty(70000, "user"), "2026-09-01"))       # unlabelled, one day
-    assert current(build(obs, {})[("Acme", "attr")]).value.value == 1500
-    obs.append(make_obs(qty(70000, "user"), "2026-09-20"))       # seen again on another day
-    assert current(build(obs, {})[("Acme", "attr")]).value.value == 70000
+def test_a_later_unlabelled_value_can_follow_a_labelled_one(make_obs):
+    """Changes after the last labelled row only ever appear in unlabelled
+    text, so a sparse labelled pair accepts one sighting (C abstains from a
+    true claim on a value that rests on a single unlabelled sighting)."""
+    obs = [make_obs(money(349), d, label="true") for d in ("2026-02-01", "2026-05-01")]
+    obs.append(make_obs(money(299), "2026-09-02"))
+    ivs = build(obs, {})[("Acme", "attr")]
+    assert [(iv.start, iv.value.value, iv.anchored) for iv in ivs] == [
+        ("2026-02-01", 349, True), ("2026-09-02", 299, False)]
+    assert ivs[-1].n_obs == 1
 
 
 def test_genuine_revert_is_kept(make_obs):
