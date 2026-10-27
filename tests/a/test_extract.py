@@ -127,3 +127,13 @@ def test_other_precision_targets(lexicon, attrs):
         ("Hooly Maps", "offline_area_limit", 5.0)}
     assert not _all(lexicon, attrs, "Ads are 61.8% of Hooly's revenue")  # no attribute fits better than another
     assert _all(lexicon, attrs, "Hooly Gemini 1.0 is live.") == {("Hooly Gemini", "version", "1.0")}
+
+
+def test_more_names(lexicon, attrs):
+    # a place is no provider; hint words such as "led" or "takes charge" are enough to place a name
+    assert not [x for x in _names(lexicon, attrs, "Hooly Gemini is hosted in Frankfurt on Nimbus Cloud.")
+                if x[1] == "cloud_provider" and x[2] == "Frankfurt"]
+    assert ("Hooly Jules", "lead", "Nelson Bighettie") in _names(
+        lexicon, attrs, "Hooly Jules beta users number 500 testers, and the beta is led by Nelson Bighettie.")
+    assert ("Hooly Cloud", "reliability_lead", "Holdan") in _names(
+        lexicon, attrs, "Holdan has run Hooly Cloud reliability since January 2026.")

@@ -100,7 +100,9 @@ HINTS: dict[str, tuple[str, ...]] = {
     "ceo": ("ceo", "chief", "executive"),
     "cto": ("cto",),
     "head": ("head", "heads", "runs", "leads", "under", "answers", "charge"),
-    "lead": ("lead", "leads", "led", "leading", "answers"),
+    "lead": ("lead", "leads", "led", "leading", "answers", "under"),
+    "newest": ("new", "newest", "latest", "opened", "added", "adds"),
+    "home": ("home", "default", "main", "base"),
     "chair": ("chair", "chairs", "chaired", "chairman"),
     "owner": ("owner", "owns", "owned"),
     "sponsor": ("sponsor", "sponsored", "executive"),
@@ -151,8 +153,14 @@ _VERBISH = re.compile(
 )
 
 
+_IRREGULAR_STEMS = {"led": "lead", "ran": "run", "held": "hold", "spoke": "speak", "sold": "sell",
+                    "began": "begin", "took": "take", "came": "come", "grew": "grow", "rose": "rise"}
+
+
 def _stem(w: str) -> str:
     w = w.lower()
+    if w in _IRREGULAR_STEMS:
+        return _IRREGULAR_STEMS[w]
     for suf in ("ing", "ers", "ed", "es", "er", "s", "d"):
         if len(w) > len(suf) + 3 and w.endswith(suf):
             return w[: -len(suf)]
@@ -570,7 +578,10 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
         canon = lexicon.resolve(value)
         cands = _candidates([m for m in mentions if m.start != a], a, ctx, prev, lexicon, {canon} if canon else set())
         local = _local_words(sentence, a, b)
-        after_in = bool(re.search(r"(?<![A-Za-z])in\s+$", sentence[:a]))
+        after_in = bool(re.search(r"(?<![A-Za-z])in\s+$", sentence[max(0, a - 6):a]))
+        # `hosted in Frankfurt`, `out of Frankfurt`: a place, never a provider or a person
+        place_like = not canon and bool(re.search(r"(?<![A-Za-z])(?:in|out\s+of)\s+$", sentence[max(0, a - 10):a]))
+        is_event = lambda s_: "date" in lexicon.subjects.get(s_, ())  # noqa: E731
         clause = S.clause_of(sentence, a)
         at = index_of(a)
         for subject, prior, ins in cands:
@@ -581,10 +592,13 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
                 matched = [t for t in own if any(_match(t, w) for w in local)]
                 if canon and (_owns(lexicon, canon, matched or own) or not _fits_type(lexicon, canon, attr)):
                     continue
+                if place_like and _attr_type(attr) in ("person", "org"):
+                    continue
+                hinted = [h for h in _hint_words(attr) if any(_match(h, w) for w in local)]
                 s = _attr_score(attr, words, local)
                 if attr == "city" and after_in and not (canon and lexicon.subjects.get(canon)):
-                    matched, s = ["city"], s + 3.0  # `... in Dublin` on an event's page
-                if not matched or s < 2.0:
+                    matched, s = ["city"], s + (4.5 if is_event(subject) else 3.0)  # `... in Dublin`
+                if not (matched or hinted) or s <= 0:
                     continue
                 cues_at = [i for i, (x, _, w) in enumerate(spans)
                            if any(_match(t, w) for t in own + list(_hint_words(attr))) and not (a <= x < b)]
