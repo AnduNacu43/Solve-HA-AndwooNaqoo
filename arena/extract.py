@@ -125,7 +125,7 @@ _STOP = frozenset(
     per s i you he she they his her their my your all any each every new now still also just only than then
     there here so not no but do does did can will would""".split()
 )
-_ATTR_STOP = frozenset({"of", "the", "in", "to", "by", "is", "a", "per", "on", "at", "and"})
+_ATTR_STOP = frozenset({"of", "the", "in", "to", "by", "is", "a", "per", "on", "at", "and", "date", "time"})
 
 _SPEAKER = re.compile(r"^\s*(?P<who>[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)?):\s")
 _CUES = {
