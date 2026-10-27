@@ -4,7 +4,8 @@
 # hands in and the validator's summary.
 #
 #   scripts/demo.sh             sample/sample.csv, fetched from the starter repo
-#                               (QA-DNA/hype-arena-starter) when not here yet
+#                               (QA-DNA/hype-arena-starter, private: needs gh
+#                               logged in to an account that can read it)
 #   scripts/demo.sh rows.csv    any id,text,date CSV, to rehearse
 #
 # The lexicon is sample/lexicon.json when the sample ships one, else
@@ -13,7 +14,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SAMPLE_URL="https://raw.githubusercontent.com/QA-DNA/hype-arena-starter/main/sample/sample.csv"
+STARTER="QA-DNA/hype-arena-starter"   # private: fetched through the gh login
+SAMPLE_PATH="sample/sample.csv"
 IMAGE="hype-demo"
 MINUTES=30   # the organisers' run time limit
 SHOW=20      # rows printed
@@ -32,9 +34,13 @@ if [ ! -f "$SAMPLE" ]; then
     rm -rf "$WORK"
     exit 1
   fi
-  step "Fetching sample/sample.csv from the starter repo"
-  if ! curl -fsL "$SAMPLE_URL" -o "$WORK/sample.csv"; then
-    echo "The starter repo has no sample/sample.csv yet (it arrives on 29 Oct at 09:00)." >&2
+  step "Fetching $SAMPLE_PATH from $STARTER"
+  if ! { gh api -H "Accept: application/vnd.github.raw" \
+           "repos/$STARTER/contents/$SAMPLE_PATH" > "$WORK/sample.csv" 2>/dev/null \
+         || curl -fsL "https://raw.githubusercontent.com/$STARTER/main/$SAMPLE_PATH" \
+              -o "$WORK/sample.csv"; }; then
+    echo "Could not fetch $SAMPLE_PATH: not published yet (29 Oct, 09:00), or gh is not" >&2
+    echo "logged in to an account that can read $STARTER (check: gh auth status)." >&2
     echo "To rehearse, pass any id,text,date CSV: scripts/demo.sh rows.csv" >&2
     rm -rf "$WORK"
     exit 1
