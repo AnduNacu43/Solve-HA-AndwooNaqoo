@@ -430,12 +430,30 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
             continue
         used.add((subject, attr))
         resolved_subject = resolved_subject or subject
-        obs.append(_obs(subject, attr, r.value, page, row, sentence, in_sentence, cues, label))
+        value = _align_unit(r, _spec(attrs, subject, attr))
+        obs.append(_obs(subject, attr, value, page, row, sentence, in_sentence, cues, label))
     obs += _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words,
                                used, page, row, cues, label)
     named = [m.subject for m in mentions if m.subject in lexicon.subjects]
     new_prev = resolved_subject or (named[0] if named else prev)
     return obs, new_prev
+
+
+def _align_unit(r: V.Reading, spec) -> Value:
+    """The value with its unit spelled as the attribute's spec spells the same unit.
+
+    `6.3 in` against a spec in `inch` becomes inch, `1,200 paying customers`
+    against `customer` becomes customer, so observations and the practice seed
+    agree without unit conversion. Other units stay as written.
+    """
+    v = r.value
+    su = _g(spec, "unit")
+    if v.kind != "quantity" or not su or su == v.unit:
+        return v
+    cs, cv = V.canonical_unit(su), V.canonical_unit(v.unit)
+    if (cs and cs == cv) or (not cs and not cv and V.singular(su) in r.nouns):
+        return Value(v.kind, v.value, su, v.currency, v.per, v.op)
+    return v
 
 
 def _obs(subject, attr, value, page, row, sentence, in_sentence, cues, label) -> Observation:
