@@ -276,6 +276,7 @@ class Reading:
     approximate: bool = False
     range_end: bool = False
     nouns: tuple[str, ...] = ()
+    alt: bool = False  # a second reading of the same number (`Hooly Maps 4.6 stars`)
 
     @property
     def plain(self) -> bool:
@@ -297,6 +298,7 @@ class _Cand:
     approx: bool = False
     range_end: bool = False
     nouns: tuple[str, ...] = ()
+    alt_of: Optional["_Cand"] = None
 
 
 def _normalize(s: str) -> tuple[str, list[int]]:
@@ -391,7 +393,10 @@ def _numword_value(m: re.Match) -> float:
     return float(_ONES_VAL[m.group("u").lower()])
 
 
-def _counted_noun(t: str, pos: int) -> Optional[tuple[str, int, tuple[str, ...]]]:
+_NOUN_PHRASE_ENDS = frozenset({"and", "or", "but", "while", "which", "who", "that", "whose", "where", "when"})
+
+
+def _counted_noun(t: str, pos: int, one: bool = False) -> Optional[tuple[str, int, tuple[str, ...]]]:
     """(noun, end, all candidate nouns) for the counted noun after a number at pos."""
     p = pos
     if p < len(t) and t[p] == "-":
@@ -402,7 +407,7 @@ def _counted_noun(t: str, pos: int) -> Optional[tuple[str, int, tuple[str, ...]]
     found: list[tuple[str, int, int]] = []
     for _ in range(3):
         wm = _WORD.match(t, p)
-        if not wm:
+        if not wm or wm.group(0).lower() in _NOUN_PHRASE_ENDS:
             break
         found.append((wm.group(0), wm.start(), wm.end()))
         gm = _GAP.match(t, wm.end())
@@ -416,6 +421,8 @@ def _counted_noun(t: str, pos: int) -> Optional[tuple[str, int, tuple[str, ...]]
     if not usable:
         return None
     nouns = tuple(dict.fromkeys(singular(w) for w, _ in usable))
+    if one and not _is_plural(usable[0][0]) and not usable[0][0][0].isupper():
+        return singular(usable[0][0]), usable[0][1], nouns
     for w, b in usable:
         if _is_plural(w):
             return singular(w), b, nouns
@@ -432,6 +439,7 @@ class _Scanner:
         self.t = text
         self.taken = [False] * (len(text) + 1)
         self.cands: list[_Cand] = []
+        self.alts: list[_Cand] = []
 
     def free(self, a: int, b: int) -> bool:
         return not any(self.taken[a:b])
@@ -607,8 +615,12 @@ class _Scanner:
         if scale == 1.0 and digits and re.fullmatch(r"\d+\.\d+", digits):
             nm = _CAP_NAME_BEFORE.search(t, 0, s)
             if nm and nm.group("w") not in _NOT_NAMES:
-                return cand("version", e, val=digits)
-        cn = _counted_noun(t, pos)
+                ver = cand("version", e, val=digits)
+                cn = _counted_noun(t, pos)
+                if cn:
+                    self.alts.append(cand("quantity", cn[1], unit=cn[0], nouns=cn[2], alt_of=ver))
+                return ver
+        cn = _counted_noun(t, pos, one=value == 1)
         if cn:
             noun, end, nouns = cn
             return cand("quantity", end, unit=noun, nouns=nouns)
@@ -660,7 +672,9 @@ class _Scanner:
         for c in self.cands:
             if c.op == "eq":
                 c.op = None
-        self.cands = sorted(cands + extra, key=lambda c: c.start)
+        for a in self.alts:
+            a.op, a.approx, a.range_end = a.alt_of.op, a.alt_of.approx, a.alt_of.range_end
+        self.cands = sorted(cands + extra + self.alts, key=lambda c: (c.start, c.alt_of is not None))
 
     def _unit_count(self, c: _Cand) -> float:
         # the written count of a duration before fortnight/decade multipliers
@@ -742,6 +756,7 @@ def read(sentence: str) -> list[Reading]:
                 approximate=c.approx,
                 range_end=c.range_end,
                 nouns=c.nouns if c.nouns else ((c.unit,) if c.kind == "quantity" and canonical_unit(c.unit) is None else ()),
+                alt=c.alt_of is not None,
             )
         )
     return out
@@ -753,7 +768,9 @@ def parse_values(sentence: str) -> list[ParsedValue]:
     Values the contract calls ambiguous (`99,9`, `1.500`, `12/03/2026`, `Q4 2026`,
     `10m` as millions, a value beside an invisible character ...) are omitted.
     Negated, approximate and range-end values are returned with their flag set;
-    comparison words set Value.op (`over 10,000 customers` -> op "gt").
+    comparison words set Value.op (`over 10,000 customers` -> op "gt"). A number
+    with two readings (`Hooly Maps 4.6 stars`: a version after a capitalised name,
+    or 4.6 stars) yields both, the version first, at the same span.
     Names and yes/no are not read here (see Lexicon.find_mentions).
     """
     return [
@@ -937,7 +954,7 @@ def states_value(r: Reading, v: Value) -> bool:
     The reading must be plain (no op, approximation, range or negation). A counted
     quantity is read with any of its candidate nouns (`1,200 paying customers`).
     """
-    if not r.plain or r.value.kind != v.kind:
+    if not r.plain or r.alt or r.value.kind != v.kind:
         return False
     if v.kind == "quantity" and canonical_unit(v.unit) is None:
         if canonical_unit(r.value.unit) is not None:
