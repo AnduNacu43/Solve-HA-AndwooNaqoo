@@ -134,6 +134,12 @@ _STOP = frozenset(
 _ATTR_STOP = frozenset({"of", "the", "in", "to", "by", "is", "a", "per", "on", "at", "and", "date", "time"})
 
 _SPEAKER = re.compile(r"^\s*(?P<who>[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)?):\s")
+_FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'd|[Mm]y|me|myself)\b")
+# `Lisbon, 19 October 2026: ...` or a bare `Berlin, 24 March 2026`: the page's dateline, no fact
+_DATELINE = re.compile(
+    r"^\s*(?!(?:Today|Yesterday|Tomorrow|On|Since|From|Until|By|In)\b)[A-Z][a-z]+(?:\s[A-Z][a-z]+)?,\s*"
+    r"(?P<date>[^:\u2014\u2013]{6,24}?)\s*(?:[:\u2014\u2013]|-\s|$)"
+)
 _CUES = {
     "testimonial": re.compile(r"\b(?:for me|replaced \w+ tools|my (?:team|week|life|work)|I love|I use|we use|changed my)\b", re.I),
     "boast": re.compile(r"\b(?:before lunch|not even tired|and I asked|the missing percent|I am the|best in the world|"
@@ -339,8 +345,28 @@ def _options(r: V.Reading, cands: list[tuple[str, float, bool]], lexicon, attrs,
     return out
 
 
+def _speaker_subject(row_text: str, lexicon) -> Optional[str]:
+    """The person a transcript row's `Name:` label names, when the lexicon has exactly one.
+
+    `Bertram:` is the first word of the lexicon name Bertram Gilfoil, so it names him;
+    a label naming nobody (or several people) gives nothing.
+    """
+    m = _SPEAKER.match(row_text)
+    if not m:
+        return None
+    who = m.group("who")
+    canon = lexicon.resolve(who)
+    if canon is None:
+        first = who.split()[0].lower()
+        hits = [s for s in lexicon.subjects if len(s.split()) > 1 and s.split()[0].lower() == first]
+        canon = hits[0] if len(hits) == 1 else None
+    if canon and set(lexicon.subjects.get(canon, ())) & _PERSON_ATTRS:
+        return canon
+    return None
+
+
 def _candidates(sentence_mentions, value_pos: int, ctx: _PageContext, prev: Optional[str], lexicon,
-                exclude: set[str]) -> list[tuple[str, float, bool]]:
+                exclude: set[str], speaker: Optional[str] = None) -> list[tuple[str, float, bool]]:
     out: dict[str, tuple[float, bool]] = {}
 
     def add(s, p, ins):
@@ -351,6 +377,8 @@ def _candidates(sentence_mentions, value_pos: int, ctx: _PageContext, prev: Opti
 
     before = [m for m in sentence_mentions if m.end <= value_pos]
     after = [m for m in sentence_mentions if m.start >= value_pos]
+    if speaker:
+        add(speaker, 4.5, False)  # `Bertram: I joined Hooly ...`: the speaker is the one who says I
     if sentence_mentions:
         add(sentence_mentions[0].subject, 4.0, True)  # the sentence's first name: usually its subject
     for i, m in enumerate(reversed(before)):
@@ -431,6 +459,10 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
     words = _sentence_words(sentence)
     cues = _cues(row.text, sentence, ri == 0, mentions)
     readings = [r for r in V.read(sentence) if not _value_inside(r, spans)]
+    dl = _DATELINE.match(sentence) if row.text.lstrip().startswith(sentence) else None  # a row's opening only
+    if dl:
+        readings = [r for r in readings if not (r.value.kind == "date" and dl.start("date") <= r.start < dl.end())]
+    speaker = _speaker_subject(row.text, lexicon) if _FIRST_PERSON.search(sentence) else None
     groups: dict[int, list[V.Reading]] = {}
     for r in readings:
         if r.negated or r.approximate or r.range_end:
@@ -442,7 +474,7 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
     options = []
     for pos in sorted(groups):
         for r in groups[pos]:
-            cands = _candidates(mentions, r.start, ctx, prev, lexicon, set())
+            cands = _candidates(mentions, r.start, ctx, prev, lexicon, set(), speaker)
             ca, cb = S.clause_of(sentence, r.start)
             here = {m.subject for m in mentions if ca <= m.start < cb}  # named in the value's own clause
             cands = [(s, p + (1.0 if s in here else 0.0), i) for s, p, i in cands]
@@ -473,7 +505,7 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
     chosen.sort(key=lambda c: c[0])
     obs = [o for _, o in chosen]
     resolved_subject = obs[0].subject if obs else None
-    obs += _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words,
+    obs += _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, speaker,
                                used, page, row, cues, label)
     named = [m.subject for m in mentions if m.subject in lexicon.subjects]
     new_prev = resolved_subject or (named[0] if named else prev)
@@ -559,7 +591,8 @@ def _fits_type(lexicon, canon: str, attr: str) -> bool:
     return True
 
 
-def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans, page, row, cues, label):
+def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, speaker, used, neg_spans, page, row,
+                       cues, label):
     """Names to name-valued attributes, the best (subject, attribute, name) triples first.
 
     A name goes to the attribute whose own words (or hints) stand nearest to
@@ -576,7 +609,8 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
         if any(x <= a < y for x, y in neg_spans) or S.negated_before(sentence, a):
             continue
         canon = lexicon.resolve(value)
-        cands = _candidates([m for m in mentions if m.start != a], a, ctx, prev, lexicon, {canon} if canon else set())
+        cands = _candidates([m for m in mentions if m.start != a], a, ctx, prev, lexicon, {canon} if canon else set(),
+                            speaker)
         local = _local_words(sentence, a, b)
         after_in = bool(re.search(r"(?<![A-Za-z])in\s+$", sentence[max(0, a - 6):a]))
         # `hosted in Frankfurt`, `out of Frankfurt`: a place, never a provider or a person
@@ -625,15 +659,17 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
     return obs
 
 
-def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
+def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, speaker, used, page, row, cues, label):
     obs = []
     numeric = bool(used)
     numeric_at = [r.num_start for r in V.read(sentence)] if numeric else []
     neg_spans = S.find_negations(sentence)
-    obs += _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans,
+    obs += _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, speaker, used, neg_spans,
                               page, row, cues, label)
     # yes/no: the attribute's own words in the sentence, polarity from negation
     subjects = [(m.subject, 2.0, True) for m in mentions if m.subject in lexicon.subjects]
+    if speaker:
+        subjects.insert(0, (speaker, 2.5, False))
     if prev:
         subjects.append((prev, 0.5, False))
     seen = set()
