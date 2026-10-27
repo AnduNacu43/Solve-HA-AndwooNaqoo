@@ -13,7 +13,9 @@ WORKDIR /app
 COPY arena/ arena/
 COPY data/ data/
 COPY tests/c/stubs/ tests/c/stubs/
-RUN python -m compileall -q arena tests/c/stubs
+# COPY keeps the checkout's file modes; a file only its owner can read would
+# be unreadable to user 10001, so make everything readable (dirs searchable)
+RUN python -m compileall -q arena tests/c/stubs && chmod -R a+rX /app
 
 ENTRYPOINT ["python", "-m", "arena"]
 USER 10001

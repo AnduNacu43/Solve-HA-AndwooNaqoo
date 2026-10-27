@@ -1,0 +1,5 @@
+# Local Python caches carry the checkout's file modes and are rebuilt in the
+# image by compileall; .git is never needed at run time.
+**/__pycache__
+**/*.pyc
+.git
