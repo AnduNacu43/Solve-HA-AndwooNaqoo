@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import math
 import re
+import unicodedata
 from dataclasses import dataclass
 from datetime import date as _date
 from typing import Literal, Optional
@@ -24,8 +25,20 @@ from arena.model import ParsedValue, Value
 
 # ------------------------------------------------------------------ tables
 
-INVISIBLE = "​‌‍⁠﻿­᠎⁡⁢⁣⁤"
-_SPACES = "           "
+INVISIBLE = "\u200b\u200c\u200d\u2060\ufeff\u00ad\u180e\u2061\u2062\u2063\u2064"
+_INVISIBLE_EXTRA = "\u034f\u115f\u1160\u3164\uffa0"
+
+
+def is_invisible(ch: str) -> bool:
+    """Zero-width and other format characters (bidi marks, joiners, variation selectors ...)."""
+    return (
+        ch in INVISIBLE
+        or ch in _INVISIBLE_EXTRA
+        or unicodedata.category(ch) == "Cf"
+        or "\ufe00" <= ch <= "\ufe0f"
+        or "\U000e0100" <= ch <= "\U000e01ef"
+    )
+_SPACES = "\u00a0\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f"
 
 ISO_CURRENCIES = (
     "EUR", "USD", "GBP", "CHF", "RON", "PLN", "CZK", "HUF", "SEK", "NOK", "DKK", "JPY", "CNY",
@@ -149,7 +162,7 @@ _CUR_PREFIX = re.compile(
     r"(?:(?P<sym>US\$|€|\$|£)|(?<![A-Za-z])(?P<iso>" + _alt(ISO_CURRENCIES) + r"))\s*$"
 )
 _PERIOD = re.compile(
-    r"(?:\s*(?:per\s+(?:user|seat|person|member)|/\s*(?:user|seat)))?"
+    r"(?:\s*(?:per\s+user|/\s*seat))?"  # the two forms value-forms.md lists
     r"(?:\s*/\s*(?P<slash>month|mo|day|week|wk|year|yr)(?![A-Za-z])"
     r"|\s+(?:a|per)\s+(?P<per>month|day|week|year)(?![A-Za-z])"
     r"|\s+(?P<adv>monthly|daily|weekly|yearly|annually)(?![A-Za-z])"
@@ -240,19 +253,21 @@ _DATE_OPS_BEFORE_MAP = {p: o for p, o in _DATE_OPS_BEFORE}
 _WITHIN_RE = _before_re(["within"])
 _APPROX_BEFORE_RE = re.compile(
     r"(?:(?<![A-Za-z])(?:" + "|".join(re.escape(p).replace(r"\ ", r"\s+") for p in _APPROX_BEFORE)
-    + r")\s*|[~≈±]\s*)$",
+    + r")\s*|[~\u2248\u00b1]\s*)$",
     re.I,
 )
 _OPS_AFTER = re.compile(
     r"\s+or\s+(?P<le>less|fewer|under|below|lower|shorter)(?![A-Za-z])"
-    r"|\s+or\s+(?P<ge>more|higher|above|longer|over)(?![A-Za-z])",
+    r"|\s+or\s+(?P<ge>more|higher|above|longer|over)(?![A-Za-z])"
+    r"|,?\s+(?P<le2>at\s+(?:the\s+)?most|at\s+(?:the\s+)?maximum|max(?:imum)?|tops)(?![A-Za-z])"
+    r"|,?\s+(?P<ge2>at\s+(?:the\s+)?least|at\s+(?:the\s+)?minimum|minimum|plus)(?![A-Za-z])",
     re.I,
-)
+)  # the last two lines are not in value-forms.md; reading them as ops only makes the validator stricter
 _APPROX_AFTER = re.compile(r"\s+or\s+so(?![A-Za-z])|,?\s+give\s+or\s+take(?![A-Za-z])|-ish(?![A-Za-z])", re.I)
-_RANGE_GAP = re.compile(r"^\s*(?P<j>[-–—]|to|or|and)\s*$", re.I)
+_RANGE_GAP = re.compile(r"^\s*(?P<j>[-\u2013\u2014]|to|or|and)\s*$", re.I)
 _BARE_BEFORE = re.compile(
     r"(?P<n>(?<![A-Za-z0-9_.,])\d+(?:[.,]\d+)*|(?<![A-Za-z])(?:" + _alt(_TENS + _ONES) + r"))"
-    r"\s*(?P<j>[-–—]|to|or|and)\s*(?:US\$|€|\$|£)?\s*$",
+    r"\s*(?P<j>[-\u2013\u2014]|to|or|and)\s*(?:US\$|€|\$|£)?\s*$",
     re.I,
 )
 
@@ -307,11 +322,11 @@ def _normalize(s: str) -> tuple[str, list[int]]:
     idx: list[int] = []
     n = len(s)
     for i, c in enumerate(s):
-        if c == "­" and 0 < i < n - 1 and s[i - 1].isalpha() and s[i + 1].isalpha():
+        if c == "\u00ad" and 0 < i < n - 1 and s[i - 1].isalpha() and s[i + 1].isalpha():
             continue
         if c in _SPACES:
             c = " "
-        elif c == "’" or c == "‘":
+        elif c == "\u2019" or c == "\u2018":
             c = "'"
         out.append(c)
         idx.append(i)
@@ -396,6 +411,11 @@ def _numword_value(m: re.Match) -> float:
 _NOUN_PHRASE_ENDS = frozenset({"and", "or", "but", "while", "which", "who", "that", "whose", "where", "when"})
 
 
+_UNIT_LOOKALIKES = frozenset(
+    k.lower() for k in _PHYS_SYMBOLS if len(k) > 1 and k != "in"
+) | frozenset(c.lower() for c in ISO_CURRENCIES)
+
+
 def _counted_noun(t: str, pos: int, one: bool = False) -> Optional[tuple[str, int, tuple[str, ...]]]:
     """(noun, end, all candidate nouns) for the counted noun after a number at pos."""
     p = pos
@@ -414,6 +434,8 @@ def _counted_noun(t: str, pos: int, one: bool = False) -> Optional[tuple[str, in
         if not gm:
             break
         p = gm.end()
+    if found and found[0][0] not in _PHYS_SYMBOLS and found[0][0].lower() in _UNIT_LOOKALIKES:
+        return None  # `15 gB`: a unit in a case the list does not give reads as nothing
     usable = [
         (w, b) for (w, a, b) in found
         if len(w) >= 2 and w.lower() not in FUNCTION_WORDS and w.lower() not in _DURATION_WORDS
@@ -553,7 +575,7 @@ class _Scanner:
             return c
 
         # money: currency before or after the amount
-        pm = _CUR_PREFIX.search(t, 0, s) if not is_word else None
+        pm = _CUR_PREFIX.search(t, max(0, s - 12), s) if not is_word else None
         cur = None
         start = s
         if pm and pm.end() == s:
@@ -587,7 +609,7 @@ class _Scanner:
             return cand("percent", pc.end())
         if three:
             return None  # 1.500 could be one and a half or fifteen hundred
-        if scale == 1.0 and not is_word and t.startswith(('"', "″"), pos):
+        if scale == 1.0 and not is_word and t.startswith(('"', "\u2033"), pos):
             return cand("quantity", pos + 1, unit="in")
         ph = _PHYS.match(t, pos)
         if ph:
@@ -613,7 +635,7 @@ class _Scanner:
         if scale == 1.0 and digits and re.fullmatch(r"\d{4}", digits) and 1900 <= int(digits) <= 2099 and op is None:
             return cand("date", e, val=digits)
         if scale == 1.0 and digits and re.fullmatch(r"\d+\.\d+", digits):
-            nm = _CAP_NAME_BEFORE.search(t, 0, s)
+            nm = _CAP_NAME_BEFORE.search(t, max(0, s - 60), s)
             if nm and nm.group("w") not in _NOT_NAMES:
                 ver = cand("version", e, val=digits)
                 cn = _counted_noun(t, pos)
@@ -632,16 +654,16 @@ class _Scanner:
         cands = sorted(self.cands, key=lambda c: c.start)
         extra: list[_Cand] = []
         for i, c in enumerate(cands):
-            left = t[: c.start]
+            left = t[max(0, c.start - 60) : c.start]  # every left-hand form is short
             prev = cands[i - 1] if i else None
             if prev is not None and _RANGE_GAP.match(t[prev.end : c.start]):
                 j = _RANGE_GAP.match(t[prev.end : c.start]).group("j").lower()
                 if prev.kind == c.kind and _compatible(prev, c):
-                    if j in ("-", "–", "—", "or"):
+                    if j in ("-", "\u2013", "\u2014", "or"):
                         prev.range_end = c.range_end = True
-                    elif j == "and" and re.search(r"(?<![A-Za-z])between\s*$", t[: prev.start], re.I):
+                    elif j == "and" and re.search(r"(?<![A-Za-z])between\s*$", t[max(0, prev.start - 20) : prev.start], re.I):
                         prev.range_end = c.range_end = True
-                    elif j == "to" and not re.search(r"(?<![A-Za-z])from\s*$", t[: prev.start], re.I):
+                    elif j == "to" and not re.search(r"(?<![A-Za-z])from\s*$", t[max(0, prev.start - 20) : prev.start], re.I):
                         prev.range_end = c.range_end = True
             else:
                 bm = _BARE_BEFORE.search(left)
@@ -666,7 +688,7 @@ class _Scanner:
             after = t[c.end :]
             om = _OPS_AFTER.match(after)
             if om and c.op is None:
-                c.op = "le" if om.group("le") else "ge"
+                c.op = "le" if (om.group("le") or om.group("le2")) else "ge"
             if _APPROX_AFTER.match(after):
                 c.approx = True
         for c in self.cands:
@@ -736,7 +758,7 @@ def read(sentence: str) -> list[Reading]:
     out = []
     for c in sc.cands:
         lo, hi = max(c.start - 1, 0), min(c.end + 1, len(t))
-        if any(ch in INVISIBLE for ch in t[lo:hi]):
+        if any(is_invisible(ch) for ch in t[lo:hi]):
             continue
         v = Value(
             kind=c.kind,

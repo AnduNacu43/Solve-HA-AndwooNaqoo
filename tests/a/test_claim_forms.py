@@ -206,7 +206,7 @@ MORE_FACTS = [
     ("Hooly Gemini", "languages", {"kind": "quantity", "value": 12, "unit": "language"},
      "Hooly Gemini speaks 12 languages since the launch.", False),
     ("Hooly Gemini", "languages", {"kind": "quantity", "value": 12, "unit": "language"},
-     "Hooly Gemini speaks 12​ languages.", False),
+     "Hooly Gemini speaks 12\u200b languages.", False),
     ("Hooly Drive", "max_file_size", {"kind": "quantity", "value": 50, "unit": "GB"},
      "Hooly Drive takes files of up to 50 GB.", False),
     ("Hooly Drive", "max_file_size", {"kind": "quantity", "value": 50, "unit": "GB"},
@@ -239,3 +239,69 @@ MORE_FACTS = [
 def test_more_facts(lexicon, attrs, subject, attribute, value, text, accepted):
     form = {"subject": subject, "attribute": attribute, "value": value}
     check(lexicon, attrs, entry("fact", text, form), accepted)
+
+
+# Found by an adversarial review of the validator: each must be refused.
+WS_PRO = {"left": {"subject": "Hooly Workspace", "attribute": "price"},
+          "right": {"subject": "Hooly AI Pro", "attribute": "price"}}
+PRO_WS = {"left": {"subject": "Hooly AI Pro", "attribute": "price"},
+          "right": {"subject": "Hooly Workspace", "attribute": "price"}}
+REFUSED = [
+    ("compare", "Hooly AI Pro is cheaper but less popular than Hooly Workspace.", dict(PRO_WS, op="lt")),
+    ("compare", "Hooly Workspace is cheaper and more expensive than Hooly AI Pro.", dict(WS_PRO, op="lt")),
+    ("compare", "Hooly Workspace costs more and offers more than Hooly AI Pro.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs more lately than Hooly AI Pro.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace has cost more recently than Hooly AI Pro.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs more after tax than Hooly AI Pro.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs more than Hooly AI Pro this year.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs more than Hooly AI Pro by ½.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs more than Hooly AI Pro by XII.", dict(WS_PRO, op="gt")),
+    ("compare", "Hooly Workspace costs a couple more than Hooly AI Pro.", dict(WS_PRO, op="gt")),
+    ("fact", "Hooly Translate answers in 120 ms. It supports 100 languages.",
+     {"subject": "Hooly Translate", "attribute": "languages_supported",
+      "value": {"kind": "quantity", "value": 100, "unit": "language"}}),
+    ("fact", "Hooly Pixel 10 charges at 45 W. It weighs 200 g.",
+     {"subject": "Hooly Pixel 10", "attribute": "weight", "value": {"kind": "quantity", "value": 200, "unit": "g"}}),
+    ("fact", "Hooly Pixel 10 charges at 45W. It weighs 200 g.",
+     {"subject": "Hooly Pixel 10", "attribute": "weight", "value": {"kind": "quantity", "value": 200, "unit": "g"}}),
+    ("fact", "Hooly Pixel 10 charges over USB-C. It weighs 200 g.",
+     {"subject": "Hooly Pixel 10", "attribute": "weight", "value": {"kind": "quantity", "value": 200, "unit": "g"}}),
+    ("fact", "Hooly AI Pro costs ‎€59 per month.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly AI Pro costs €59 per month‬.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly is ‎SOC 2 certified.",
+     {"subject": "Hooly", "attribute": "soc2_certified", "value": {"kind": "boolean", "value": True}}),
+    ("fact", "Hooly's CTO is ‎Bertram Gilfoil.",
+     {"subject": "Hooly", "attribute": "cto", "value": {"kind": "name", "value": "Bertram Gilfoil"}}),
+    ("fact", "Hooly AI Pro costs €５９ per month.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly has １,２００ employees.",
+     {"subject": "Hooly", "attribute": "employees", "value": {"kind": "quantity", "value": 1200, "unit": "employee"}}),
+    ("fact", "Hooly Drive offers 15 gB of free storage.",
+     {"subject": "Hooly Drive", "attribute": "free_storage", "value": {"kind": "quantity", "value": 15, "unit": "GB"}}),
+    ("fact", "ÀHooly AI Pro costs €59 per month.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly AI Pro costs €59 per month this year.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly AI Pro costs €59 per month during the outage.",
+     {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly AI Pro costs €59 per seat per month.", {"subject": "Hooly AI Pro", "attribute": "price", "value": PRO_59}),
+    ("fact", "Hooly has 1,200 employees at most.",
+     {"subject": "Hooly", "attribute": "employees", "value": {"kind": "quantity", "value": 1200, "unit": "employee"}}),
+    ("fact", "Hooly has 1,200 employees.",
+     {"subject": "Hooly", "attribute": "employees", "value": {"kind": "quantity", "value": 1200, "unit": "employees"}}),
+    ("fact", "Hooly isnʼt SOC 2 certified.",
+     {"subject": "Hooly", "attribute": "soc2_certified", "value": {"kind": "boolean", "value": True}}),
+    ("fact", "Hooly is No. 1 and SOC 2 certified.",
+     {"subject": "Hooly", "attribute": "soc2_certified", "value": {"kind": "boolean", "value": False}}),
+]
+
+
+@pytest.mark.parametrize("type_,text,form", REFUSED)
+def test_review_refusals(lexicon, attrs, type_, text, form):
+    e = entry(type_, text, form)
+    if type_ == "compare":
+        e["form"] = {"left": form["left"], "right": form["right"], "op": form["op"]}
+    check(lexicon, attrs, e, False)
+
+
+def test_soft_hyphen_inside_a_word_is_dropped(lexicon, attrs):
+    form = {"subject": "Hooly Gemini", "attribute": "languages",
+            "value": {"kind": "quantity", "value": 12, "unit": "language"}}
+    check(lexicon, attrs, entry("fact", "Hooly Gemini speaks 12 lan­guages.", form), True)

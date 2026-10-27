@@ -13,7 +13,7 @@ from typing import Optional
 
 from arena.model import Mention
 
-_APOSTROPHES = str.maketrans({"’": "'", "‘": "'", " ": " "})
+_APOSTROPHES = str.maketrans({"\u2019": "'", "\u2018": "'", "\u00a0": " "})
 
 
 def name_key(name: str) -> str:
@@ -23,9 +23,9 @@ def name_key(name: str) -> str:
 
 def _name_pattern(name: str) -> re.Pattern:
     tokens = name.translate(_APOSTROPHES).split()
-    body = r"\s*".join(re.escape(tok).replace("'", "['’]") for tok in tokens)
+    body = r"\s*".join(re.escape(tok).replace("'", "['\u2019]") for tok in tokens)
     tail = r"(?![.,]\d)" if tokens and tokens[-1][-1:].isdigit() else ""  # `Android 16` is not in `Android 16.1`
-    return re.compile(r"(?<![A-Za-z0-9])" + body + r"(?![A-Za-z0-9])" + tail, re.I)
+    return re.compile(r"(?<!\w)" + body + r"(?!\w)" + tail, re.I)
 
 
 @dataclass

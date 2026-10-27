@@ -28,17 +28,21 @@ _ACRONYMS = frozenset(
     """soc ceo cto cfo coo cio eu uk ai api apis sdk sdks sso cli nps io ar hq ide ides url sla arr
     vat os ux ui gpu cpu p99 p95 p50 gb mb tb kb dpa sms""".split()
 )
-_GAP = r"(?:\s+[A-Za-z0-9'’-]+){0,3}"
+_GAP = r"(?:\s+[A-Za-z0-9'\u2019-]+){0,3}"
 
 
 def _phrase_regex(phrase: str) -> re.Pattern:
     parts = [p.strip() for p in phrase.split("…")]
-    body = (_GAP + r"\s+").join(re.escape(p).replace(r"\ ", r"\s+") for p in parts)
+    body = (_GAP + r"\s+").join("(" + re.escape(p).replace(r"\ ", r"\s+") + ")" for p in parts)
     return re.compile(r"(?<![A-Za-z])" + body + r"(?![A-Za-z])", re.I)
 
 
-_OP_REGEXES = [("amount", op, p, _phrase_regex(p)) for op, ps in OP_PHRASES.items() for p in ps] + [
-    ("date", op, p, _phrase_regex(p)) for op, ps in DATE_OP_PHRASES.items() for p in ps
+def _first_word(phrase: str) -> re.Pattern:
+    return re.compile(r"(?<![A-Za-z])" + re.escape(phrase.split()[0]) + r"(?![A-Za-z])", re.I)
+
+
+_OP_REGEXES = [("amount", op, p, _phrase_regex(p), _first_word(p)) for op, ps in OP_PHRASES.items() for p in ps] + [
+    ("date", op, p, _phrase_regex(p), _first_word(p)) for op, ps in DATE_OP_PHRASES.items() for p in ps
 ]
 _EVENT_BEFORE = re.compile(
     r"(?<![A-Za-z])(?P<p>at\s+the\s+time\s+of|on\s+the\s+day\s+of|during|at)\s+(?:the\s+)?$", re.I
@@ -79,7 +83,7 @@ def attribute_words(attr: str) -> str:
 def attribute_word_regex(attr: str) -> re.Pattern:
     units = _units(attr)
     body = r"[\s-]*".join(re.escape(u) for u in units)
-    return re.compile(r"(?<![A-Za-z0-9])" + body + r"(?![A-Za-z0-9])", re.I)
+    return re.compile(r"(?<!\w)" + body + r"(?!\w)", re.I)
 
 
 def attribute_word_spans(sentence: str, attr: str) -> list[tuple[int, int]]:
@@ -89,23 +93,33 @@ def attribute_word_spans(sentence: str, attr: str) -> list[tuple[int, int]]:
     return [m.span() for m in attribute_word_regex(attr).finditer(sentence)]
 
 
-def op_phrases(sentence: str) -> list[tuple[str, str, int, int]]:
-    """Every op phrase as (family, op, start, end); family is "amount" or "date".
+def op_phrase_matches(sentence: str) -> list[dict]:
+    """Every op phrase occurrence: {"family", "op", "start", "end", "literals"}.
 
-    Overlapping matches keep the longest, so `on the same day as` is one date
-    phrase, not also `the same … as`.
+    literals are the spans of the phrase's own words, not the `…` gap. An
+    occurrence whose own words all lie in a longer one is that same phrase
+    (`the same … as` inside `on the same day as`); any other overlap is a
+    second phrase (`cheaper but less popular than` holds two).
     """
     found = []
-    for fam, op, _, rx in _OP_REGEXES:
-        for m in rx.finditer(sentence):
-            found.append((fam, op, m.start(), m.end()))
-    found.sort(key=lambda x: (-(x[3] - x[2]), x[2]))
-    kept: list[tuple[str, str, int, int]] = []
+    for fam, op, _, rx, first in _OP_REGEXES:
+        for w in first.finditer(sentence):
+            m = rx.match(sentence, w.start())
+            if m:
+                lits = tuple(m.span(i) for i in range(1, (m.lastindex or 0) + 1))
+                found.append({"family": fam, "op": op, "start": m.start(), "end": m.end(), "literals": lits})
+    found.sort(key=lambda f: (-sum(b - a for a, b in f["literals"]), f["start"]))
+    kept: list[dict] = []
     for f in found:
-        if any(f[2] < k[3] and k[2] < f[3] for k in kept):
+        if any(all(any(ka <= a and b <= kb for ka, kb in k["literals"]) for a, b in f["literals"]) for k in kept):
             continue
         kept.append(f)
-    return sorted(kept, key=lambda x: x[2])
+    return sorted(kept, key=lambda f: f["start"])
+
+
+def op_phrases(sentence: str) -> list[tuple[str, str, int, int]]:
+    """Every op phrase as (family, op, start, end); family is "amount" or "date"."""
+    return [(f["family"], f["op"], f["start"], f["end"]) for f in op_phrase_matches(sentence)]
 
 
 def find_op_phrase(sentence: str) -> list[tuple[str, int, int]]:

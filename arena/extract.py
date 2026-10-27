@@ -392,7 +392,12 @@ def extract(pages: list[Page], lexicon, attrs: dict, labels: Optional[dict[str, 
     return out
 
 
+_MAX_SENTENCE = 2000  # no real sentence is longer; longer ones are skipped, not parsed
+
+
 def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label):
+    if len(sentence) > _MAX_SENTENCE:
+        return [], prev
     mentions = lexicon.find_mentions(sentence, any_case=False)
     spans = [(m.start, m.end) for m in mentions]
     words = _sentence_words(sentence)

@@ -26,8 +26,8 @@ def test_clauses_and_negation():
     assert not S.negated_before(s, s.index("10,000"))
     assert not S.negated_before("speaks 30 languages and never misses", 7)
     assert not S.negated_before("no more than 2 GB", 13)
-    assert S.find_negations("It isn't and it doesn’t, cannot, nor none.")
-    assert len(S.find_negations("It isn't and it doesn’t")) == 2
+    assert S.find_negations("It isn't and it doesn\u2019t, cannot, nor none.")
+    assert len(S.find_negations("It isn't and it doesn\u2019t")) == 2
     assert not S.find_negations("Hooly is No. 1 in Europe")
 
 
@@ -82,7 +82,7 @@ def test_mentions_common_words(lexicon):
 
 def test_lexicon_lookup(lexicon):
     assert lexicon.resolve("hooly  ai   PRO") == "Hooly AI Pro"
-    assert lexicon.resolve("Hooly’s board") == "Hooly Board"
+    assert lexicon.resolve("Hooly\u2019s board") == "Hooly Board"
     assert lexicon.has_attribute("Workspace plan", "price")
     assert not lexicon.has_attribute("Hooly", "price")
     assert lexicon.event_date_attr("Hooly I/O") == "date"

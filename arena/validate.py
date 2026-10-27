@@ -20,6 +20,7 @@ import math
 import os
 import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from typing import Optional
 
@@ -60,10 +61,17 @@ _VALUE_KEYS = {  # kind -> (required, allowed)
 _NUMBER_WORDS = re.compile(
     r"(?<![A-Za-z])(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|"
     r"fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|"
-    r"eighty|ninety|hundred|thousand|million|billion|dozen|half|once|twice|double|triple)(?![A-Za-z])",
+    r"eighty|ninety|hundred|thousand|million|billion|dozen|half|once|twice|double|triple|couple|pair|"
+    r"first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth|thirds?|quarters?)(?![A-Za-z])",
     re.I,
 )
-_CAP_WORD = re.compile(r"(?<![A-Za-z0-9'’])[A-Z][a-z][A-Za-z'’-]*")
+_ROMAN = re.compile(r"(?<![A-Za-z])[IVXLCDM]{2,}(?![A-Za-z])")
+# Not in the Refused table, refused anyway: they date a sentence as surely as the listed ones.
+_EXTRA_TIME = re.compile(
+    r"(?<![A-Za-z])(?:this\s+(?:week|month|quarter|year)|(?:Mon|Tue|Tues|Wed|Thu|Thur|Thurs|Fri|Sat|Sun)\.?(?![A-Za-z]))",
+)
+_AMBIGUOUS_END = re.compile(r"(?<![A-Za-z0-9])(?:[A-Z]|No)\.\s+\S")
+_CAP_WORD = re.compile(r"(?<![A-Za-z0-9'\u2019])[A-Z][a-z][A-Za-z'\u2019-]*")
 
 
 # ------------------------------------------------------------------ shape
@@ -318,6 +326,9 @@ def _date_and_time_errors(sent, allowed, errs) -> None:
         errs.append(f"a date of its own: {w!r}")
     for w, a, b in C.time_words_outside(sent.text, allowed):
         errs.append(f"a time word: {w!r}")
+    for m in _EXTRA_TIME.finditer(sent.text):
+        if not _span_inside(m.span(), allowed):
+            errs.append(f"a time word: {m.group(0)!r}")
 
 
 def _boolean_errors(sent, attr: str, value: bool, errs, polarity_text: Optional[str] = None) -> list:
@@ -358,7 +369,11 @@ def _check_single(sent: _Sentence, kind: str, form: dict, lexicon: Lexicon) -> l
         target = lexicon.resolve(form["target"])
         allowed += sent.spans_of(target)
         canons.add(target)
+    if kind != "at_event":
+        for ev, a, b in C.find_event_phrases(sent.text, lexicon):
+            errs.append(f"an event gives the sentence a date of its own: {sent.text[a:b]!r}")
     v = Value.from_json(form["value"])
+    errs += _unit_errors(v)
     if v.kind == "boolean":
         allowed += _boolean_errors(sent, form["attribute"], v.value, errs)
     else:
@@ -373,6 +388,15 @@ def _check_single(sent: _Sentence, kind: str, form: dict, lexicon: Lexicon) -> l
                 errs.append(f"another name next to the claimed one: {others[0]!r}")
     _date_and_time_errors(sent, allowed, errs)
     return errs
+
+
+def _unit_errors(v: Value) -> list[str]:
+    """A counted noun is written in the singular, lower case, as the fact base keeps it."""
+    if v.kind == "quantity" and V.canonical_unit(v.unit) is None:
+        u = v.unit or ""
+        if u != u.lower() or V.singular(u) != u:
+            return [f"the unit {u!r} is not a singular lower-case counted noun"]
+    return []
 
 
 def _attr_kind(attrs, subject: str, attribute: str) -> Optional[object]:
@@ -419,10 +443,11 @@ def _check_compare(sentences: list[_Sentence], form: dict, lexicon: Lexicon, cla
             b = Value(kind, probe, _spec_get(rs, "unit"))
             if V.compare_values(a, b) is None:
                 return ["the two facts are in units that do not convert"]
-    phrases = [(i, p) for i, s in enumerate(sentences) for p in C.op_phrases(s.text)]
+    phrases = [(i, p) for i, s in enumerate(sentences) for p in C.op_phrase_matches(s.text)]
     if len(phrases) != 1:
         return [f"the text must hold exactly one op phrase, it holds {len(phrases)}"]
-    i, (fam, op, a, b) = phrases[0]
+    i, ph = phrases[0]
+    fam, op, a, b = ph["family"], ph["op"], ph["start"], ph["end"]
     sent = sentences[i]
     want = "date" if kind == "date" else "amount"
     if fam != want:
@@ -451,14 +476,18 @@ def _check_compare(sentences: list[_Sentence], form: dict, lexicon: Lexicon, cla
         if not _inside(m.start(), names):
             errs.append("a number in digits")
             break
-    for m in _NUMBER_WORDS.finditer(sent.text):
-        if not _inside(m.start(), names):
-            errs.append(f"a number in words: {m.group(0)!r}")
+    for rx in (_NUMBER_WORDS, _ROMAN):
+        for m in rx.finditer(sent.text):
+            if not _inside(m.start(), names):
+                errs.append(f"a number in words: {m.group(0)!r}")
     for w, x, y in S.find_yearless_date_words(sent.text):
         if not _span_inside((x, y), names):
             errs.append(f"a date word: {w!r}")
-    for w, x, y in C.time_words_outside(sent.text, names + [(a, b)]):
+    for w, x, y in C.time_words_outside(sent.text, names + list(ph["literals"])):
         errs.append(f"a time word: {w!r}")
+    for m in _EXTRA_TIME.finditer(sent.text):
+        if not _span_inside(m.span(), names):
+            errs.append(f"a time word: {m.group(0)!r}")
     return errs
 
 
@@ -497,6 +526,7 @@ def _check_change(sent: _Sentence, form: dict, lexicon: Lexicon) -> list[str]:
     if not sent.spans_of(subject):
         errs.append(f"the sentence does not name {subject!r}")
     f, t = Value.from_json(form["from"]), Value.from_json(form["to"])
+    errs += _unit_errors(f) + _unit_errors(t)
     if f.kind == "boolean":
         return errs + ["a yes/no change is not written by this system"]
     if V.same_value(f, t):
@@ -540,8 +570,16 @@ def grammar_errors(entry: dict, lexicon: Lexicon, attrs=None, kind: Optional[str
     a compare (else looked up in attrs).
     """
     text = entry["text"]
-    if any(ch in V.INVISIBLE for ch in text):
-        return ["the text holds an invisible character"]
+    for i, ch in enumerate(text):
+        if V.is_invisible(ch) and not (
+            ch == "\u00ad" and 0 < i < len(text) - 1 and text[i - 1].isalpha() and text[i + 1].isalpha()
+        ):
+            return [f"the text holds an invisible character (U+{ord(ch):04X})"]
+        if ord(ch) > 127 and unicodedata.category(ch) in ("Nd", "No", "Nl"):
+            return [f"the text holds a digit or number sign outside 0-9 ({ch!r})"]
+    m = _AMBIGUOUS_END.search(text)
+    if m:
+        return [f"{m.group(0)!r} may or may not end a sentence"]
     sentences = [_Sentence(s, lexicon) for s in split_sentences(text)]
     if not sentences:
         return ["the text holds no sentence"]

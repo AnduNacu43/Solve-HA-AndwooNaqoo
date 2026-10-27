@@ -7,6 +7,7 @@ All functions work on character offsets into the string they are given.
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 
 NEGATION_WORDS: frozenset[str] = frozenset(
     {"not", "no", "never", "none", "nobody", "nothing", "neither", "nor", "without", "cannot"}
@@ -51,17 +52,18 @@ NEGATED_OP_PHRASES: tuple[str, ...] = (
 
 # Abbreviations whose point ends nothing (value-forms.md, "A claim names what it is about").
 _ABBREVIATIONS = frozenset(
-    {"e.g", "i.e", "vs", "approx", "inc", "ltd", "co", "corp", "dr", "mr", "mrs", "ms", "prof", "st"}
-)
+    {"e.g", "i.e", "vs", "approx", "Inc", "Ltd", "Co", "Corp", "Dr", "Mr", "Mrs", "Ms", "Prof", "St"}
+)  # as listed; the lenient reading also takes them in any case
+_ABBREVIATIONS_LOWER = frozenset(a.lower() for a in _ABBREVIATIONS)
 # Read leniently from universe pages only, never when policing our own entries.
 _LENIENT_ABBREVIATIONS = frozenset({"ver", "est", "ca", "no", "nr", "fig", "approx"}) | MONTH_ABBREVIATIONS
 
-_WORD_BEFORE_DOT = re.compile(r"(?<![A-Za-z.])([A-Za-z]+(?:\.[A-Za-z]+)*)$")
+_WORD_BEFORE_DOT = re.compile(r"(?<![A-Za-z0-9.])([A-Za-z]+(?:\.[A-Za-z]+)*)$")  # `45W.` and `120 ms.` end
 _BLANK_LINE = re.compile(r"\n[ \t\r\f\v]*\n")
-_CLOSERS = "\"'”’)»"
+_CLOSERS = "\"'\u201d\u2019)\u00bb"
 
 _NEGATION_RE = re.compile(
-    r"(?<![A-Za-z])(?:[A-Za-z]*n['’]t|not|no|never|none|nobody|nothing|neither|nor|without|cannot)(?![A-Za-z])",
+    r"(?<![A-Za-z])(?:[A-Za-z]*n['\u2019\u02bc`]t|not|no|never|none|nobody|nothing|neither|nor|without|cannot)(?![A-Za-z])",
     re.I,
 )
 _NEGATED_OP_RE = re.compile(
@@ -95,17 +97,17 @@ def dot_is_abbreviation(text: str, i: int, lenient: bool = False) -> bool:
     lenient=True also accepts ver., est., ca. and month abbreviations before a
     number, which universe pages use; never use it to police an entry.
     """
-    m = _WORD_BEFORE_DOT.search(text, 0, i)
+    m = _WORD_BEFORE_DOT.search(text, max(0, i - 40), i)
     if not m:
         return False
     word = m.group(1)
     low = word.lower()
-    if low in _ABBREVIATIONS:
+    if word in _ABBREVIATIONS or (lenient and low in _ABBREVIATIONS_LOWER):
         return True
     if len(word) == 1 and word.isupper():
         return True
     after = text[i + 1 : i + 4]
-    if low == "no" and re.match(r"\s*\d", after):
+    if (word == "No" or (lenient and low == "no")) and re.match(r"\s*\d", after):
         return True
     if lenient and low in _LENIENT_ABBREVIATIONS and (low not in MONTH_ABBREVIATIONS or re.match(r"\s*\d", after)):
         return True
@@ -158,7 +160,7 @@ def sentence_spans(text: str, lenient: bool = False) -> list[tuple[int, int]]:
 
 def _is_clause_break(sentence: str, i: int) -> bool:
     c = sentence[i]
-    if c in ";!?•·|":
+    if c in ";!?\u2022\u00b7|":
         return True
     prev_digit = i > 0 and sentence[i - 1].isdigit()
     next_char = sentence[i + 1] if i + 1 < len(sentence) else ""
@@ -174,9 +176,14 @@ def _is_clause_break(sentence: str, i: int) -> bool:
 def clauses(sentence: str) -> list[tuple[int, int]]:
     """Spans of the clauses of a sentence.
 
-    A clause ends at . , ; : ! ? • · | or a blank line, but not at a single line
+    A clause ends at . , ; : ! ? \u2022 \u00b7 | or a blank line, but not at a single line
     break, a decimal point, a thousands comma or an abbreviation point.
     """
+    return list(_clauses(sentence))
+
+
+@lru_cache(maxsize=4096)
+def _clauses(sentence: str) -> tuple[tuple[int, int], ...]:
     spans = []
     start = 0
     i = 0
@@ -193,12 +200,12 @@ def clauses(sentence: str) -> list[tuple[int, int]]:
             start = i + 1
         i += 1
     spans.append((start, n))
-    return spans
+    return tuple(spans)
 
 
 def clause_of(sentence: str, pos: int) -> tuple[int, int]:
     """The clause span holding character pos."""
-    for a, b in clauses(sentence):
+    for a, b in _clauses(sentence):
         if a <= pos <= b:
             return a, b
     return 0, len(sentence)
@@ -211,11 +218,16 @@ def find_negations(sentence: str, include_op_phrases: bool = True) -> list[tuple
     such as `no more than`, and the `No.` of `No. 1`, which value-forms.md says
     are not negations.
     """
+    return list(_negations(sentence, include_op_phrases))
+
+
+@lru_cache(maxsize=4096)
+def _negations(sentence: str, include_op_phrases: bool) -> tuple[tuple[int, int], ...]:
     spans = [m.span() for m in _NEGATION_RE.finditer(sentence)]
     skip = [m.span() for m in _NUMBER_ABBR_RE.finditer(sentence)]
     if not include_op_phrases:
         skip += [m.span() for m in _NEGATED_OP_RE.finditer(sentence)]
-    return [s for s in spans if not any(a <= s[0] < b for a, b in skip)]
+    return tuple(s for s in spans if not any(a <= s[0] < b for a, b in skip))
 
 
 def negated_before(sentence: str, pos: int) -> bool:
@@ -224,7 +236,7 @@ def negated_before(sentence: str, pos: int) -> bool:
     Comparison words such as `no more than` are not negations here.
     """
     a, _ = clause_of(sentence, pos)
-    return any(a <= s < pos for s, _ in find_negations(sentence, include_op_phrases=False))
+    return any(a <= s < pos for s, _ in _negations(sentence, False))
 
 
 def find_time_words(sentence: str) -> list[tuple[str, int, int]]:
@@ -250,4 +262,4 @@ def find_yearless_date_words(sentence: str) -> list[tuple[str, int, int]]:
 
 def words(sentence: str) -> list[tuple[str, int, int]]:
     """Word tokens (letters and digits, with inner apostrophes) and their spans."""
-    return [(m.group(0), m.start(), m.end()) for m in re.finditer(r"[A-Za-z0-9]+(?:['’][A-Za-z]+)?", sentence)]
+    return [(m.group(0), m.start(), m.end()) for m in re.finditer(r"[A-Za-z0-9]+(?:['\u2019][A-Za-z]+)?", sentence)]

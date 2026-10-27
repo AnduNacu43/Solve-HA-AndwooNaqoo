@@ -144,8 +144,8 @@ NOT_READ = [
     ("about 10,000 customers", V("quantity", 10000, "customer")),
     ("~10 GB", V("quantity", 10, "GB")),
     ("40 languages or so", V("quantity", 40, "language")),
-    ("10–20 GB", V("quantity", 20, "GB")),
-    ("10–20 GB", V("quantity", 10, "GB")),
+    ("10\u201320 GB", V("quantity", 20, "GB")),
+    ("10\u201320 GB", V("quantity", 10, "GB")),
     ("10 GB to 20 GB", V("quantity", 10, "GB")),
     ("between 10 and 20 GB", V("quantity", 20, "GB")),
     ("1 or 2 days", V("duration", 2, "day")),
@@ -161,8 +161,8 @@ NOT_READ = [
     ("over 10,000 customers", V("quantity", 10000, "customer")),
     ("~ 10 GB", V("quantity", 10, "GB")),
     ("€49 a month, give or take", V("money", 49, currency="EUR", per="month")),
-    ("12​GB", V("quantity", 12, "GB")),
-    ("12 GB⁠", V("quantity", 12, "GB")),
+    ("12\u200bGB", V("quantity", 12, "GB")),
+    ("12 GB\u2060", V("quantity", 12, "GB")),
 ]
 
 
@@ -179,7 +179,7 @@ def test_more_than_two_words_between_number_and_noun():
 
 
 def test_soft_hyphen_inside_word_is_dropped():
-    assert _states("speaks 12 lan­guages", V("quantity", 12, "language"))
+    assert _states("speaks 12 lan\u00adguages", V("quantity", 12, "language"))
 
 
 def test_choice_of_kinds_reads_both():
