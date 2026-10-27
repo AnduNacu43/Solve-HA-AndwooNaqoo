@@ -6,12 +6,12 @@
  ],
  "counts": {
   "announce_future": [
-   50.0,
-   61
+   51.0,
+   62
   ],
   "boast": [
-   13.5,
-   22
+   7.5,
+   12
   ],
   "context_subject": [
    566.5,
@@ -654,24 +654,20 @@
    8
   ],
   "first_person": [
-   9.0,
-   10
+   2.0,
+   3
   ],
   "gavin": [
    41.5,
    56
   ],
   "headline": [
-   239.0,
-   281
+   92.5,
+   102
   ],
   "hearsay": [
-   6.0,
-   11
-  ],
-  "hedge": [
    4.0,
-   6
+   7
   ],
   "month:2025-10": [
    51.5,
@@ -726,29 +722,46 @@
    281
   ],
   "press_release": [
+   8.0,
+   8
+  ],
+  "release_notes": [
    6.0,
    6
   ],
-  "release_notes": [
-   11.0,
-   12
-  ],
   "speaker": [
-   77.0,
-   95
+   106.0,
+   126
   ],
   "table_cell": [
-   167.0,
-   192
+   114.5,
+   133
   ],
   "testimonial": [
-   38.5,
-   54
+   9.5,
+   16
   ]
  },
+ "extraction": {
+  "boolean:context": 0.9301,
+  "boolean:named": 0.9679,
+  "date:context": 0.9112,
+  "date:named": 0.8926,
+  "duration:context": 0.9347,
+  "duration:named": 0.9772,
+  "money:context": 0.9726,
+  "money:named": 0.9829,
+  "name:context": 0.9801,
+  "name:named": 0.921,
+  "percent:context": 0.9594,
+  "percent:named": 0.9581,
+  "quantity:context": 0.9346,
+  "quantity:named": 0.9802,
+  "version:named": 0.9533
+ },
  "multipliers": {
-  "announce_future": 0.9755,
-  "boast": 0.8125,
+  "announce_future": 0.9784,
+  "boast": 0.8586,
   "date:2025-10-08": 0.9321,
   "date:2025-10-15": 0.9091,
   "date:2025-10-16": 0.8102,
@@ -820,16 +833,16 @@
   "date:2026-10-18": 0.9954,
   "date:2026-10-20": 0.9546,
   "date:2026-10-26": 0.6455,
+  "first_person": 0.9516,
   "gavin": 0.8968,
-  "hearsay": 0.8148,
-  "hedge": 0.9213,
+  "hearsay": 0.8671,
   "month:2025-12": 0.9486,
   "month:2026-03": 0.9796,
   "month:2026-06": 0.9059,
   "month:2026-09": 0.9562,
   "month:2026-10": 0.9915,
-  "speaker": 0.9644,
-  "testimonial": 0.8693
+  "speaker": 0.9973,
+  "testimonial": 0.8177
  },
  "smoothing": 10.0
 }

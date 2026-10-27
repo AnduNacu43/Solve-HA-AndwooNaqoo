@@ -440,8 +440,8 @@
  {
   "attribute": "version",
   "cues": [
-   "release_notes",
-   "table_cell"
+   "headline",
+   "release_notes"
   ],
   "date": "2025-12-09",
   "label": "true",
@@ -596,7 +596,7 @@
  {
   "attribute": "version",
   "cues": [
-   "table_cell"
+   "headline"
   ],
   "date": "2026-08-25",
   "label": "true",
@@ -960,9 +960,7 @@
  {
   "attribute": "median_time_to_recover",
   "cues": [
-   "announce_future",
-   "hedge",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-09-03",
   "label": "true",
@@ -1026,7 +1024,9 @@
  },
  {
   "attribute": "launched",
-  "cues": [],
+  "cues": [
+   "press_release"
+  ],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0010",
@@ -1041,7 +1041,9 @@
  },
  {
   "attribute": "version",
-  "cues": [],
+  "cues": [
+   "press_release"
+  ],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0010",
@@ -1456,9 +1458,7 @@
  },
  {
   "attribute": "attendees",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-24",
   "label": "true",
   "page_id": "seed-pg-0013",
@@ -2159,9 +2159,7 @@
  },
  {
   "attribute": "share_of_ad_revenue",
-  "cues": [
-   "hearsay"
-  ],
+  "cues": [],
   "date": "2026-01-22",
   "label": "true",
   "page_id": "seed-pg-0017",
@@ -2348,7 +2346,9 @@
  },
  {
   "attribute": "stable_release",
-  "cues": [],
+  "cues": [
+   "announce_future"
+  ],
   "date": "2026-07-02",
   "label": "true",
   "page_id": "seed-pg-0019",
@@ -3276,9 +3276,7 @@
  },
  {
   "attribute": "sponsors",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-01",
   "label": "true",
   "page_id": "seed-pg-0025",
@@ -3294,9 +3292,7 @@
  },
  {
   "attribute": "date",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-01",
   "label": "true",
   "page_id": "seed-pg-0025",
@@ -3311,9 +3307,7 @@
  },
  {
   "attribute": "city",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-01",
   "label": "true",
   "page_id": "seed-pg-0025",
@@ -3328,9 +3322,7 @@
  },
  {
   "attribute": "ticket_price",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-01",
   "label": "true",
   "page_id": "seed-pg-0025",
@@ -3347,8 +3339,7 @@
  {
   "attribute": "date",
   "cues": [
-   "headline",
-   "testimonial"
+   "headline"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -3365,8 +3356,7 @@
  {
   "attribute": "version",
   "cues": [
-   "headline",
-   "testimonial"
+   "headline"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -4218,9 +4208,7 @@
  },
  {
   "attribute": "attendees",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "false",
   "page_id": "seed-pg-0032",
@@ -4271,9 +4259,7 @@
  },
  {
   "attribute": "sessions",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4289,9 +4275,7 @@
  },
  {
   "attribute": "speakers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4307,9 +4291,7 @@
  },
  {
   "attribute": "uptime_sla",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4324,9 +4306,7 @@
  },
  {
   "attribute": "services",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4342,9 +4322,7 @@
  },
  {
   "attribute": "standard_storage_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4361,10 +4339,7 @@
  },
  {
   "attribute": "cli_version",
-  "cues": [
-   "headline",
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4379,9 +4354,7 @@
  },
  {
   "attribute": "carbon_neutral",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4396,9 +4369,7 @@
  },
  {
   "attribute": "max_participants",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4414,9 +4385,7 @@
  },
  {
   "attribute": "active_users",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-09",
   "label": "true",
   "page_id": "seed-pg-0032",
@@ -4433,8 +4402,7 @@
  {
   "attribute": "functions",
   "cues": [
-   "boast",
-   "headline"
+   "boast"
   ],
   "date": "2026-06-09",
   "label": "true",
@@ -4647,8 +4615,7 @@
  {
   "attribute": "regions",
   "cues": [
-   "announce_future",
-   "table_cell"
+   "announce_future"
   ],
   "date": "2026-02-24",
   "label": "true",
@@ -4665,9 +4632,7 @@
  },
  {
   "attribute": "availability_zones",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4701,9 +4666,7 @@
  },
  {
   "attribute": "free_credit",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4719,9 +4682,7 @@
  },
  {
   "attribute": "free_trial",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4737,9 +4698,7 @@
  },
  {
   "attribute": "standard_storage_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4756,9 +4715,7 @@
  },
  {
   "attribute": "cool_storage_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4775,9 +4732,7 @@
  },
  {
   "attribute": "archive_storage_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4794,9 +4749,7 @@
  },
  {
   "attribute": "storage_tiers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4812,9 +4765,7 @@
  },
  {
   "attribute": "free_egress_per_month",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4830,9 +4781,7 @@
  },
  {
   "attribute": "uptime_sla",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-24",
   "label": "true",
   "page_id": "seed-pg-0034",
@@ -4865,9 +4814,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-02",
   "label": "true",
   "page_id": "seed-pg-0035",
@@ -4884,9 +4831,7 @@
  },
  {
   "attribute": "suggestion_acceptance_rate",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-02",
   "label": "false",
   "page_id": "seed-pg-0035",
@@ -4901,9 +4846,7 @@
  },
  {
   "attribute": "programming_languages",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-02",
   "label": "true",
   "page_id": "seed-pg-0035",
@@ -4955,9 +4898,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-10",
   "label": "true",
   "page_id": "seed-pg-0036",
@@ -4972,9 +4913,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2025-12-10",
   "label": "false",
   "page_id": "seed-pg-0036",
@@ -4990,9 +4929,7 @@
  },
  {
   "attribute": "integrations",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2025-12-10",
   "label": "true",
   "page_id": "seed-pg-0036",
@@ -5095,9 +5032,7 @@
  },
  {
   "attribute": "uptime_last_quarter",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-02-10",
   "label": "false",
   "page_id": "seed-pg-0037",
@@ -5130,6 +5065,7 @@
  {
   "attribute": "version",
   "cues": [
+   "headline",
    "table_cell"
   ],
   "date": "2025-10-07",
@@ -5146,9 +5082,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5163,9 +5097,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5181,9 +5113,7 @@
  },
  {
   "attribute": "context_window",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5199,9 +5129,7 @@
  },
  {
   "attribute": "integrations",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5236,9 +5164,7 @@
  },
  {
   "attribute": "hallucination_rate",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "false",
   "page_id": "seed-pg-0038",
@@ -5253,9 +5179,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5272,9 +5196,7 @@
  },
  {
   "attribute": "free_trial",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-10-07",
   "label": "true",
   "page_id": "seed-pg-0038",
@@ -5307,9 +5229,7 @@
  },
  {
   "attribute": "max_participants",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "false",
   "page_id": "seed-pg-0039",
@@ -5343,9 +5263,7 @@
  },
  {
   "attribute": "caption_languages",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "unsure",
   "page_id": "seed-pg-0039",
@@ -5361,10 +5279,7 @@
  },
  {
   "attribute": "cloud_recording",
-  "cues": [
-   "boast",
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0039",
@@ -5379,9 +5294,7 @@
  },
  {
   "attribute": "end_to_end_encryption",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "unsure",
   "page_id": "seed-pg-0039",
@@ -5396,9 +5309,7 @@
  },
  {
   "attribute": "max_cells",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0039",
@@ -5414,9 +5325,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0039",
@@ -5449,9 +5358,7 @@
  },
  {
   "attribute": "browser_market_share",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5466,9 +5373,7 @@
  },
  {
   "attribute": "stable_version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5483,9 +5388,7 @@
  },
  {
   "attribute": "stable_release_date",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5518,9 +5421,7 @@
  },
  {
   "attribute": "cold_start_time",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "false",
   "page_id": "seed-pg-0040",
@@ -5536,9 +5437,7 @@
  },
  {
   "attribute": "tab_sleep_delay",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5554,9 +5453,7 @@
  },
  {
   "attribute": "extensions_in_store",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5590,9 +5487,7 @@
  },
  {
   "attribute": "ai_sidebar",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5607,9 +5502,7 @@
  },
  {
   "attribute": "passkey_sync",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-15",
   "label": "true",
   "page_id": "seed-pg-0040",
@@ -5640,7 +5533,8 @@
  {
   "attribute": "monthly_active_users",
   "cues": [
-   "headline"
+   "headline",
+   "speaker"
   ],
   "date": "2026-04-16",
   "label": "true",
@@ -5657,9 +5551,7 @@
  },
  {
   "attribute": "store_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5675,9 +5567,7 @@
  },
  {
   "attribute": "countries_covered",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5693,9 +5583,7 @@
  },
  {
   "attribute": "places_listed",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5711,9 +5599,7 @@
  },
  {
   "attribute": "mapped_distance",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5729,9 +5615,7 @@
  },
  {
   "attribute": "business_listings",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "false",
   "page_id": "seed-pg-0041",
@@ -5747,9 +5631,7 @@
  },
  {
   "attribute": "share_of_ad_revenue",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5764,9 +5646,7 @@
  },
  {
   "attribute": "offline_maps",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "unsure",
   "page_id": "seed-pg-0041",
@@ -5781,9 +5661,7 @@
  },
  {
   "attribute": "offline_area_limit",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-16",
   "label": "true",
   "page_id": "seed-pg-0041",
@@ -5849,9 +5727,7 @@
  },
  {
   "attribute": "photos_stored",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -5867,9 +5743,7 @@
  },
  {
   "attribute": "store_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -5886,7 +5760,7 @@
  {
   "attribute": "storage",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5904,7 +5778,7 @@
  {
   "attribute": "price",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5923,7 +5797,7 @@
  {
   "attribute": "storage",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5941,7 +5815,7 @@
  {
   "attribute": "price",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5960,7 +5834,7 @@
  {
   "attribute": "storage",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5978,7 +5852,7 @@
  {
   "attribute": "price",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-14",
   "label": "true",
@@ -5996,9 +5870,7 @@
  },
  {
   "attribute": "free_storage",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6014,9 +5886,7 @@
  },
  {
   "attribute": "yearly_billing_discount",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6031,9 +5901,7 @@
  },
  {
   "attribute": "family_group_size",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6049,9 +5917,7 @@
  },
  {
   "attribute": "end_to_end_encrypted_backups",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6083,9 +5949,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6100,9 +5964,7 @@
  },
  {
   "attribute": "latest_release_date",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-14",
   "label": "true",
   "page_id": "seed-pg-0042",
@@ -6150,9 +6012,7 @@
  },
  {
   "attribute": "images_indexed",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6168,9 +6028,7 @@
  },
  {
   "attribute": "news_refresh_interval",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "false",
   "page_id": "seed-pg-0043",
@@ -6186,9 +6044,7 @@
  },
  {
   "attribute": "median_response_time",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6205,7 +6061,7 @@
  {
   "attribute": "languages_served",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-09-18",
   "label": "true",
@@ -6222,9 +6078,7 @@
  },
  {
   "attribute": "share_of_ad_revenue",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6239,9 +6093,7 @@
  },
  {
   "attribute": "publisher_revenue_share",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "false",
   "page_id": "seed-pg-0043",
@@ -6256,9 +6108,7 @@
  },
  {
   "attribute": "ad_free_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6275,9 +6125,7 @@
  },
  {
   "attribute": "monthly_active_users",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6293,9 +6141,7 @@
  },
  {
   "attribute": "ai_answers",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-18",
   "label": "true",
   "page_id": "seed-pg-0043",
@@ -6343,9 +6189,7 @@
  },
  {
   "attribute": "images_indexed",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6361,9 +6205,7 @@
  },
  {
   "attribute": "monthly_active_users",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6379,9 +6221,7 @@
  },
  {
   "attribute": "median_response_time",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6397,9 +6237,7 @@
  },
  {
   "attribute": "languages_served",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6415,9 +6253,7 @@
  },
  {
   "attribute": "news_refresh_interval",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6434,7 +6270,7 @@
  {
   "attribute": "share_of_ad_revenue",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-01-12",
   "label": "false",
@@ -6450,9 +6286,7 @@
  },
  {
   "attribute": "publisher_revenue_share",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6467,9 +6301,7 @@
  },
  {
   "attribute": "ai_answers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6484,9 +6316,7 @@
  },
  {
   "attribute": "ad_free_option",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-12",
   "label": "true",
   "page_id": "seed-pg-0044",
@@ -6534,9 +6364,7 @@
  },
  {
   "attribute": "official_sdks",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-20",
   "label": "true",
   "page_id": "seed-pg-0045",
@@ -6552,9 +6380,7 @@
  },
  {
   "attribute": "webhook_events",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-20",
   "label": "true",
   "page_id": "seed-pg-0045",
@@ -6588,8 +6414,7 @@
  {
   "attribute": "version",
   "cues": [
-   "headline",
-   "release_notes"
+   "headline"
   ],
   "date": "2026-09-22",
   "label": "true",
@@ -6605,9 +6430,7 @@
  },
  {
   "attribute": "stable_release",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-22",
   "label": "true",
   "page_id": "seed-pg-0046",
@@ -6639,9 +6462,7 @@
  },
  {
   "attribute": "supported_models",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-22",
   "label": "true",
   "page_id": "seed-pg-0046",
@@ -6657,9 +6478,7 @@
  },
  {
   "attribute": "active_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-22",
   "label": "false",
   "page_id": "seed-pg-0046",
@@ -6675,9 +6494,7 @@
  },
  {
   "attribute": "share_of_devices",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-22",
   "label": "true",
   "page_id": "seed-pg-0046",
@@ -6793,9 +6610,7 @@
  },
  {
   "attribute": "active_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "true",
   "page_id": "seed-pg-0047",
@@ -6811,9 +6626,7 @@
  },
  {
   "attribute": "share_of_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "true",
   "page_id": "seed-pg-0047",
@@ -6828,9 +6641,7 @@
  },
  {
   "attribute": "supported_models",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "true",
   "page_id": "seed-pg-0047",
@@ -6846,9 +6657,7 @@
  },
  {
   "attribute": "desktop_mode",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "false",
   "page_id": "seed-pg-0047",
@@ -6881,9 +6690,7 @@
  },
  {
   "attribute": "open_source",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "true",
   "page_id": "seed-pg-0047",
@@ -6898,9 +6705,7 @@
  },
  {
   "attribute": "released",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-20",
   "label": "true",
   "page_id": "seed-pg-0047",
@@ -6933,8 +6738,7 @@
  {
   "attribute": "head",
   "cues": [
-   "gavin",
-   "headline"
+   "gavin"
   ],
   "date": "2025-12-12",
   "label": "true",
@@ -6967,9 +6771,7 @@
  },
  {
   "attribute": "units_sold",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "true",
   "page_id": "seed-pg-0048",
@@ -6985,9 +6787,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "false",
   "page_id": "seed-pg-0048",
@@ -7003,9 +6803,7 @@
  },
  {
   "attribute": "store_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "true",
   "page_id": "seed-pg-0048",
@@ -7039,9 +6837,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "false",
   "page_id": "seed-pg-0048",
@@ -7057,9 +6853,7 @@
  },
  {
   "attribute": "store_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "true",
   "page_id": "seed-pg-0048",
@@ -7075,9 +6869,7 @@
  },
  {
   "attribute": "active_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "true",
   "page_id": "seed-pg-0048",
@@ -7093,9 +6885,7 @@
  },
  {
   "attribute": "share_of_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-12",
   "label": "true",
   "page_id": "seed-pg-0048",
@@ -7143,9 +6933,7 @@
  },
  {
   "attribute": "screen_size",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7161,9 +6949,7 @@
  },
  {
   "attribute": "refresh_rate",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7179,9 +6965,7 @@
  },
  {
   "attribute": "battery_capacity",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "false",
   "page_id": "seed-pg-0049",
@@ -7197,9 +6981,7 @@
  },
  {
   "attribute": "battery_life",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "false",
   "page_id": "seed-pg-0049",
@@ -7215,9 +6997,7 @@
  },
  {
   "attribute": "main_camera",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7233,9 +7013,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "false",
   "page_id": "seed-pg-0049",
@@ -7251,9 +7029,7 @@
  },
  {
   "attribute": "base_storage",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "false",
   "page_id": "seed-pg-0049",
@@ -7269,9 +7045,7 @@
  },
  {
   "attribute": "screen_size",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7287,9 +7061,7 @@
  },
  {
   "attribute": "battery_capacity",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7305,9 +7077,7 @@
  },
  {
   "attribute": "battery_life",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7323,9 +7093,7 @@
  },
  {
   "attribute": "charging_power",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7359,9 +7127,7 @@
  },
  {
   "attribute": "hinge_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "false",
   "page_id": "seed-pg-0049",
@@ -7377,9 +7143,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "true",
   "page_id": "seed-pg-0049",
@@ -7395,9 +7159,7 @@
  },
  {
   "attribute": "beta_opened",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-28",
   "label": "unsure",
   "page_id": "seed-pg-0049",
@@ -7413,8 +7175,7 @@
  {
   "attribute": "stable_release",
   "cues": [
-   "announce_future",
-   "headline"
+   "announce_future"
   ],
   "date": "2026-04-28",
   "label": "true",
@@ -7498,9 +7259,7 @@
  },
  {
   "attribute": "units_sold",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7516,9 +7275,7 @@
  },
  {
   "attribute": "released",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7533,9 +7290,7 @@
  },
  {
   "attribute": "store_rating",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7551,9 +7306,7 @@
  },
  {
   "attribute": "units_sold",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "false",
   "page_id": "seed-pg-0050",
@@ -7569,9 +7322,7 @@
  },
  {
   "attribute": "units_sold",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7604,9 +7355,7 @@
  },
  {
   "attribute": "german_premium_phone_share",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7621,9 +7370,7 @@
  },
  {
   "attribute": "staff",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7639,9 +7386,7 @@
  },
  {
   "attribute": "countries_served",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "false",
   "page_id": "seed-pg-0050",
@@ -7657,9 +7402,7 @@
  },
  {
   "attribute": "repair_centres",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "false",
   "page_id": "seed-pg-0050",
@@ -7675,9 +7418,7 @@
  },
  {
   "attribute": "share_of_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7692,9 +7433,7 @@
  },
  {
   "attribute": "beta_testers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7710,9 +7449,7 @@
  },
  {
   "attribute": "stream_viewers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-30",
   "label": "true",
   "page_id": "seed-pg-0050",
@@ -7762,9 +7499,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-10",
   "label": "true",
   "page_id": "seed-pg-0051",
@@ -7781,9 +7516,7 @@
  },
  {
   "attribute": "included_seats",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-10",
   "label": "true",
   "page_id": "seed-pg-0051",
@@ -7799,9 +7532,7 @@
  },
  {
   "attribute": "free_trial",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-10",
   "label": "false",
   "page_id": "seed-pg-0051",
@@ -7817,9 +7548,7 @@
  },
  {
   "attribute": "uptime_sla",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-10",
   "label": "true",
   "page_id": "seed-pg-0051",
@@ -7835,7 +7564,7 @@
  {
   "attribute": "paying_customers",
   "cues": [
-   "table_cell"
+   "headline"
   ],
   "date": "2026-01-20",
   "label": "true",
@@ -7852,9 +7581,7 @@
  },
  {
   "attribute": "annual_recurring_revenue",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-20",
   "label": "unsure",
   "page_id": "seed-pg-0052",
@@ -7871,9 +7598,7 @@
  },
  {
   "attribute": "employees",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-01-20",
   "label": "true",
   "page_id": "seed-pg-0052",
@@ -7889,9 +7614,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-01-20",
   "label": "true",
   "page_id": "seed-pg-0052",
@@ -7925,9 +7648,7 @@
  },
  {
   "attribute": "official_sdks",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0053",
@@ -7996,9 +7717,7 @@
  },
  {
   "attribute": "apps_included",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0054",
@@ -8014,9 +7733,7 @@
  },
  {
   "attribute": "apps_included",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0054",
@@ -8032,9 +7749,7 @@
  },
  {
   "attribute": "data_residency_regions",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "false",
   "page_id": "seed-pg-0054",
@@ -8067,9 +7782,7 @@
  },
  {
   "attribute": "single_sign_on",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0054",
@@ -8084,9 +7797,7 @@
  },
  {
   "attribute": "team_size",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "false",
   "page_id": "seed-pg-0054",
@@ -8102,9 +7813,7 @@
  },
  {
   "attribute": "head_of_workspace",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "false",
   "page_id": "seed-pg-0054",
@@ -8119,9 +7828,7 @@
  },
  {
   "attribute": "active_users",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0054",
@@ -8137,9 +7844,7 @@
  },
  {
   "attribute": "active_users",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0054",
@@ -8314,9 +8019,7 @@
  },
  {
   "attribute": "applicants",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8332,9 +8035,7 @@
  },
  {
   "attribute": "offers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8350,9 +8051,7 @@
  },
  {
   "attribute": "hires",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8368,9 +8067,7 @@
  },
  {
   "attribute": "time_to_hire",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8386,9 +8083,7 @@
  },
  {
   "attribute": "first_reply",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8404,9 +8099,7 @@
  },
  {
   "attribute": "interview_rounds",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "false",
   "page_id": "seed-pg-0056",
@@ -8422,9 +8115,7 @@
  },
  {
   "attribute": "offer_acceptance",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8456,9 +8147,7 @@
  },
  {
   "attribute": "referral_bonus",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8475,7 +8164,7 @@
  {
   "attribute": "recruiters",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-04-09",
   "label": "true",
@@ -8492,9 +8181,7 @@
  },
  {
   "attribute": "open_engineering_roles",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8510,9 +8197,7 @@
  },
  {
   "attribute": "cost_per_hire",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-04-09",
   "label": "true",
   "page_id": "seed-pg-0056",
@@ -8547,7 +8232,7 @@
  {
   "attribute": "staff",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-08-20",
   "label": "true",
@@ -8565,6 +8250,7 @@
  {
   "attribute": "rent",
   "cues": [
+   "speaker",
    "table_cell"
   ],
   "date": "2026-08-20",
@@ -8584,7 +8270,7 @@
  {
   "attribute": "bike_racks",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-08-20",
   "label": "true",
@@ -8601,9 +8287,7 @@
  },
  {
   "attribute": "desks",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8620,7 +8304,7 @@
  {
   "attribute": "staff",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-08-20",
   "label": "true",
@@ -8638,6 +8322,7 @@
  {
   "attribute": "rent",
   "cues": [
+   "speaker",
    "table_cell"
   ],
   "date": "2026-08-20",
@@ -8656,9 +8341,7 @@
  },
  {
   "attribute": "bike_racks",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8674,9 +8357,7 @@
  },
  {
   "attribute": "desks_managed",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8692,9 +8373,7 @@
  },
  {
   "attribute": "facilities_team",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8710,9 +8389,7 @@
  },
  {
   "attribute": "lease_end",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8727,9 +8404,7 @@
  },
  {
   "attribute": "lease_end",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-08-20",
   "label": "true",
   "page_id": "seed-pg-0057",
@@ -8780,9 +8455,7 @@
  },
  {
   "attribute": "revenue",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8834,9 +8507,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8851,9 +8522,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8868,9 +8537,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8885,9 +8552,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8902,9 +8567,7 @@
  },
  {
   "attribute": "cash",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8920,9 +8583,7 @@
  },
  {
   "attribute": "cash",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8938,9 +8599,7 @@
  },
  {
   "attribute": "cash",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8956,9 +8615,7 @@
  },
  {
   "attribute": "cash",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8974,9 +8631,7 @@
  },
  {
   "attribute": "customers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -8992,9 +8647,7 @@
  },
  {
   "attribute": "customers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -9010,9 +8663,7 @@
  },
  {
   "attribute": "customers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-27",
   "label": "true",
   "page_id": "seed-pg-0058",
@@ -11179,9 +10830,7 @@
  },
  {
   "attribute": "languages_supported",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0075",
@@ -11197,9 +10846,7 @@
  },
  {
   "attribute": "offline_languages",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-03",
   "label": "true",
   "page_id": "seed-pg-0075",
@@ -11372,9 +11019,7 @@
  },
  {
   "attribute": "capacity",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-02-20",
   "label": "true",
   "page_id": "seed-pg-0077",
@@ -12768,7 +12413,7 @@
  {
   "attribute": "opened",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-02-10",
   "label": "true",
@@ -12944,9 +12589,7 @@
  },
  {
   "attribute": "interview_rounds",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -12978,9 +12621,7 @@
  },
  {
   "attribute": "recruiters",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -12997,7 +12638,7 @@
  {
   "attribute": "applicants",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-09-16",
   "label": "true",
@@ -13014,9 +12655,7 @@
  },
  {
   "attribute": "offers",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -13033,7 +12672,7 @@
  {
   "attribute": "hires",
   "cues": [
-   "table_cell"
+   "speaker"
   ],
   "date": "2026-09-16",
   "label": "true",
@@ -13050,9 +12689,7 @@
  },
  {
   "attribute": "offer_acceptance",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -13082,9 +12719,7 @@
  },
  {
   "attribute": "referral_bonus",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -13100,9 +12735,7 @@
  },
  {
   "attribute": "cost_per_hire",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-09-16",
   "label": "true",
   "page_id": "seed-pg-0088",
@@ -13309,6 +12942,7 @@
  {
   "attribute": "version",
   "cues": [
+   "headline",
    "table_cell"
   ],
   "date": "2026-03-25",
@@ -13342,9 +12976,7 @@
  },
  {
   "attribute": "median_response_time",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "true",
   "page_id": "seed-pg-0090",
@@ -13360,9 +12992,7 @@
  },
  {
   "attribute": "uptime_last_quarter",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "false",
   "page_id": "seed-pg-0090",
@@ -13605,9 +13235,7 @@
  },
  {
   "attribute": "regions",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0093",
@@ -13623,9 +13251,7 @@
  },
  {
   "attribute": "availability_zones",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0093",
@@ -13641,9 +13267,7 @@
  },
  {
   "attribute": "services",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0093",
@@ -13660,6 +13284,7 @@
  {
   "attribute": "uptime_sla",
   "cues": [
+   "speaker",
    "table_cell"
   ],
   "date": "2025-12-15",
@@ -13676,9 +13301,7 @@
  },
  {
   "attribute": "data_centres",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "false",
   "page_id": "seed-pg-0093",
@@ -13694,9 +13317,7 @@
  },
  {
   "attribute": "standard_storage_price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0093",
@@ -13946,6 +13567,7 @@
  {
   "attribute": "stable_version",
   "cues": [
+   "headline",
    "table_cell"
   ],
   "date": "2026-08-18",
@@ -13979,9 +13601,7 @@
  },
  {
   "attribute": "monthly_active_users",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-08-18",
   "label": "true",
   "page_id": "seed-pg-0096",
@@ -14014,9 +13634,7 @@
  },
  {
   "attribute": "extensions_in_store",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-08-18",
   "label": "true",
   "page_id": "seed-pg-0096",
@@ -14283,9 +13901,7 @@
  },
  {
   "attribute": "storage",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-12",
   "label": "false",
   "page_id": "seed-pg-0098",
@@ -14301,9 +13917,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-06-12",
   "label": "false",
   "page_id": "seed-pg-0098",
@@ -14357,9 +13971,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-20",
   "label": "true",
   "page_id": "seed-pg-0099",
@@ -14376,9 +13988,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-20",
   "label": "false",
   "page_id": "seed-pg-0099",
@@ -14395,9 +14005,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-20",
   "label": "true",
   "page_id": "seed-pg-0099",
@@ -14776,6 +14384,7 @@
  {
   "attribute": "version",
   "cues": [
+   "headline",
    "table_cell"
   ],
   "date": "2026-09-23",
@@ -14950,9 +14559,7 @@
  },
  {
   "attribute": "supported_models",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-10-14",
   "label": "true",
   "page_id": "seed-pg-0107",
@@ -14968,9 +14575,7 @@
  },
  {
   "attribute": "share_of_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-14",
   "label": "true",
   "page_id": "seed-pg-0107",
@@ -15094,9 +14699,7 @@
  },
  {
   "attribute": "trade_in_programme",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-04-30",
   "label": "false",
   "page_id": "seed-pg-0109",
@@ -15183,10 +14786,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "boast",
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-20",
   "label": "true",
   "page_id": "seed-pg-0112",
@@ -15203,9 +14803,7 @@
  },
  {
   "attribute": "free_trial",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-20",
   "label": "true",
   "page_id": "seed-pg-0112",
@@ -15221,9 +14819,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-04-20",
   "label": "false",
   "page_id": "seed-pg-0112",
@@ -15239,9 +14835,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-05-05",
   "label": "true",
   "page_id": "seed-pg-0113",
@@ -15342,9 +14936,7 @@
  },
  {
   "attribute": "paying_customers",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0116",
@@ -16690,7 +16282,6 @@
  {
   "attribute": "languages",
   "cues": [
-   "boast",
    "gavin",
    "speaker"
   ],
@@ -17024,9 +16615,7 @@
  },
  {
   "attribute": "stream_viewers",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-07-02",
   "label": "true",
   "page_id": "seed-pg-0128",
@@ -17042,9 +16631,7 @@
  },
  {
   "attribute": "replay_available",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-07-02",
   "label": "true",
   "page_id": "seed-pg-0128",
@@ -17883,9 +17470,7 @@
  },
  {
   "attribute": "yearly_billing_discount",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-10-16",
   "label": "true",
   "page_id": "seed-pg-0132",
@@ -18228,9 +17813,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-10-08",
   "label": "true",
   "page_id": "seed-pg-0134",
@@ -18517,7 +18100,7 @@
  {
   "attribute": "seats",
   "cues": [
-   "testimonial"
+   "speaker"
   ],
   "date": "2026-05-06",
   "label": "true",
@@ -18534,7 +18117,9 @@
  },
  {
   "attribute": "independent_members",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0136",
@@ -18550,7 +18135,9 @@
  },
  {
   "attribute": "raviqa_seat",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0136",
@@ -18581,7 +18168,9 @@
  },
  {
   "attribute": "attendance",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0136",
@@ -18597,7 +18186,7 @@
  {
   "attribute": "chairs_audit_committee",
   "cues": [
-   "testimonial"
+   "speaker"
   ],
   "date": "2026-05-06",
   "label": "true",
@@ -18614,7 +18203,7 @@
  {
   "attribute": "independent_director",
   "cues": [
-   "testimonial"
+   "speaker"
   ],
   "date": "2026-05-06",
   "label": "true",
@@ -18630,7 +18219,9 @@
  },
  {
   "attribute": "next_meeting",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0136",
@@ -18646,7 +18237,7 @@
  {
   "attribute": "chair_since",
   "cues": [
-   "testimonial"
+   "speaker"
   ],
   "date": "2026-05-06",
   "label": "true",
@@ -18663,7 +18254,7 @@
  {
   "attribute": "audit_committee",
   "cues": [
-   "testimonial"
+   "speaker"
   ],
   "date": "2026-05-06",
   "label": "true",
@@ -18715,7 +18306,9 @@
  },
  {
   "attribute": "applicants",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-20",
   "label": "true",
   "page_id": "seed-pg-0137",
@@ -18802,7 +18395,9 @@
  },
  {
   "attribute": "interview_rounds",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-05-20",
   "label": "true",
   "page_id": "seed-pg-0137",
@@ -18836,6 +18431,7 @@
  {
   "attribute": "cost_per_hire",
   "cues": [
+   "speaker",
    "table_cell"
   ],
   "date": "2026-05-20",
@@ -18889,6 +18485,7 @@
  {
   "attribute": "recruiters",
   "cues": [
+   "speaker",
    "table_cell"
   ],
   "date": "2026-05-20",
@@ -18907,7 +18504,6 @@
  {
   "attribute": "joined",
   "cues": [
-   "first_person",
    "speaker"
   ],
   "date": "2026-07-09",
@@ -18943,7 +18539,6 @@
  {
   "attribute": "desks_managed",
   "cues": [
-   "first_person",
    "speaker"
   ],
   "date": "2026-07-09",
@@ -19224,9 +18819,7 @@
  },
  {
   "attribute": "sessions",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-01-21",
   "label": "false",
   "page_id": "seed-pg-0140",
@@ -19422,9 +19015,7 @@
  },
  {
   "attribute": "active_users",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-06-10",
   "label": "true",
   "page_id": "seed-pg-0141",
@@ -19456,9 +19047,7 @@
  },
  {
   "attribute": "supported_file_types",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-26",
   "label": "true",
   "page_id": "seed-pg-0142",
@@ -19474,9 +19063,7 @@
  },
  {
   "attribute": "context_window",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-26",
   "label": "true",
   "page_id": "seed-pg-0142",
@@ -19492,9 +19079,7 @@
  },
  {
   "attribute": "launched",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2025-11-19",
   "label": "true",
   "page_id": "seed-pg-0143",
@@ -19829,8 +19414,7 @@
  {
   "attribute": "cto",
   "cues": [
-   "announce_future",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-02-20",
   "label": "true",
@@ -19847,8 +19431,7 @@
  {
   "attribute": "context_window",
   "cues": [
-   "announce_future",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-02-20",
   "label": "true",
@@ -19865,9 +19448,7 @@
  },
  {
   "attribute": "stable_version",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2025-12-20",
   "label": "true",
   "page_id": "seed-pg-0147",
@@ -19979,8 +19560,7 @@
  {
   "attribute": "top_bug_bounty",
   "cues": [
-   "boast",
-   "testimonial"
+   "boast"
   ],
   "date": "2025-12-20",
   "label": "unsure",
@@ -20062,9 +19642,7 @@
  },
  {
   "attribute": "places_listed",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2025-10-16",
   "label": "true",
   "page_id": "seed-pg-0148",
@@ -20080,9 +19658,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2025-10-16",
   "label": "true",
   "page_id": "seed-pg-0148",
@@ -20179,8 +19755,7 @@
  {
   "attribute": "ai_editing",
   "cues": [
-   "hearsay",
-   "testimonial"
+   "hearsay"
   ],
   "date": "2026-10-02",
   "label": "unsure",
@@ -20309,9 +19884,7 @@
  },
  {
   "attribute": "languages_served",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-06-04",
   "label": "true",
   "page_id": "seed-pg-0150",
@@ -20441,9 +20014,7 @@
  },
  {
   "attribute": "languages_supported",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-09-10",
   "label": "false",
   "page_id": "seed-pg-0152",
@@ -20459,9 +20030,7 @@
  },
  {
   "attribute": "rated_accuracy",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-09-10",
   "label": "false",
   "page_id": "seed-pg-0152",
@@ -21100,9 +20669,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2025-12-09",
   "label": "true",
   "page_id": "seed-pg-0161",
@@ -21244,9 +20811,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "false",
   "page_id": "seed-pg-0165",
@@ -21261,9 +20826,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "false",
   "page_id": "seed-pg-0165",
@@ -21279,9 +20842,7 @@
  },
  {
   "attribute": "median_response_time",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "false",
   "page_id": "seed-pg-0165",
@@ -21297,9 +20858,7 @@
  },
  {
   "attribute": "uptime_last_quarter",
-  "cues": [
-   "release_notes"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "false",
   "page_id": "seed-pg-0165",
@@ -21609,10 +21168,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "boast",
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0174",
@@ -21629,10 +21185,7 @@
  },
  {
   "attribute": "free_trial",
-  "cues": [
-   "boast",
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2025-12-15",
   "label": "true",
   "page_id": "seed-pg-0174",
@@ -21648,9 +21201,7 @@
  },
  {
   "attribute": "sponsors",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-02",
   "label": "false",
   "page_id": "seed-pg-0175",
@@ -21666,9 +21217,7 @@
  },
  {
   "attribute": "ticket_price",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-02",
   "label": "false",
   "page_id": "seed-pg-0175",
@@ -21799,9 +21348,7 @@
  },
  {
   "attribute": "opened",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0177",
@@ -21848,9 +21395,7 @@
  },
  {
   "attribute": "lease_end",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-05-06",
   "label": "false",
   "page_id": "seed-pg-0177",
@@ -21915,9 +21460,7 @@
  },
  {
   "attribute": "bike_racks",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-05-06",
   "label": "true",
   "page_id": "seed-pg-0177",
@@ -22093,9 +21636,7 @@
  },
  {
   "attribute": "revenue",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-01-29",
   "label": "false",
   "page_id": "seed-pg-0179",
@@ -22111,9 +21652,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-01-29",
   "label": "false",
   "page_id": "seed-pg-0179",
@@ -22207,9 +21746,7 @@
  },
  {
   "attribute": "cash",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-01-29",
   "label": "true",
   "page_id": "seed-pg-0179",
@@ -22513,7 +22050,9 @@
  },
  {
   "attribute": "newest_region",
-  "cues": [],
+  "cues": [
+   "press_release"
+  ],
   "date": "2026-07-15",
   "label": "true",
   "page_id": "seed-pg-0181",
@@ -22864,8 +22403,7 @@
  {
   "attribute": "version",
   "cues": [
-   "press_release",
-   "testimonial"
+   "press_release"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -22882,8 +22420,7 @@
  {
   "attribute": "attendees",
   "cues": [
-   "press_release",
-   "testimonial"
+   "press_release"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -22901,8 +22438,7 @@
  {
   "attribute": "languages",
   "cues": [
-   "press_release",
-   "testimonial"
+   "press_release"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -22920,8 +22456,7 @@
  {
   "attribute": "median_response_time",
   "cues": [
-   "press_release",
-   "testimonial"
+   "press_release"
   ],
   "date": "2026-03-24",
   "label": "true",
@@ -23476,9 +23011,7 @@
  },
  {
   "attribute": "yearly_billing_discount",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-05-07",
   "label": "true",
   "page_id": "seed-pg-0188",
@@ -24397,9 +23930,7 @@
  },
  {
   "attribute": "open_source",
-  "cues": [
-   "hearsay"
-  ],
+  "cues": [],
   "date": "2026-03-02",
   "label": "false",
   "page_id": "seed-pg-0193",
@@ -25244,9 +24775,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-02-17",
   "label": "false",
   "page_id": "seed-pg-0197",
@@ -25657,9 +25186,7 @@
  },
  {
   "attribute": "operating_margin",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-01-28",
   "label": "true",
   "page_id": "seed-pg-0200",
@@ -25849,9 +25376,7 @@
  },
  {
   "attribute": "anonymous",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-12",
   "label": "true",
   "page_id": "seed-pg-0201",
@@ -27287,8 +26812,7 @@
  {
   "attribute": "date",
   "cues": [
-   "announce_future",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-09-17",
   "label": "false",
@@ -27305,8 +26829,7 @@
  {
   "attribute": "city",
   "cues": [
-   "announce_future",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-09-17",
   "label": "false",
@@ -27322,9 +26845,7 @@
  },
  {
   "attribute": "attendees",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-09-17",
   "label": "false",
   "page_id": "seed-pg-0207",
@@ -27340,9 +26861,7 @@
  },
  {
   "attribute": "city",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-09-17",
   "label": "false",
   "page_id": "seed-pg-0207",
@@ -27604,9 +27123,7 @@
  },
  {
   "attribute": "included_seats",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27623,7 +27140,6 @@
  {
   "attribute": "uptime_sla",
   "cues": [
-   "headline",
    "speaker"
   ],
   "date": "2026-10-15",
@@ -27640,9 +27156,7 @@
  },
  {
   "attribute": "support_first_response",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27658,9 +27172,7 @@
  },
  {
   "attribute": "onboarding_time",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "false",
   "page_id": "seed-pg-0209",
@@ -27676,9 +27188,7 @@
  },
  {
   "attribute": "audit_retention",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27694,9 +27204,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27711,9 +27219,7 @@
  },
  {
   "attribute": "cloud_provider",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27729,8 +27235,7 @@
  {
   "attribute": "hosting_regions",
   "cues": [
-   "announce_future",
-   "headline"
+   "announce_future"
   ],
   "date": "2026-10-15",
   "label": "true",
@@ -27748,8 +27253,7 @@
  {
   "attribute": "primary_region",
   "cues": [
-   "announce_future",
-   "headline"
+   "announce_future"
   ],
   "date": "2026-10-15",
   "label": "true",
@@ -27783,9 +27287,7 @@
  },
  {
   "attribute": "flawless_seats",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "false",
   "page_id": "seed-pg-0209",
@@ -27801,9 +27303,7 @@
  },
  {
   "attribute": "customers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-15",
   "label": "true",
   "page_id": "seed-pg-0209",
@@ -27856,9 +27356,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -27875,9 +27373,7 @@
  },
  {
   "attribute": "signed_in_devices",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -27893,9 +27389,7 @@
  },
  {
   "attribute": "saved_projects",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -27912,7 +27406,7 @@
  {
   "attribute": "price",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-05-12",
   "label": "true",
@@ -27931,7 +27425,7 @@
  {
   "attribute": "included_seats",
   "cues": [
-   "headline"
+   "speaker"
   ],
   "date": "2026-05-12",
   "label": "true",
@@ -27948,9 +27442,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -27965,9 +27457,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -27983,9 +27473,7 @@
  },
  {
   "attribute": "context_window",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28001,9 +27489,7 @@
  },
  {
   "attribute": "voice_mode",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28018,9 +27504,7 @@
  },
  {
   "attribute": "beta_date",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28035,9 +27519,7 @@
  },
  {
   "attribute": "context_files",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28053,9 +27535,7 @@
  },
  {
   "attribute": "programming_languages",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28071,9 +27551,7 @@
  },
  {
   "attribute": "employees",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "false",
   "page_id": "seed-pg-0210",
@@ -28089,9 +27567,7 @@
  },
  {
   "attribute": "paying_customers",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "false",
   "page_id": "seed-pg-0210",
@@ -28107,9 +27583,7 @@
  },
  {
   "attribute": "help_guides",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0210",
@@ -28488,9 +27962,7 @@
  },
  {
   "attribute": "audit_retention",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-09-02",
   "label": "true",
   "page_id": "seed-pg-0212",
@@ -28506,9 +27978,7 @@
  },
  {
   "attribute": "onboarding_time",
-  "cues": [
-   "boast"
-  ],
+  "cues": [],
   "date": "2026-09-02",
   "label": "true",
   "page_id": "seed-pg-0212",
@@ -28713,9 +28183,7 @@
  },
  {
   "attribute": "talks",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-27",
   "label": "true",
   "page_id": "seed-pg-0213",
@@ -28731,9 +28199,7 @@
  },
  {
   "attribute": "workshops",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-27",
   "label": "true",
   "page_id": "seed-pg-0213",
@@ -28749,9 +28215,7 @@
  },
  {
   "attribute": "sponsors",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-27",
   "label": "true",
   "page_id": "seed-pg-0213",
@@ -28860,9 +28324,7 @@
  },
  {
   "attribute": "ticket_price",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-27",
   "label": "false",
   "page_id": "seed-pg-0213",
@@ -29181,10 +28643,7 @@
  },
  {
   "attribute": "languages",
-  "cues": [
-   "hearsay",
-   "hedge"
-  ],
+  "cues": [],
   "date": "2025-10-10",
   "label": "false",
   "page_id": "seed-pg-0215",
@@ -29452,9 +28911,7 @@
  },
  {
   "attribute": "max_upload_size",
-  "cues": [
-   "hedge"
-  ],
+  "cues": [],
   "date": "2026-06-12",
   "label": "false",
   "page_id": "seed-pg-0216",
@@ -30376,9 +29833,7 @@
  },
  {
   "attribute": "date",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-03",
   "label": "true",
   "page_id": "seed-pg-0220",
@@ -30597,9 +30052,7 @@
  },
  {
   "attribute": "context_window",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-03-25",
   "label": "true",
   "page_id": "seed-pg-0223",
@@ -30633,6 +30086,7 @@
  {
   "attribute": "version",
   "cues": [
+   "headline",
    "table_cell"
   ],
   "date": "2026-08-18",
@@ -30649,9 +30103,7 @@
  },
  {
   "attribute": "max_upload_size",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-08-18",
   "label": "true",
   "page_id": "seed-pg-0224",
@@ -30720,9 +30172,7 @@
  },
  {
   "attribute": "waitlist",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-12",
   "label": "true",
   "page_id": "seed-pg-0225",
@@ -30739,8 +30189,7 @@
  {
   "attribute": "planned_general_availability",
   "cues": [
-   "announce_future",
-   "headline"
+   "announce_future"
   ],
   "date": "2026-10-12",
   "label": "true",
@@ -30757,7 +30206,7 @@
  {
   "attribute": "paying_customers",
   "cues": [
-   "table_cell"
+   "headline"
   ],
   "date": "2026-10-26",
   "label": "false",
@@ -30774,9 +30223,7 @@
  },
  {
   "attribute": "uptime_last_quarter",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-26",
   "label": "true",
   "page_id": "seed-pg-0226",
@@ -30791,9 +30238,7 @@
  },
  {
   "attribute": "price",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-26",
   "label": "false",
   "page_id": "seed-pg-0226",
@@ -31998,7 +31443,6 @@
  {
   "attribute": "cto",
   "cues": [
-   "first_person",
    "speaker"
   ],
   "date": "2026-10-09",
@@ -32429,7 +31873,6 @@
   "attribute": "version",
   "cues": [
    "gavin",
-   "release_notes",
    "speaker"
   ],
   "date": "2025-12-10",
@@ -32448,7 +31891,6 @@
   "attribute": "languages",
   "cues": [
    "gavin",
-   "release_notes",
    "speaker"
   ],
   "date": "2025-12-10",
@@ -32563,7 +32005,6 @@
  {
   "attribute": "founders",
   "cues": [
-   "first_person",
    "gavin",
    "speaker"
   ],
@@ -32733,7 +32174,6 @@
   "attribute": "headquarters",
   "cues": [
    "gavin",
-   "hedge",
    "speaker"
   ],
   "date": "2026-04-15",
@@ -32752,7 +32192,6 @@
   "attribute": "offices",
   "cues": [
    "gavin",
-   "hedge",
    "speaker"
   ],
   "date": "2026-04-15",
@@ -33591,9 +33030,7 @@
  },
  {
   "attribute": "attendees",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0241",
@@ -33609,9 +33046,7 @@
  },
  {
   "attribute": "livestream_viewers",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-03-24",
   "label": "true",
   "page_id": "seed-pg-0241",
@@ -33628,7 +33063,6 @@
  {
   "attribute": "keynote_length",
   "cues": [
-   "first_person",
    "gavin",
    "speaker"
   ],
@@ -33648,7 +33082,6 @@
  {
   "attribute": "version",
   "cues": [
-   "first_person",
    "gavin",
    "speaker"
   ],
@@ -33926,7 +33359,7 @@
  {
   "attribute": "founders",
   "cues": [
-   "first_person",
+   "boast",
    "gavin",
    "speaker"
   ],
@@ -34112,9 +33545,7 @@
  {
   "attribute": "open_source",
   "cues": [
-   "first_person",
    "gavin",
-   "hedge",
    "speaker"
   ],
   "date": "2025-11-04",
@@ -34388,9 +33819,7 @@
  },
  {
   "attribute": "minimum_nodes",
-  "cues": [
-   "hearsay"
-  ],
+  "cues": [],
   "date": "2026-09-24",
   "label": "true",
   "page_id": "seed-pg-0244",
@@ -34502,8 +33931,7 @@
  {
   "attribute": "city",
   "cues": [
-   "announce_future",
-   "testimonial"
+   "announce_future"
   ],
   "date": "2026-09-24",
   "label": "true",
@@ -35079,9 +34507,7 @@
  },
  {
   "attribute": "regions",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0253",
@@ -35275,9 +34701,7 @@
  },
  {
   "attribute": "carbon_neutral",
-  "cues": [
-   "hedge"
-  ],
+  "cues": [],
   "date": "2026-05-12",
   "label": "true",
   "page_id": "seed-pg-0253",
@@ -35616,9 +35040,7 @@
  },
  {
   "attribute": "ticket_price",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-03",
   "label": "true",
   "page_id": "seed-pg-0257",
@@ -35634,9 +35056,7 @@
  },
  {
   "attribute": "date",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-02-03",
   "label": "true",
   "page_id": "seed-pg-0257",
@@ -38539,7 +37959,9 @@
  },
  {
   "attribute": "price",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-04-01",
   "label": "true",
   "page_id": "seed-pg-0284",
@@ -38556,7 +37978,9 @@
  },
  {
   "attribute": "included_seats",
-  "cues": [],
+  "cues": [
+   "speaker"
+  ],
   "date": "2026-04-01",
   "label": "true",
   "page_id": "seed-pg-0284",
@@ -39155,9 +38579,7 @@
  },
  {
   "attribute": "date",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-10",
   "label": "true",
   "page_id": "seed-pg-0289",
@@ -39172,9 +38594,7 @@
  },
  {
   "attribute": "city",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-10",
   "label": "true",
   "page_id": "seed-pg-0289",
@@ -39189,9 +38609,7 @@
  },
  {
   "attribute": "attendees",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-10",
   "label": "true",
   "page_id": "seed-pg-0289",
@@ -39207,9 +38625,7 @@
  },
  {
   "attribute": "talks",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-10",
   "label": "true",
   "page_id": "seed-pg-0289",
@@ -39225,9 +38641,7 @@
  },
  {
   "attribute": "sponsors",
-  "cues": [
-   "testimonial"
-  ],
+  "cues": [],
   "date": "2026-04-10",
   "label": "true",
   "page_id": "seed-pg-0289",
@@ -39343,9 +38757,7 @@
  },
  {
   "attribute": "mailbox_storage",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39361,9 +38773,7 @@
  },
  {
   "attribute": "attachment_limit",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39379,9 +38789,7 @@
  },
  {
   "attribute": "end_to_end_encryption",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39396,9 +38804,7 @@
  },
  {
   "attribute": "spam_catch_rate",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39413,9 +38819,7 @@
  },
  {
   "attribute": "price_per_user",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39432,9 +38836,7 @@
  },
  {
   "attribute": "free_storage",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "false",
   "page_id": "seed-pg-0291",
@@ -39450,9 +38852,7 @@
  },
  {
   "attribute": "max_file_size",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "unsure",
   "page_id": "seed-pg-0291",
@@ -39468,9 +38868,7 @@
  },
  {
   "attribute": "version_history",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39486,9 +38884,7 @@
  },
  {
   "attribute": "version",
-  "cues": [
-   "table_cell"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39503,9 +38899,7 @@
  },
  {
   "attribute": "simultaneous_editors",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39521,9 +38915,7 @@
  },
  {
   "attribute": "templates",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "false",
   "page_id": "seed-pg-0291",
@@ -39539,9 +38931,7 @@
  },
  {
   "attribute": "storage_per_user",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
@@ -39557,9 +38947,7 @@
  },
  {
   "attribute": "storage_per_user",
-  "cues": [
-   "headline"
-  ],
+  "cues": [],
   "date": "2026-10-05",
   "label": "true",
   "page_id": "seed-pg-0291",
