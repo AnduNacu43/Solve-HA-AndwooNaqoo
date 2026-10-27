@@ -81,7 +81,7 @@ def _rows(path):
     return rows[1:]
 
 
-def test_full_run_writes_a_valid_table_fast(universe, tmp_path, lexicon, attrs):
+def test_full_run_writes_a_valid_table_fast(universe, tmp_path, lexicon, attrs, known_names):
     t = time.time()
     p = subprocess.run([sys.executable, "-m", "arena"], cwd=ROOT, env=_env(universe, tmp_path),
                        capture_output=True, text=True, timeout=120)
@@ -98,7 +98,7 @@ def test_full_run_writes_a_valid_table_fast(universe, tmp_path, lexicon, attrs):
         if type_ == "compare":  # the CSV does not carry the kind; the validator needs it
             left = claim.form["left"]
             claim.evidence["kind"] = deps.spec_for(attrs, left["subject"], left["attribute"]).kind
-        assert deps.validate(claim, lexicon) == [], (text, form)
+        assert deps.validate(claim, lexicon, attrs=attrs, known_names=known_names) == [], (text, form)
         assert label in ("true", "false") and 0.5 <= float(conf) <= 1.0
 
 

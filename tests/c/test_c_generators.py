@@ -40,10 +40,11 @@ def test_each_generator_yields_both_labels_in_shape(claims, ctype):
 
 
 @pytest.mark.parametrize("ctype", list(GENERATORS))
-def test_each_generators_claims_pass_the_validator(claims, ctype, lexicon, templates):
-    """Every claim renders to a sentence the validator accepts, except claims
-    whose name value the lexicon cannot resolve (a data gap) and a few whose
-    attribute words cannot sit in a sentence (withheld on purpose, then dropped)."""
+def test_each_generators_claims_pass_the_validator(claims, ctype, lexicon, attrs, known_names,
+                                                  templates):
+    """Every claim renders to a sentence the validator accepts, except a few
+    whose attribute words cannot sit in a sentence (withheld on purpose, then
+    dropped)."""
     failures, unrenderable = Counter(), 0
     for c in claims[ctype]:
         c.confidence, c.id = 0.8, "t-1"
@@ -53,10 +54,10 @@ def test_each_generators_claims_pass_the_validator(claims, ctype, lexicon, templ
             continue
         for text in texts:
             c.text = text
-            errors = deps.validate(c, lexicon)
+            errors = deps.validate(c, lexicon, attrs=attrs, known_names=known_names)
             if not errors:
                 break
-        if errors and not all("is not in the lexicon" in e for e in errors):
+        if errors:
             failures[f"{errors[0]} | {c.text} | {json.dumps(c.form)}"] += 1
     assert not failures, failures.most_common(10)
     assert unrenderable <= max(2, 0.02 * len(claims[ctype])), unrenderable

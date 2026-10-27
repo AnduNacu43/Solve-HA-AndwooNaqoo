@@ -207,6 +207,8 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
 
     calibration = deps.load_calibration()
     templates = load_templates()
+    # names the universe states besides the lexicon's own: A's validate refuses others
+    known_names = {o.value.value for o in seed if o.value.kind == "name"}
     kept, dropped, reasons = Counter(), Counter(), Counter()
     for claim in generate(timelines, lexicon, attrs, stats=stats):
         if stop.expired() or time.time() > stop_at:
@@ -218,7 +220,7 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
             errors = ["no frame fits"]
             for text in candidates(claim, lexicon, templates):
                 claim.text = text
-                errors = deps.validate(claim, lexicon)
+                errors = deps.validate(claim, lexicon, attrs=attrs, known_names=known_names)
                 if not errors:
                     break
             if errors:

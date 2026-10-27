@@ -61,6 +61,9 @@ def unsafe_words(text: str) -> set[str]:
     for tw in deps.TIME_WORDS:
         if f" {tw} " in joined:
             bad.add(tw)
+    for period in ("week", "month", "quarter", "year"):  # A refuses "this year" too
+        if f" this {period} " in joined:
+            bad.add(f"this {period}")
     return bad
 
 

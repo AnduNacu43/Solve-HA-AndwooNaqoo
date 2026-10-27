@@ -33,6 +33,13 @@ def timelines():
 
 
 @pytest.fixture(scope="session")
+def known_names():
+    """Name values the seed states: what the runtime passes to validate()."""
+    from arena.generate import deps
+    return {o.value.value for o in deps.load_seed() if o.value.kind == "name"}
+
+
+@pytest.fixture(scope="session")
 def templates():
     from arena.render import load_templates
     return load_templates()

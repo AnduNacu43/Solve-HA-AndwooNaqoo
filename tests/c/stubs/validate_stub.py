@@ -44,6 +44,13 @@ ABBREVIATIONS = ("e.g.", "i.e.", "vs.", "approx.", "inc.", "ltd.", "co.", "corp.
                  "dr.", "mr.", "mrs.", "ms.", "prof.", "st.")
 
 
+_KNOWN: set[str] = set()
+
+
+def _named(lexicon, name) -> bool:
+    return bool(lexicon.resolve(name)) or str(name).lower() in _KNOWN
+
+
 def _num(x) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool)
 
@@ -141,8 +148,11 @@ def _mentions(lexicon, text: str, subject: str) -> bool:
     return any(m.subject == canon for m in lexicon.find_mentions(text))
 
 
-def validate(claim, lexicon) -> list[str]:
-    """[] when the claim looks acceptable; otherwise human-readable reasons."""
+def validate(claim, lexicon, attrs=None, known_names=None) -> list[str]:
+    """[] when the claim looks acceptable; otherwise human-readable reasons.
+    A name value must be a lexicon name or one of known_names (A's signature)."""
+    global _KNOWN
+    _KNOWN = {n.lower() for n in (known_names or ())}
     errs: list[str] = []
     if claim.type not in FORM_KEYS:
         return [f"unknown type {claim.type!r}"]
@@ -191,7 +201,7 @@ class _Checks:
                 errs.append("polarity does not match the value")
             errs += _leftover_errors(rest, allow_negation=True, allow_time=allow_time)
             return errs, rest
-        if value.kind == "name" and not lexicon.resolve(value.value):
+        if value.kind == "name" and not _named(lexicon, value.value):
             errs.append(f"name {value.value!r} is not in the lexicon")
         written = format_value(value)
         rest, n = _blank(rest, r"(?<![\w€$£])" + re.escape(written) + r"(?![\w%])")
@@ -320,7 +330,7 @@ class _Checks:
             return ["from and to differ in kind"]
         if a.kind == "name":
             for v in (a, b):
-                if not lexicon.resolve(v.value):
+                if not _named(lexicon, v.value):
                     errs.append(f"name {v.value!r} is not in the lexicon")
             if errs:
                 return errs
