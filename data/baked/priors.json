@@ -743,10 +743,10 @@
   ]
  },
  "extraction": {
-  "boolean:context": 0.9301,
-  "boolean:named": 0.9679,
-  "date:context": 0.9112,
-  "date:named": 0.8926,
+  "boolean:context": 0.9334,
+  "boolean:named": 0.9673,
+  "date:context": 0.9144,
+  "date:named": 0.8917,
   "duration:context": 0.9347,
   "duration:named": 0.9772,
   "money:context": 0.9726,
@@ -755,7 +755,7 @@
   "name:named": 0.921,
   "percent:context": 0.9594,
   "percent:named": 0.9581,
-  "quantity:context": 0.9346,
+  "quantity:context": 0.9349,
   "quantity:named": 0.9802,
   "version:named": 0.9533
  },
