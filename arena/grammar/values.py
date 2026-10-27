@@ -191,7 +191,7 @@ _DATE_PATTERNS = [
 ]
 # Forms that read as nothing and must not leave readable pieces behind.
 _BLOCKERS = [
-    re.compile(r"(?<![\dA-Za-z])\d{1,4}[./-]\d{1,2}[./-]\d{2,4}(?![\d])"),  # 12/03/2026, 12.03.2026
+    re.compile(r"(?<![\dA-Za-z.,/])(?:\d{1,2}[./-]\d{1,2}[./-]\d{4}|\d{4}[./]\d{1,2}[./]\d{1,2}|\d{1,2}/\d{1,2}/\d{2})(?![\d./])"),  # 12/03/2026, 12.03.2026
     re.compile(r"(?<![A-Za-z0-9])[QH][1-4]\s*(?:\d{4})?(?![A-Za-z0-9])"),  # Q4 2026, H1
     re.compile(r"(?<![A-Za-z])" + _MONTH_ALT + r"\s*\d{1,2}" + _ORD + r"(?![\d])", re.I),  # March 12
     re.compile(r"(?<![A-Za-z0-9])\d{1,2}" + _ORD + r"\s*(?:of\s+)?" + _MONTH_ALT, re.I),  # 12 March
@@ -714,8 +714,8 @@ def read(sentence: str) -> list[Reading]:
     t, idx = _normalize(sentence)
     sc = _Scanner(t)
     sc.dates()
-    sc.blockers()
     sc.versions()
+    sc.blockers()
     sc.a_durations()
     sc.numbers()
     sc.annotate()
