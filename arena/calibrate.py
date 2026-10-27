@@ -85,10 +85,14 @@ def bucket_path(label: str, anchored: bool, kind: str, vol: int, sup_bucket: int
 
 def table_rate(calibration: dict, label: str, anchored: bool, kind: str, vol: int,
                support: float) -> float:
-    """Shrunk empirical rate for one interval, non-decreasing in support."""
+    """Shrunk empirical rate for one interval, non-decreasing in support and
+    never lower for an anchored interval than for the same one unanchored
+    (a labelled row only adds information; thin buckets can invert by noise)."""
     edges = calibration["support_edges"]
     top = support_bucket(support, edges)
-    return max(_rate(calibration, bucket_path(label, anchored, kind, vol, b)) for b in range(top + 1))
+    flags = (False, True) if anchored else (False,)
+    return max(_rate(calibration, bucket_path(label, a, kind, vol, b))
+               for b in range(top + 1) for a in flags)
 
 
 def _rate(calibration: dict, path: list[str]) -> float:

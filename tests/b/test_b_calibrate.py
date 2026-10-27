@@ -33,8 +33,12 @@ def test_monotone_in_support(calibration):
         assert seq == sorted(seq), (label, anchored, kind, vol, conflict, seq)
 
 
-def test_anchored_beats_unanchored(calibration):
-    assert confidence(claim(anchored=True), calibration) > confidence(claim(anchored=False), calibration)
+def test_anchored_never_below_unanchored(calibration):
+    kinds = ["quantity", "money", "percent", "date", "version", "duration", "name", "boolean"]
+    for kind, vol, s in itertools.product(kinds, (1, 2, 3, 5), (0.5, 1.5, 3, 6, 12)):
+        a = confidence(claim(kind=kind, volatility=vol, support=s, anchored=True, n_obs=2), calibration)
+        u = confidence(claim(kind=kind, volatility=vol, support=s, anchored=False, n_obs=2), calibration)
+        assert a >= u, (kind, vol, s, a, u)
 
 
 def test_rules(calibration):

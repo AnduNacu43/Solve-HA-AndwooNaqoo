@@ -163,6 +163,23 @@ def test_op_observations_support_at_half_weight(make_obs):
     assert iv.value.value == 120 and iv.support == 1.5 and iv.conflict == 0
 
 
+def test_a_labelled_op_row_constrains_but_pins_nothing(make_obs):
+    """Hooly Cloud customers in practice: a true 'over 100 customers' early on
+    must not pull a later value (1,450) back in time ahead of 610."""
+    c = lambda x, **k: Value("quantity", x, unit="customer", **k)  # noqa: E731
+    obs = [make_obs(c(140), d, label="true") for d in ("2025-11-05", "2025-12-15", "2026-01-21")]
+    obs.append(make_obs(c(100, op="gt"), "2026-01-12", label="true"))
+    obs += [make_obs(c(610), d, label="true") for d in ("2026-03-02", "2026-05-04", "2026-07-15")]
+    obs.append(make_obs(c(610), "2026-08-04", label="false"))
+    obs.append(make_obs(c(1450), "2026-08-10", label="true"))
+    ivs = build(obs, {})[("Acme", "attr")]
+    assert [(iv.start, iv.value.value) for iv in ivs] == [("2025-11-05", 140), ("2026-03-02", 610),
+                                                          ("2026-08-10", 1450)]
+    # it still rules out what it excludes: a value <= 100 cannot hold that day
+    obs.append(make_obs(c(90), "2026-01-12"))
+    assert value_at(build(obs, {})[("Acme", "attr")], "2026-01-12").value.value == 140
+
+
 def test_value_at_partial_dates_and_bounds(make_obs):
     obs = [make_obs(qty(1), "2026-01-10"), make_obs(qty(1), "2026-02-01"),
            make_obs(qty(2), "2026-06-15"), make_obs(qty(2), "2026-07-01")]

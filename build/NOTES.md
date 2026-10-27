@@ -5,21 +5,21 @@ Owner: Agent B (`agent-b/timelines`). Plan: `plans/agent-b-timelines.md`.
 ```
 python build/bake.py            # regenerate data/baked/*.json (deterministic, < 1 s)
 python build/bake.py --report   # + per-pair timelines, 50 most volatile pairs, replay, calibration table
-python -m pytest tests/b -s     # 51 tests (+2 that run once A is merged); -s prints the replay numbers
+python -m pytest tests/b -s     # 52 tests (+2 that run once A is merged); -s prints the replay numbers
 ```
 
 **After merging `agent-a/grammar`, rerun `python build/bake.py` and commit
 `data/baked/`.** With A's extractor importable, the bake takes each practice
 row's cues from A's `extract()` and measures A's precision per value kind
 (`build/extraction.py`). Until then, `tests/b/test_b_bake.py` fails with "stale:
-run python build/bake.py". In a merged A+B tree (A at f592648) the rebake
-gives this table, and all 1,128 tests of `tests/a` + `tests/b` pass:
+run python build/bake.py". In a merged A+B tree (A at 5143b83) the rebake
+gives this table, and all 1,132 tests of `tests/a` + `tests/b` pass:
 
 ```
-boolean:context 0.80  boolean:named 0.94  date:context 0.89  date:named 0.87
-duration:context 0.91 duration:named 0.95 money:context 0.97 money:named 0.90
-name:context 0.95     name:named 0.82     percent:context 0.92 percent:named 0.92
-quantity:context 0.93 quantity:named 0.96 version:named 0.94
+boolean:context 0.93  boolean:named 0.97  date:context 0.91  date:named 0.89
+duration:context 0.93 duration:named 0.98 money:context 0.97 money:named 0.98
+name:context 0.97     name:named 0.85     percent:context 0.96 percent:named 0.96
+quantity:context 0.93 quantity:named 0.98 version:named 0.95
 ```
 
 `timeline.observation_weight` multiplies every unlabelled observation by its
@@ -101,12 +101,15 @@ A's resolved names for the universe.
 | --- | --- | --- | --- | --- |
 | labels hidden | 0.905 | 0.505 | 0.782 | 0.975 |
 | 5-fold CV (other folds anchor) | 0.904 | 0.700 | 0.671 | 0.940 |
-| labels visible | 0.984 | 0.906 | 0.988 | 0.998 |
+| labels visible | 0.985 | 0.906 | 0.992 | 0.999 |
 
 The best proxy for the run is **A's extractor on the practice text, added
 unlabelled to the labelled seed** (`tests/b/test_b_with_extractor.py`, which
 runs once A is merged). There, the current value differs from the labels-only
-timeline on **5 of 514 pairs** (19 before the anchored-pair rule below). CV
+timeline on **1 of 514 pairs**: Android 16 `supported_models`, a table cell
+whose subject A can only guess from page context. It was 19 before the
+anchored-pair rule below; A's fixes (5143b83) and the labelled-op fix brought
+it from 5 to 1. CV
 was 0.930 / 0.596 before that rule. CV runs at practice density, where a real
 change is often seen once; the rule gives up those changes so that one misread
 sentence cannot overturn a labelled value.
@@ -152,7 +155,7 @@ bonus. Each traded one number for another with no net gain.
   With A's extractor on the practice text, single misread sentences had
   replaced 19 labelled current values (EUR 199 read as Workspace's
   `extra_seat_price`, the Series A lead read as co-investor, and so on); with
-  the rule, 5 remain.
+  the rule, 5 remained, and 1 after A's fixes and the labelled-op fix below.
 - **Extraction precision** (A's, measured at bake time once A is merged)
   multiplies unlabelled observations by value kind and named/context subject.
   Replays and calibration leave it out, because they judge the gold forms.
@@ -163,13 +166,18 @@ bonus. Each traded one number for another with no net gain.
   change from 2026-02-17 (one early lie) to 2026-03-24.
 - **Anchors.** A labelled true row scores 25 for its value at its date. A
   false single-fact row scores -25. False multi-fact rows and unsure rows
-  count at half weight.
+  count at half weight. A labelled true `op` row (`over 100 customers`) names
+  no value. It scores -25 for the values it rules out and its plain weight
+  for the rest, and never pins or anchors. Before this fix it gave 25 to
+  every value over 100, which pulled Hooly Cloud's 1,450 customers ahead of
+  610 in time order, so the timeline missed the change to 1,450.
 - **Coarse dates** support the finer date they cover (`2026-06` supports
   `2026-06-09`) when building timelines; that is not the referee's equality.
 - **Calibration** is fitted on cross-validated fact pseudo-claims, not on the
   labels-hidden rebuild, so the `anchored` bucket has real data. Other claim
-  types are composed from per-interval rates (see above). The rate is made
-  non-decreasing in support at lookup.
+  types are composed from per-interval rates (see above). At lookup the rate
+  is made non-decreasing in support, and an anchored interval never rates
+  below the same interval unanchored (thin buckets can invert by noise).
 - **Rules applied after the table:** the volatility, boolean and conflict caps
   judge our timeline value, so they do not lower a made-up never-seen value
   (0.95). A flipped boolean is never "made up". 1.0 is allowed only with

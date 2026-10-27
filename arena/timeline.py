@@ -326,10 +326,15 @@ def _merge_name_prefixes(exact: list[_Obs]) -> None:
 
 
 def _score(x: _Obs, cand: tuple) -> float:
+    """What observation x says about `cand` holding on its date.
+
+    A labelled true row pins its value; a labelled true `over 100` names no
+    value, so it only rules out the values it excludes and supports the rest
+    at its plain weight. A false single-fact row rules out what it states."""
     if not _key_consistent(x.key, x.op, cand):
-        return 0.0
+        return -ANCHOR_WEIGHT if x.role == "pin" and x.op else 0.0
     if x.role == "pin":
-        return ANCHOR_WEIGHT
+        return x.w if x.op else ANCHOR_WEIGHT
     if x.role == "exclude":
         return -ANCHOR_WEIGHT
     return x.w
@@ -380,7 +385,7 @@ def _candidates(obs: list[_Obs]) -> list[tuple[tuple, bool]]:
 
     episodes.sort(key=lambda e: (-e[0], e[1], repr(e[2])))
     episodes = sorted(episodes[:MAX_CANDIDATES], key=lambda e: (e[1], repr(e[2])))
-    pinned = {x.key for x in obs if x.role == "pin"}
+    pinned = {x.key for x in obs if x.role == "pin" and x.op is None}
     return [_Cand(k, revert, n_dates, any(_key_consistent(p, None, k) for p in pinned))
             for _, _, k, revert, n_dates in episodes]
 
@@ -554,7 +559,7 @@ def _intervals(obs, starts, values, sample: Observation) -> list[Interval]:
             support=round(sum(x.w for x in agree), 6),
             conflict=round(sum(x.w for x in inside if not _key_consistent(x.key, x.op, cand)), 6),
             n_obs=len(agree),
-            anchored=any(x.o.label == "true" for x in agree),
+            anchored=any(x.o.label == "true" and x.op is None for x in agree),
         ))
     return out
 
