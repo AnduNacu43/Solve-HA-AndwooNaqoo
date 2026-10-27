@@ -7,6 +7,10 @@
 #                               (QA-DNA/hype-arena-starter, private: needs gh
 #                               logged in to an account that can read it)
 #   scripts/demo.sh rows.csv    any id,text,date CSV, to rehearse
+#   scripts/demo.sh scripts/mock-sample.csv
+#                               20 mock rows written for the demo (ids m-1 to
+#                               m-20; 14 true and 6 false on their dates), for
+#                               when the organisers' sample is not available
 #
 # The lexicon is sample/lexicon.json when the sample ships one, else
 # data/lexicon.json. The run's universe/ and output/ stay in a temp folder
@@ -41,7 +45,7 @@ if [ ! -f "$SAMPLE" ]; then
               -o "$WORK/sample.csv"; }; then
     echo "Could not fetch $SAMPLE_PATH: not published yet (29 Oct, 09:00), or gh is not" >&2
     echo "logged in to an account that can read $STARTER (check: gh auth status)." >&2
-    echo "To rehearse, pass any id,text,date CSV: scripts/demo.sh rows.csv" >&2
+    echo "Without it, run the mock sample: scripts/demo.sh scripts/mock-sample.csv" >&2
     rm -rf "$WORK"
     exit 1
   fi
