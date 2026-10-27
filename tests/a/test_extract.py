@@ -76,3 +76,17 @@ def test_names_go_to_the_nearest_attribute_words(lexicon, attrs):
     assert ("Hooly Cloud", "reliability_lead", "Holdan") in _names(
         lexicon, attrs, "From today, Hooly Cloud's reliability team answers to Holdan.")
     assert _names(lexicon, attrs, "Bertram Gilfoil is the CTO of Hooly.") == {("Hooly", "cto", "Bertram Gilfoil")}
+
+
+def test_name_values_fit_the_attribute_type(lexicon, attrs):
+    # a venue (capacity) is no city or host; a person (joined) is no provider
+    assert _names(lexicon, attrs, "The agenda of Made by Hooly lists 18 talks, all in Rheinhalle.") == set()
+    assert _names(lexicon, attrs, "Made by Hooly is hosted at Rheinhalle, in Frankfurt.") == {
+        ("Made by Hooly 2026", "city", "Frankfurt")}
+    assert _names(lexicon, attrs, "Before Hooly, Holdan ran incident response at Nimbus Cloud, "
+                                  "the provider Gemini still runs on.") == {
+        ("Hooly Gemini", "cloud_provider", "Nimbus Cloud")}
+    assert ("Hooly Maps Day", "venue", "Quayside Hall") in _names(
+        lexicon, attrs, "Hooly Maps Day takes place in Dublin, and the venue is Quayside Hall.")
+    assert _names(lexicon, attrs, "Gavin Bellson hosts Made by Hooly 2026.") == {
+        ("Made by Hooly 2026", "host", "Gavin Bellson")}

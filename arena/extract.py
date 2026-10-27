@@ -476,6 +476,48 @@ def _owns(lexicon, canon: str, tokens: list[str]) -> bool:
     return False
 
 
+# What kind of entity a name-valued attribute holds, read from its words.
+_PERSON_WORDS = frozenset(
+    "ceo cto cfo coo head lead chair owner host speaker keynote sponsor executive founder founders run director".split()
+)
+_PLACE_WORDS = frozenset("city venue headquarters region office country location".split())
+_ORG_WORDS = frozenset("provider employer investor auditor partner series".split())
+# What kind of entity a lexicon subject is, read from its own attributes.
+_PERSON_ATTRS = frozenset(
+    "joined previous_employer team_size chairs chairs_audit_committee independent_director desks_managed offices_run".split()
+)
+_VENUE_ATTRS = frozenset("capacity".split())
+
+
+def _attr_type(attr: str) -> Optional[str]:
+    words = set(attr.split("_"))
+    if words & _ORG_WORDS:
+        return "org"  # series_a_lead holds an investor, not a person
+    if words & _PLACE_WORDS:
+        return "place"
+    if words & _PERSON_WORDS:
+        return "person"
+    return None
+
+
+def _fits_type(lexicon, canon: str, attr: str) -> bool:
+    """Can the lexicon entity be the value of this attribute?
+
+    A subject with `joined` or `team_size` is a person, one with `capacity` a
+    venue: a venue is no city or host, a person no provider or region.
+    """
+    own = set(lexicon.subjects.get(canon, ()))
+    person, venue = bool(own & _PERSON_ATTRS), bool(own & _VENUE_ATTRS)
+    t = _attr_type(attr)
+    if t == "person":
+        return person or not own
+    if t == "place":
+        return not person and not (venue and attr.split("_")[0] != "venue")
+    if t == "org":
+        return not person and not venue
+    return True
+
+
 def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans, page, row, cues, label):
     """Names to name-valued attributes, the best (subject, attribute, name) triples first.
 
@@ -504,10 +546,10 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
                     continue
                 own = [_stem(t) for t in _attr_words(attr)]
                 matched = [t for t in own if any(_match(t, w) for w in local)]
-                if canon and _owns(lexicon, canon, matched or own):
+                if canon and (_owns(lexicon, canon, matched or own) or not _fits_type(lexicon, canon, attr)):
                     continue
                 s = _attr_score(attr, words, local)
-                if attr == "city" and after_in:
+                if attr == "city" and after_in and not (canon and lexicon.subjects.get(canon)):
                     matched, s = ["city"], s + 3.0  # `... in Dublin` on an event's page
                 if not matched or s < 2.0:
                     continue
