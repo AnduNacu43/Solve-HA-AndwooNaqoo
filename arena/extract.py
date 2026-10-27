@@ -442,6 +442,7 @@ def _obs(subject, attr, value, page, row, sentence, in_sentence, cues, label) ->
 
 def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
     obs = []
+    numeric = bool(used)
     neg_spans = S.find_negations(sentence)
     # names: a name-like phrase, given to the attribute of a nearby subject that its words point at
     names = _names_in(sentence, mentions)
@@ -490,10 +491,13 @@ def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, us
             exact = C.attribute_word_spans(sentence, attr)
             if not exact and (len(hit) < max(2, len(own)) if len(own) > 1 else not hit):
                 continue
-            if not ins and not exact:
-                continue
+            if not exact and (not ins or numeric):
+                continue  # loose words beside another value are about that value (`Offline limit: 3 GB`)
             at = exact[0][0] if exact else 0
-            a, b = S.clause_of(sentence, at)
+            # yes/no reads the whole passage (`Offline in Hooly Maps: not live`), up to a `;`
+            a = sentence.rfind(";", 0, at) + 1
+            b = sentence.find(";", at)
+            b = len(sentence) if b < 0 else b
             value = not any(a <= x < b for x, _ in neg_spans)
             used.add((subject, attr))
             obs.append(_obs(subject, attr, Value("boolean", value), page, row, sentence, ins, cues, label))
