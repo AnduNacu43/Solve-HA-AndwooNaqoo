@@ -137,3 +137,18 @@ def test_more_names(lexicon, attrs):
         lexicon, attrs, "Hooly Jules beta users number 500 testers, and the beta is led by Nelson Bighettie.")
     # known misses: "Jack Barkor takes charge of Hooly Devices today." (the hint is three words away) and
     # "Holdan has run Hooly Cloud reliability since January 2026." (Holdan already holds the date)
+
+
+def test_dateline_states_no_date(lexicon, attrs):
+    obs = extract([_page("Lisbon, 19 October 2026: Hooly Translate now supports 140 languages.")], lexicon, attrs)
+    assert {(o.subject, o.attribute, o.value.value) for o in obs} == {
+        ("Hooly Translate", "languages_supported", 140.0)}
+    # a date that opens with Today is the fact, not a dateline
+    obs = extract([_page("Today, 7 October 2025, Hooly Gemini 1.0 is live for everyone.")], lexicon, attrs)
+    assert ("Hooly Gemini", "launched", "2025-10-07") in {(o.subject, o.attribute, o.value.value) for o in obs}
+
+
+def test_speaker_is_the_first_person(lexicon, attrs):
+    obs = extract([_page("Bertram: I joined Hooly as CTO on 1 July 2026.")], lexicon, attrs)
+    assert ("Bertram Gilfoil", "joined", "2026-07-01") in {(o.subject, o.attribute, o.value.value) for o in obs}
+    assert not [o for o in obs if o.attribute == "founded"]
