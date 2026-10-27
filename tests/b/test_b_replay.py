@@ -25,9 +25,11 @@ def test_hidden_cv_and_visible_replays(practice_obs, priors):
     assert hidden["accuracy"] >= 0.90
     assert hidden["false_recall"] >= 0.45
     assert hidden["true_accuracy"] >= 0.97
-    assert cv["accuracy"] >= 0.92 and cv["false_recall"] >= 0.55 and cv["false_precision"] >= 0.85
-    # anchors raise both numbers
-    assert visible["accuracy"] > cv["accuracy"] > hidden["accuracy"]
+    # with anchors, a new value seen on one day only is not believed: at
+    # practice density that rejects some real one-sighting changes (true rows),
+    # at run-time density it keeps misread sentences from overturning labels
+    assert cv["accuracy"] >= 0.89 and cv["false_recall"] >= 0.65 and cv["false_precision"] >= 0.6
+    assert visible["accuracy"] > max(cv["accuracy"], hidden["accuracy"])
     assert visible["false_recall"] > cv["false_recall"] > hidden["false_recall"]
 
 

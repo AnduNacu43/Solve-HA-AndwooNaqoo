@@ -51,6 +51,20 @@ def test_pass_two_lowers_a_disagreeing_page(make_obs):
     assert w2["liar"] < w2["good"]
 
 
+def test_extraction_precision_weighs_unlabelled_observations_only(make_obs):
+    from arena.timeline import extraction_key, observation_weight
+
+    priors = {"multipliers": {}, "clip": [0.3, 1.0], "extraction": {"name:context": 0.5}}
+    unlabelled = make_obs(Value("name", "Holdan"), "2026-01-01", named=False)
+    labelled = make_obs(Value("name", "Holdan"), "2026-01-01", named=False, label="true")
+    named = make_obs(Value("name", "Holdan"), "2026-01-01", named=True)
+    w = page_weights([unlabelled, labelled, named], priors)
+    assert extraction_key(unlabelled) == "extract:name:context" and w["extract:name:context"] == 0.5
+    assert observation_weight(unlabelled, w) == 0.5
+    assert observation_weight(labelled, w) == 1.0
+    assert observation_weight(named, w) == 1.0          # no entry for name:named -> 1.0
+
+
 def test_beta_smoothing_of_one_observation_pages(make_obs):
     obs = [make_obs(qty(12), d) for d in ("2026-04-01", "2026-04-02", "2026-04-03", "2026-04-05")]
     obs.append(make_obs(qty(40), "2026-04-04", page="liar"))

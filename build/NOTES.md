@@ -5,8 +5,25 @@ Owner: Agent B (`agent-b/timelines`). Plan: `plans/agent-b-timelines.md`.
 ```
 python build/bake.py            # regenerate data/baked/*.json (deterministic, < 1 s)
 python build/bake.py --report   # + per-pair timelines, 50 most volatile pairs, replay, calibration table
-python -m pytest tests/b -s     # 49 tests; -s prints the replay numbers
+python -m pytest tests/b -s     # 51 tests (+2 that run once A is merged); -s prints the replay numbers
 ```
+
+**After merging `agent-a/grammar`, rerun `python build/bake.py` and commit
+`data/baked/`.** With A's extractor importable, the bake takes each practice
+row's cues from A's `extract()` and measures A's precision per value kind
+(`build/extraction.py`). Until then, `tests/b/test_b_bake.py` fails with "stale:
+run python build/bake.py". In a merged A+B tree (A at f592648) the rebake
+gives this table, and all 1,128 tests of `tests/a` + `tests/b` pass:
+
+```
+boolean:context 0.80  boolean:named 0.94  date:context 0.89  date:named 0.87
+duration:context 0.91 duration:named 0.95 money:context 0.97 money:named 0.90
+name:context 0.95     name:named 0.82     percent:context 0.92 percent:named 0.92
+quantity:context 0.93 quantity:named 0.96 version:named 0.94
+```
+
+`timeline.observation_weight` multiplies every unlabelled observation by its
+entry.
 
 ## Run-time call order (for C's `__main__`)
 
@@ -64,13 +81,14 @@ the pair; C never sets it, and its perturbations avoid the pair's values),
 C's other keys (`stale`, `swapped`, `rel_diff`, `stale_support`,
 `other_support`, `stale_end`) are accepted and ignored.
 
-Which table: `fact` and `at_event` use the table of their own label ("this
-value did or did not hold on that date", which is what the pseudo-claims
-measured). `compare`, `change` and `relation` are right when their
-intervals are, whatever the label, so they use the interval-correctness
-(label=true) rate: the product over `sides` when given. A compare uses
-`q + (1 - q)/2`, because a wrong side still leaves the op right about half
-the time.
+Which rate: C builds every claim from its own intervals. A false claim
+states a superseded value, another interval's value or a swapped order, and
+is false whenever those intervals are right. So every claim, true or false,
+uses the interval-correctness rate (the label=true rows of the table): the
+product over `sides` when given. For a false claim that rate is a lower
+bound. A compare uses `q + (1 - q)/2`, because a wrong side still leaves the
+op right about half the time. The label=false rows measure an observed value
+the timeline contradicts, which C does not emit. They are only reported.
 
 Checked against C's branch (`agent-c/generate-runtime`, 1d5ecb7):
 `Interval.end` is the first day the next value holds. Timelines are keyed by
@@ -82,8 +100,16 @@ A's resolved names for the universe.
 | Replay | Accuracy | False-row recall | False-row precision | True-row accuracy |
 | --- | --- | --- | --- | --- |
 | labels hidden | 0.905 | 0.505 | 0.782 | 0.975 |
-| 5-fold CV (other folds anchor) | 0.930 | 0.596 | 0.897 | 0.988 |
+| 5-fold CV (other folds anchor) | 0.904 | 0.700 | 0.671 | 0.940 |
 | labels visible | 0.984 | 0.906 | 0.988 | 0.998 |
+
+The best proxy for the run is **A's extractor on the practice text, added
+unlabelled to the labelled seed** (`tests/b/test_b_with_extractor.py`, which
+runs once A is merged). There, the current value differs from the labels-only
+timeline on **5 of 514 pairs** (19 before the anchored-pair rule below). CV
+was 0.930 / 0.596 before that rule. CV runs at practice density, where a real
+change is often seen once; the rule gives up those changes so that one misread
+sentence cannot overturn a labelled value.
 
 The five known timelines come out right with labels visible and with labels
 hidden: AI Pro price 49 -> 59 on 2026-04-01, Gemini languages 6 -> 12 on
@@ -104,9 +130,7 @@ change. Raising the change penalty trades true rows for false ones:
 
 I tried and rejected three other options: a log-scaled penalty alone,
 excluding self-supported observations from page agreement, and a flat burst
-bonus. Each traded one number for another with no net gain. At run time the
-universe is about 10x denser and every practice row is an anchor, so CV is the
-closer proxy.
+bonus. Each traded one number for another with no net gain.
 
 ## Decisions that differ from, or add to, the plan
 
@@ -123,6 +147,15 @@ closer proxy.
   labelled row pins it. Without these, a 10x simulation of the universe
   changed 16 current values: the 2026-10-26 stale nest (`founded 2024-06-01`,
   Series A EUR 25M) took over the end of the timeline. With them, 1 changes.
+- **Pairs with labelled rows** get the same two-day rule at any density: a
+  value no labelled row pins must be seen on two days to start an interval.
+  With A's extractor on the practice text, single misread sentences had
+  replaced 19 labelled current values (EUR 199 read as Workspace's
+  `extra_seat_price`, the Series A lead read as co-investor, and so on); with
+  the rule, 5 remain.
+- **Extraction precision** (A's, measured at bake time once A is merged)
+  multiplies unlabelled observations by value kind and named/context subject.
+  Replays and calibration leave it out, because they judge the gold forms.
 - **Boundary placement.** A change starts at the new value's first supporting
   date. It is slightly cheaper on a date with a burst of the new value
   (support beyond one observation, x0.25, capped at 3). This is the plan's
@@ -149,12 +182,12 @@ closer proxy.
 
 - **Duplicated helpers to dedupe once A is merged:** the unit tables in
   `arena/attrs.py` (vs A's grammar), `timeline.same_value`/`value_key` (vs A's
-  `same_value`), `build/practice.NameFinder` (vs `Lexicon.find_mentions`), and
-  the cue regexes in `build/practice.py` (vs A's extract cues). Priors are
-  learned per cue *name*, so A's cue names should match: `speaker`, `gavin`,
-  `testimonial`, `boast`, `hearsay`, `announce_future`, `press_release`,
-  `release_notes`, `table_cell`, `headline`, plus `hedge` and `first_person`.
-  Unknown cue names weigh 1.0.
+  `same_value`), and `build/practice.NameFinder` (vs `Lexicon.find_mentions`).
+  The cue regexes in `build/practice.py` stay only for rows where A's
+  extractor finds nothing; every other row takes A's cues at bake time. A
+  emits the model's cue names (`speaker`, `gavin`, `testimonial`, `boast`,
+  `hearsay`, `announce_future`, `press_release`, `release_notes`,
+  `table_cell`, `headline`). Unknown cue names weigh 1.0.
 - **Not done:** snapping a boundary to an `announce_future` date or an event's
   date; a "past dates do not change" rule for `launched`/`released`/`opened`
   (mixed evidence: the Sustainability Report date was moved after it had
@@ -167,26 +200,31 @@ closer proxy.
 
 ## Calibration table (label x anchored x kind, CV fact pseudo-claims)
 
+Interval correctness (the rows `confidence()` uses):
+
 ```
 label  anchored kind       right     n
-false  1        boolean    0.818    11
-false  1        duration   0.909    11
-false  1        money      1.000    13
-false  1        name       1.000     7
-false  1        percent    0.933    15
-false  1        quantity   0.857    63
-false  1        version    0.375     8
-true   0        boolean    0.833    54
-true   0        date       0.872    47
-true   0        money      0.921    38
-true   0        quantity   0.890   191
+true   0        boolean    0.872    47
+true   0        date       0.919    37
+true   0        duration   0.909    22
+true   0        money      0.931    29
+true   0        name       0.895    19
+true   0        percent    0.923    39
+true   0        quantity   0.908   142
 true   1        boolean    0.979    94
 true   1        date       0.981   104
+true   1        duration   0.982   171
 true   1        money      0.979   192
-true   1        name       0.994   168
+true   1        name       0.994   167
+true   1        percent    0.953   127
 true   1        quantity   0.973   665
 true   1        version    0.990    96
 ```
+
+The label=false rows (an observed value the timeline contradicts, judged
+false) are much lower, for example quantity 0.56 (n=111). In CV the
+anchored-pair rule rejects real one-sighting changes, which is one reason
+`confidence()` does not use those rows.
 
 The full table, with volatility and support buckets, is in
 `data/baked/calibration.json`. Print it with `python build/bake.py --report`

@@ -102,7 +102,11 @@ def load_attrs(path: str = "data/baked/attrs.json") -> dict[tuple[str, str], Att
     majority spec per bare attribute name, used by spec_for() as a fallback.
     """
     with open(baked_path(path), encoding="utf-8") as f:
-        data = json.load(f)
+        return attrs_from_json(json.load(f))
+
+
+def attrs_from_json(data: dict) -> AttrMap:
+    """The AttrMap of an attrs.json document."""
     pairs = {}
     for key, d in data["pairs"].items():
         subject, attribute = key.rsplit("|", 1)

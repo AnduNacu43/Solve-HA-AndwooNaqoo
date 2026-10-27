@@ -21,11 +21,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from arena.attrs import infer_spec, spec_to_json  # noqa: E402
+from dataclasses import replace  # noqa: E402
+
+from arena.attrs import attrs_from_json, infer_spec, spec_to_json  # noqa: E402
 from arena.model import Observation  # noqa: E402
 from arena.reliability import derived_cues  # noqa: E402
 from arena.timeline import observation_to_json, row_key, volatility  # noqa: E402
 from build import calibration as calib  # noqa: E402
+from build import extraction  # noqa: E402
 from build.practice import practice_observations  # noqa: E402
 from build.replay import replay, run_pipeline  # noqa: E402
 
@@ -112,11 +115,21 @@ def main(argv=None) -> int:
     ap.add_argument("--out", default=BAKED, help="output directory (default data/baked)")
     args = ap.parse_args(argv)
 
-    obs = practice_observations(os.path.join(ROOT, "data", "practice.csv"),
-                                os.path.join(ROOT, "data", "lexicon.json"))
+    csv_path = os.path.join(ROOT, "data", "practice.csv")
+    lexicon_path = os.path.join(ROOT, "data", "lexicon.json")
+    obs = practice_observations(csv_path, lexicon_path)
+    attrs = bake_attrs(obs)
+    extracted = None
+    if extraction.available():
+        extracted = extraction.extract_practice(csv_path, lexicon_path, attrs_from_json(attrs))
+        cues = extraction.cues_by_row(extracted)
+        obs = [replace(o, cues=cues.get(o.row_id, o.cues)) for o in obs]
     priors = bake_priors(obs)
+    if extracted is not None:
+        priors["extraction"] = extraction.precision_table(extracted, obs)
+    print(f"extraction table: {priors.get('extraction', 'none (A extractor not present)')}", file=sys.stderr)
     calibration = calib.fit(obs, priors)
-    dump("attrs.json", bake_attrs(obs), args.out)
+    dump("attrs.json", attrs, args.out)
     dump("timelines_seed.json", [observation_to_json(o) for o in obs], args.out)
     dump("priors.json", priors, args.out)
     dump("calibration.json", calibration, args.out)

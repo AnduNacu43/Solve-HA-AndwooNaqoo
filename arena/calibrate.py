@@ -17,12 +17,16 @@ claim.evidence keys read here (C fills them from the intervals used):
     perturbed   -- the value was made up by perturb.py
     value_seen  -- that made-up value does appear in the universe for the pair
     spec_inferred -- the attribute's kind was inferred at run time
-fact and at_event claims use the table of their own label. compare, change
-and relation claims are right when their intervals are, so they use the
-interval-correctness (label=true) rate q, the product over `sides` when
-given; for a compare, a wrong side still leaves the op right about half the
-time, so p = q + (1 - q) / 2. Other keys C sets (stale, swapped, rel_diff,
-stale_support, other_support) are not read.
+C builds every claim from its own intervals: a true claim states what they
+hold; a false one states a superseded value, another interval's value or a
+swapped order, and is false whenever they are right. So every claim uses
+the interval-correctness rate (the label=true rows of the table), the
+product q over `sides` when given; for a compare, a wrong side still leaves
+the op right about half the time, so p = q + (1 - q) / 2. For a false claim
+q is a lower bound (a wrong interval can still leave the claim false). The
+label=false rows measure something C does not emit (an observed value the
+timeline contradicts) and are kept for the report only. Other keys C sets
+(stale, swapped, rel_diff, stale_support, other_support) are not read.
 
 Caps and floors (plans/agent-b-timelines.md B4), applied after the table:
     perturbed, never-seen, non-boolean false claim -> 0.95
@@ -118,13 +122,11 @@ def confidence(claim: Claim, calibration: dict) -> float:
     if novel:
         p = rules["perturbed_novel"]
     else:
-        # fact / at_event: "this value (did not) hold on that date", exactly what
-        # the pseudo-claims measured. compare / change / relation are right when
-        # their intervals are, whatever the label: use interval correctness.
-        label = claim.label if claim.type in ("fact", "at_event") and len(sides) == 1 else "true"
+        # every claim C makes is right when the intervals it was built from are
+        # right: interval correctness, the label=true rate of the table
         q = 1.0
         for s in sides:
-            q *= table_rate(calibration, label, bool(s.get("anchored")), s.get("kind", kind),
+            q *= table_rate(calibration, "true", bool(s.get("anchored")), s.get("kind", kind),
                             int(s.get("volatility", 1)), float(s.get("support", 0.0)))
         p = q + (1 - q) / 2 if claim.type == "compare" else q
 

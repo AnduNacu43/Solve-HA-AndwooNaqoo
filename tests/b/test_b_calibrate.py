@@ -85,9 +85,10 @@ def test_flat_merged_evidence_as_agent_c_sends_it(calibration):
     cmp_ = confidence(Claim(type="compare", form={}, label="true", evidence=dict(ev, type="compare")), calibration)
     chg = confidence(Claim(type="change", form={}, label="true", evidence=dict(ev, type="change")), calibration)
     assert cmp_ > chg                      # a wrong side still leaves a compare's op half right
+    true_fact = confidence(Claim(type="fact", form={}, label="true", evidence=dict(ev, type="fact")), calibration)
     stale = confidence(Claim(type="fact", form={}, label="false",
                              evidence=dict(ev, type="fact", stale=True, stale_support=3.0)), calibration)
-    assert 0.5 <= stale < 1.0
+    assert stale == true_fact          # both rest on the current interval being right
 
 
 def test_empty_evidence_is_safe(calibration):

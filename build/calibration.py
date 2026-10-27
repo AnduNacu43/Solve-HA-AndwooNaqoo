@@ -14,7 +14,7 @@ from collections import defaultdict
 from arena.calibrate import DEFAULT_RULES, bucket_path, describe, support_bucket  # noqa: F401
 from arena.model import Observation
 from arena.timeline import consistent, value_at, volatility
-from build.replay import FOLDS, by_row, fold_of_page, hide, run_pipeline
+from build.replay import FOLDS, by_row, fold_of_page, gold_priors, hide, run_pipeline
 
 SUPPORT_EDGES = [1.0, 2.0, 4.0, 8.0]
 M_ESTIMATE = 10.0
@@ -22,6 +22,7 @@ M_ESTIMATE = 10.0
 
 def pseudo_claims(obs: list[Observation], priors: dict) -> list[dict]:
     """One record per judgeable fact: label, anchored, kind, vol, support, right."""
+    priors = gold_priors(priors)
     fold = fold_of_page(obs)
     n_facts = {r: len(fs) for r, fs in by_row(obs).items()}
     out = []

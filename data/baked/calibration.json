@@ -1,6 +1,6 @@
 {
  "global": [
-  2093,
+  2030,
   2200
  ],
  "m": 10.0,
@@ -25,22 +25,62 @@
  ],
  "table": {
   "label=false": [
-   115,
-   135
+   134,
+   236
   ],
   "label=false|anchored=0": [
-   3,
-   4
+   6,
+   10
+  ],
+  "label=false|anchored=0|kind=date": [
+   1,
+   2
+  ],
+  "label=false|anchored=0|kind=date|vol=1": [
+   1,
+   2
+  ],
+  "label=false|anchored=0|kind=date|vol=1|sup=0": [
+   1,
+   2
   ],
   "label=false|anchored=0|kind=duration": [
-   0,
-   1
+   2,
+   3
   ],
   "label=false|anchored=0|kind=duration|vol=1": [
    0,
    1
   ],
   "label=false|anchored=0|kind=duration|vol=1|sup=1": [
+   0,
+   1
+  ],
+  "label=false|anchored=0|kind=duration|vol=2": [
+   1,
+   1
+  ],
+  "label=false|anchored=0|kind=duration|vol=2|sup=0": [
+   1,
+   1
+  ],
+  "label=false|anchored=0|kind=duration|vol=3": [
+   1,
+   1
+  ],
+  "label=false|anchored=0|kind=duration|vol=3|sup=0": [
+   1,
+   1
+  ],
+  "label=false|anchored=0|kind=name": [
+   0,
+   1
+  ],
+  "label=false|anchored=0|kind=name|vol=1": [
+   0,
+   1
+  ],
+  "label=false|anchored=0|kind=name|vol=1|sup=0": [
    0,
    1
   ],
@@ -58,7 +98,7 @@
   ],
   "label=false|anchored=0|kind=quantity": [
    2,
-   2
+   3
   ],
   "label=false|anchored=0|kind=quantity|vol=1": [
    2,
@@ -72,21 +112,33 @@
    1,
    1
   ],
+  "label=false|anchored=0|kind=quantity|vol=2": [
+   0,
+   1
+  ],
+  "label=false|anchored=0|kind=quantity|vol=2|sup=0": [
+   0,
+   1
+  ],
   "label=false|anchored=1": [
-   112,
-   131
+   128,
+   226
   ],
   "label=false|anchored=1|kind=boolean": [
-   9,
-   11
+   12,
+   18
   ],
   "label=false|anchored=1|kind=boolean|vol=1": [
-   2,
-   4
+   5,
+   11
   ],
   "label=false|anchored=1|kind=boolean|vol=1|sup=0": [
-   1,
-   3
+   4,
+   8
+  ],
+  "label=false|anchored=1|kind=boolean|vol=1|sup=1": [
+   0,
+   2
   ],
   "label=false|anchored=1|kind=boolean|vol=1|sup=2": [
    1,
@@ -109,32 +161,64 @@
    3
   ],
   "label=false|anchored=1|kind=date": [
-   2,
-   3
+   4,
+   11
   ],
   "label=false|anchored=1|kind=date|vol=1": [
-   2,
-   3
+   4,
+   7
+  ],
+  "label=false|anchored=1|kind=date|vol=1|sup=0": [
+   1,
+   1
+  ],
+  "label=false|anchored=1|kind=date|vol=1|sup=1": [
+   0,
+   2
+  ],
+  "label=false|anchored=1|kind=date|vol=1|sup=2": [
+   1,
+   1
   ],
   "label=false|anchored=1|kind=date|vol=1|sup=3": [
    2,
    3
   ],
+  "label=false|anchored=1|kind=date|vol=2": [
+   0,
+   1
+  ],
+  "label=false|anchored=1|kind=date|vol=2|sup=1": [
+   0,
+   1
+  ],
+  "label=false|anchored=1|kind=date|vol=4": [
+   0,
+   3
+  ],
+  "label=false|anchored=1|kind=date|vol=4|sup=0": [
+   0,
+   2
+  ],
+  "label=false|anchored=1|kind=date|vol=4|sup=1": [
+   0,
+   1
+  ],
   "label=false|anchored=1|kind=duration": [
    10,
-   11
+   16
   ],
   "label=false|anchored=1|kind=duration|vol=1": [
    0,
-   1
+   3
   ],
   "label=false|anchored=1|kind=duration|vol=1|sup=1": [
    0,
-   1
+   3
   ],
   "label=false|anchored=1|kind=duration|vol=2": [
    9,
-   9
+   12
   ],
   "label=false|anchored=1|kind=duration|vol=2|sup=0": [
    2,
@@ -142,15 +226,15 @@
   ],
   "label=false|anchored=1|kind=duration|vol=2|sup=1": [
    1,
-   1
+   2
   ],
   "label=false|anchored=1|kind=duration|vol=2|sup=2": [
    3,
-   3
+   4
   ],
   "label=false|anchored=1|kind=duration|vol=2|sup=3": [
    2,
-   2
+   3
   ],
   "label=false|anchored=1|kind=duration|vol=2|sup=4": [
    1,
@@ -165,24 +249,32 @@
    1
   ],
   "label=false|anchored=1|kind=money": [
-   13,
-   13
+   14,
+   22
   ],
   "label=false|anchored=1|kind=money|vol=1": [
+   4,
+   10
+  ],
+  "label=false|anchored=1|kind=money|vol=1|sup=0": [
+   0,
+   1
+  ],
+  "label=false|anchored=1|kind=money|vol=1|sup=1": [
    3,
    3
   ],
-  "label=false|anchored=1|kind=money|vol=1|sup=1": [
-   2,
-   2
+  "label=false|anchored=1|kind=money|vol=1|sup=2": [
+   0,
+   4
   ],
   "label=false|anchored=1|kind=money|vol=1|sup=3": [
    1,
-   1
+   2
   ],
   "label=false|anchored=1|kind=money|vol=2": [
    7,
-   7
+   9
   ],
   "label=false|anchored=1|kind=money|vol=2|sup=0": [
    1,
@@ -190,11 +282,11 @@
   ],
   "label=false|anchored=1|kind=money|vol=2|sup=1": [
    3,
-   3
+   4
   ],
   "label=false|anchored=1|kind=money|vol=2|sup=2": [
    2,
-   2
+   3
   ],
   "label=false|anchored=1|kind=money|vol=2|sup=4": [
    1,
@@ -241,32 +333,40 @@
    2
   ],
   "label=false|anchored=1|kind=percent": [
-   14,
-   15
+   16,
+   28
   ],
   "label=false|anchored=1|kind=percent|vol=1": [
    2,
+   7
+  ],
+  "label=false|anchored=1|kind=percent|vol=1|sup=0": [
+   0,
    2
   ],
   "label=false|anchored=1|kind=percent|vol=1|sup=1": [
    1,
-   1
+   3
   ],
   "label=false|anchored=1|kind=percent|vol=1|sup=2": [
    1,
    1
   ],
+  "label=false|anchored=1|kind=percent|vol=1|sup=3": [
+   0,
+   1
+  ],
   "label=false|anchored=1|kind=percent|vol=2": [
-   9,
-   9
+   10,
+   14
   ],
   "label=false|anchored=1|kind=percent|vol=2|sup=0": [
    2,
-   2
+   5
   ],
   "label=false|anchored=1|kind=percent|vol=2|sup=1": [
-   3,
-   3
+   4,
+   5
   ],
   "label=false|anchored=1|kind=percent|vol=2|sup=2": [
    4,
@@ -274,51 +374,63 @@
   ],
   "label=false|anchored=1|kind=percent|vol=3": [
    3,
-   4
+   6
   ],
   "label=false|anchored=1|kind=percent|vol=3|sup=0": [
    1,
-   2
+   3
+  ],
+  "label=false|anchored=1|kind=percent|vol=3|sup=1": [
+   0,
+   1
   ],
   "label=false|anchored=1|kind=percent|vol=3|sup=3": [
    2,
    2
   ],
+  "label=false|anchored=1|kind=percent|vol=4": [
+   1,
+   1
+  ],
+  "label=false|anchored=1|kind=percent|vol=4|sup=0": [
+   1,
+   1
+  ],
   "label=false|anchored=1|kind=quantity": [
-   54,
-   63
+   62,
+   111
   ],
   "label=false|anchored=1|kind=quantity|vol=1": [
-   8,
-   11
+   12,
+   38
   ],
   "label=false|anchored=1|kind=quantity|vol=1|sup=0": [
-   2,
-   3
+   4,
+   11
   ],
   "label=false|anchored=1|kind=quantity|vol=1|sup=1": [
-   2,
-   2
+   4,
+   11
   ],
   "label=false|anchored=1|kind=quantity|vol=1|sup=2": [
    2,
-   4
+   14
   ],
   "label=false|anchored=1|kind=quantity|vol=1|sup=4": [
    2,
    2
   ],
   "label=false|anchored=1|kind=quantity|vol=2": [
-   29,
-   34
+   34,
+   51
   ],
   "label=false|anchored=1|kind=quantity|vol=2|sup=0": [
-   5,
-   5
+   8,
+   13
   ],
   "label=false|anchored=1|kind=quantity|vol=2|sup=1": [
-   6,
-   9
+   8,
+   18
   ],
   "label=false|anchored=1|kind=quantity|vol=2|sup=2": [
    8,
@@ -333,16 +445,16 @@
    6
   ],
   "label=false|anchored=1|kind=quantity|vol=3": [
-   13,
-   14
+   12,
+   18
   ],
   "label=false|anchored=1|kind=quantity|vol=3|sup=0": [
    3,
-   4
+   9
   ],
   "label=false|anchored=1|kind=quantity|vol=3|sup=1": [
-   5,
-   5
+   4,
+   4
   ],
   "label=false|anchored=1|kind=quantity|vol=3|sup=2": [
    2,
@@ -366,27 +478,35 @@
   ],
   "label=false|anchored=1|kind=version": [
    3,
-   8
+   13
   ],
   "label=false|anchored=1|kind=version|vol=2": [
    1,
-   1
+   4
   ],
   "label=false|anchored=1|kind=version|vol=2|sup=1": [
    1,
-   1
+   2
+  ],
+  "label=false|anchored=1|kind=version|vol=2|sup=2": [
+   0,
+   2
   ],
   "label=false|anchored=1|kind=version|vol=3": [
-   0,
-   1
+   1,
+   4
   ],
   "label=false|anchored=1|kind=version|vol=3|sup=0": [
    0,
+   3
+  ],
+  "label=false|anchored=1|kind=version|vol=3|sup=2": [
+   1,
    1
   ],
   "label=false|anchored=1|kind=version|vol=4": [
-   2,
-   6
+   1,
+   5
   ],
   "label=false|anchored=1|kind=version|vol=4|sup=0": [
    0,
@@ -397,240 +517,220 @@
    1
   ],
   "label=false|anchored=1|kind=version|vol=4|sup=2": [
-   1,
-   2
+   0,
+   1
   ],
   "label=true": [
-   1978,
-   2065
+   1896,
+   1964
   ],
   "label=true|anchored=0": [
-   398,
-   448
+   317,
+   348
   ],
   "label=true|anchored=0|kind=boolean": [
-   45,
-   54
+   41,
+   47
   ],
   "label=true|anchored=0|kind=boolean|vol=1": [
-   22,
-   22
+   23,
+   23
   ],
   "label=true|anchored=0|kind=boolean|vol=1|sup=0": [
-   12,
-   12
+   13,
+   13
   ],
   "label=true|anchored=0|kind=boolean|vol=1|sup=1": [
-   5,
-   5
+   7,
+   7
   ],
   "label=true|anchored=0|kind=boolean|vol=1|sup=2": [
-   5,
-   5
+   3,
+   3
   ],
   "label=true|anchored=0|kind=boolean|vol=2": [
-   23,
-   32
+   18,
+   24
   ],
   "label=true|anchored=0|kind=boolean|vol=2|sup=0": [
-   16,
-   25
+   11,
+   17
   ],
   "label=true|anchored=0|kind=boolean|vol=2|sup=1": [
    7,
    7
   ],
   "label=true|anchored=0|kind=date": [
-   41,
-   47
+   34,
+   37
   ],
   "label=true|anchored=0|kind=date|vol=1": [
-   24,
-   24
+   26,
+   27
   ],
   "label=true|anchored=0|kind=date|vol=1|sup=0": [
-   21,
-   21
+   23,
+   24
   ],
   "label=true|anchored=0|kind=date|vol=1|sup=1": [
    3,
    3
   ],
   "label=true|anchored=0|kind=date|vol=2": [
-   12,
-   18
+   7,
+   9
   ],
   "label=true|anchored=0|kind=date|vol=2|sup=0": [
-   8,
-   14
+   3,
+   5
   ],
   "label=true|anchored=0|kind=date|vol=2|sup=1": [
    4,
    4
   ],
-  "label=true|anchored=0|kind=date|vol=3": [
-   1,
-   1
-  ],
-  "label=true|anchored=0|kind=date|vol=3|sup=0": [
-   1,
-   1
-  ],
   "label=true|anchored=0|kind=date|vol=4": [
-   4,
-   4
+   1,
+   1
   ],
   "label=true|anchored=0|kind=date|vol=4|sup=0": [
-   4,
-   4
+   1,
+   1
   ],
   "label=true|anchored=0|kind=duration": [
-   25,
-   29
+   20,
+   22
   ],
   "label=true|anchored=0|kind=duration|vol=1": [
-   8,
-   8
+   9,
+   9
   ],
   "label=true|anchored=0|kind=duration|vol=1|sup=0": [
-   6,
-   6
+   7,
+   7
   ],
   "label=true|anchored=0|kind=duration|vol=1|sup=1": [
    2,
    2
   ],
   "label=true|anchored=0|kind=duration|vol=2": [
-   11,
-   12
+   9,
+   10
   ],
   "label=true|anchored=0|kind=duration|vol=2|sup=0": [
-   11,
-   12
+   9,
+   10
   ],
   "label=true|anchored=0|kind=duration|vol=3": [
-   3,
-   4
+   2,
+   3
   ],
   "label=true|anchored=0|kind=duration|vol=3|sup=0": [
    2,
    3
   ],
-  "label=true|anchored=0|kind=duration|vol=3|sup=1": [
-   1,
-   1
-  ],
-  "label=true|anchored=0|kind=duration|vol=4": [
-   3,
-   5
-  ],
-  "label=true|anchored=0|kind=duration|vol=4|sup=0": [
-   3,
-   5
-  ],
   "label=true|anchored=0|kind=money": [
-   35,
-   38
+   27,
+   29
   ],
   "label=true|anchored=0|kind=money|vol=1": [
-   10,
-   10
+   11,
+   11
   ],
   "label=true|anchored=0|kind=money|vol=1|sup=0": [
-   8,
-   8
+   9,
+   9
   ],
   "label=true|anchored=0|kind=money|vol=1|sup=1": [
    2,
    2
   ],
   "label=true|anchored=0|kind=money|vol=2": [
-   22,
-   24
+   15,
+   16
   ],
   "label=true|anchored=0|kind=money|vol=2|sup=0": [
-   16,
-   17
+   10,
+   10
   ],
   "label=true|anchored=0|kind=money|vol=2|sup=1": [
-   3,
-   3
+   2,
+   2
   ],
   "label=true|anchored=0|kind=money|vol=2|sup=2": [
    3,
    4
   ],
   "label=true|anchored=0|kind=money|vol=3": [
-   3,
-   4
+   1,
+   2
   ],
   "label=true|anchored=0|kind=money|vol=3|sup=0": [
-   3,
-   4
+   1,
+   2
   ],
   "label=true|anchored=0|kind=name": [
    17,
    19
   ],
   "label=true|anchored=0|kind=name|vol=1": [
-   13,
-   13
+   14,
+   14
   ],
   "label=true|anchored=0|kind=name|vol=1|sup=0": [
-   5,
-   5
+   6,
+   6
   ],
   "label=true|anchored=0|kind=name|vol=1|sup=1": [
    8,
    8
   ],
   "label=true|anchored=0|kind=name|vol=2": [
-   4,
-   6
+   3,
+   5
   ],
   "label=true|anchored=0|kind=name|vol=2|sup=0": [
-   1,
-   2
+   0,
+   1
   ],
   "label=true|anchored=0|kind=name|vol=2|sup=1": [
    3,
    4
   ],
   "label=true|anchored=0|kind=percent": [
-   47,
-   52
+   36,
+   39
   ],
   "label=true|anchored=0|kind=percent|vol=1": [
-   12,
-   12
+   13,
+   13
   ],
   "label=true|anchored=0|kind=percent|vol=1|sup=0": [
-   10,
-   10
+   11,
+   11
   ],
   "label=true|anchored=0|kind=percent|vol=1|sup=1": [
    2,
    2
   ],
   "label=true|anchored=0|kind=percent|vol=2": [
-   15,
-   16
+   9,
+   10
   ],
   "label=true|anchored=0|kind=percent|vol=2|sup=0": [
-   11,
-   12
+   5,
+   6
   ],
   "label=true|anchored=0|kind=percent|vol=2|sup=1": [
    4,
    4
   ],
   "label=true|anchored=0|kind=percent|vol=3": [
-   11,
-   14
+   7,
+   9
   ],
   "label=true|anchored=0|kind=percent|vol=3|sup=0": [
-   7,
-   10
+   3,
+   5
   ],
   "label=true|anchored=0|kind=percent|vol=3|sup=1": [
    2,
@@ -641,144 +741,132 @@
    2
   ],
   "label=true|anchored=0|kind=percent|vol=4": [
-   9,
-   10
+   7,
+   7
   ],
   "label=true|anchored=0|kind=percent|vol=4|sup=0": [
-   4,
-   4
+   2,
+   2
   ],
   "label=true|anchored=0|kind=percent|vol=4|sup=1": [
    5,
-   6
+   5
   ],
   "label=true|anchored=0|kind=quantity": [
-   170,
-   191
+   129,
+   142
   ],
   "label=true|anchored=0|kind=quantity|vol=1": [
-   49,
-   49
+   50,
+   50
   ],
   "label=true|anchored=0|kind=quantity|vol=1|sup=0": [
-   28,
-   28
+   29,
+   29
   ],
   "label=true|anchored=0|kind=quantity|vol=1|sup=1": [
    21,
    21
   ],
   "label=true|anchored=0|kind=quantity|vol=2": [
-   75,
-   87
+   55,
+   65
   ],
   "label=true|anchored=0|kind=quantity|vol=2|sup=0": [
-   49,
-   61
+   27,
+   37
   ],
   "label=true|anchored=0|kind=quantity|vol=2|sup=1": [
-   21,
-   21
+   24,
+   24
   ],
   "label=true|anchored=0|kind=quantity|vol=2|sup=2": [
-   5,
-   5
+   4,
+   4
   ],
   "label=true|anchored=0|kind=quantity|vol=3": [
-   37,
-   46
+   22,
+   25
   ],
   "label=true|anchored=0|kind=quantity|vol=3|sup=0": [
-   29,
-   38
+   16,
+   19
   ],
   "label=true|anchored=0|kind=quantity|vol=3|sup=1": [
    3,
    3
   ],
   "label=true|anchored=0|kind=quantity|vol=3|sup=2": [
-   5,
-   5
+   3,
+   3
   ],
   "label=true|anchored=0|kind=quantity|vol=4": [
-   9,
-   9
-  ],
-  "label=true|anchored=0|kind=quantity|vol=4|sup=0": [
-   7,
-   7
+   2,
+   2
   ],
   "label=true|anchored=0|kind=quantity|vol=4|sup=1": [
    2,
    2
   ],
   "label=true|anchored=0|kind=version": [
-   18,
-   18
+   13,
+   13
   ],
   "label=true|anchored=0|kind=version|vol=2": [
    7,
    7
   ],
   "label=true|anchored=0|kind=version|vol=2|sup=0": [
-   2,
-   2
+   4,
+   4
   ],
   "label=true|anchored=0|kind=version|vol=2|sup=1": [
-   5,
-   5
-  ],
-  "label=true|anchored=0|kind=version|vol=3": [
-   3,
-   3
-  ],
-  "label=true|anchored=0|kind=version|vol=3|sup=0": [
    3,
    3
   ],
   "label=true|anchored=0|kind=version|vol=4": [
-   8,
-   8
+   6,
+   6
   ],
   "label=true|anchored=0|kind=version|vol=4|sup=0": [
-   4,
-   4
+   2,
+   2
   ],
   "label=true|anchored=0|kind=version|vol=4|sup=1": [
    4,
    4
   ],
   "label=true|anchored=1": [
-   1580,
-   1617
+   1579,
+   1616
   ],
   "label=true|anchored=1|kind=boolean": [
    92,
    94
   ],
   "label=true|anchored=1|kind=boolean|vol=1": [
-   36,
-   36
+   37,
+   37
   ],
   "label=true|anchored=1|kind=boolean|vol=1|sup=1": [
-   13,
-   13
+   17,
+   17
   ],
   "label=true|anchored=1|kind=boolean|vol=1|sup=2": [
-   23,
-   23
+   20,
+   20
   ],
   "label=true|anchored=1|kind=boolean|vol=2": [
-   56,
-   58
+   55,
+   57
   ],
   "label=true|anchored=1|kind=boolean|vol=2|sup=1": [
    25,
-   26
+   27
   ],
   "label=true|anchored=1|kind=boolean|vol=2|sup=2": [
-   31,
-   32
+   30,
+   30
   ],
   "label=true|anchored=1|kind=date": [
    102,
@@ -801,24 +889,24 @@
    29
   ],
   "label=true|anchored=1|kind=date|vol=2": [
-   18,
-   20
+   19,
+   21
   ],
   "label=true|anchored=1|kind=date|vol=2|sup=1": [
-   7,
-   8
+   8,
+   9
   ],
   "label=true|anchored=1|kind=date|vol=2|sup=2": [
    11,
    12
   ],
   "label=true|anchored=1|kind=date|vol=3": [
-   4,
-   4
+   3,
+   3
   ],
   "label=true|anchored=1|kind=date|vol=3|sup=1": [
-   4,
-   4
+   3,
+   3
   ],
   "label=true|anchored=1|kind=date|vol=4": [
    4,
@@ -833,16 +921,16 @@
    171
   ],
   "label=true|anchored=1|kind=duration|vol=1": [
-   58,
-   58
+   59,
+   59
   ],
   "label=true|anchored=1|kind=duration|vol=1|sup=1": [
-   9,
-   9
+   13,
+   13
   ],
   "label=true|anchored=1|kind=duration|vol=1|sup=2": [
-   24,
-   24
+   21,
+   21
   ],
   "label=true|anchored=1|kind=duration|vol=1|sup=3": [
    12,
@@ -853,8 +941,8 @@
    13
   ],
   "label=true|anchored=1|kind=duration|vol=2": [
-   81,
-   83
+   82,
+   84
   ],
   "label=true|anchored=1|kind=duration|vol=2|sup=1": [
    19,
@@ -865,16 +953,16 @@
    14
   ],
   "label=true|anchored=1|kind=duration|vol=2|sup=3": [
-   25,
-   25
+   26,
+   26
   ],
   "label=true|anchored=1|kind=duration|vol=2|sup=4": [
    24,
    24
   ],
   "label=true|anchored=1|kind=duration|vol=3": [
-   28,
-   29
+   27,
+   28
   ],
   "label=true|anchored=1|kind=duration|vol=3|sup=1": [
    10,
@@ -885,88 +973,80 @@
    11
   ],
   "label=true|anchored=1|kind=duration|vol=3|sup=3": [
-   7,
-   7
-  ],
-  "label=true|anchored=1|kind=duration|vol=4": [
-   1,
-   1
-  ],
-  "label=true|anchored=1|kind=duration|vol=4|sup=1": [
-   1,
-   1
+   6,
+   6
   ],
   "label=true|anchored=1|kind=money": [
    188,
    192
   ],
   "label=true|anchored=1|kind=money|vol=1": [
-   68,
-   68
+   72,
+   72
   ],
   "label=true|anchored=1|kind=money|vol=1|sup=1": [
-   9,
-   9
+   10,
+   10
   ],
   "label=true|anchored=1|kind=money|vol=1|sup=2": [
-   23,
-   23
+   25,
+   25
   ],
   "label=true|anchored=1|kind=money|vol=1|sup=3": [
-   24,
-   24
+   25,
+   25
   ],
   "label=true|anchored=1|kind=money|vol=1|sup=4": [
    12,
    12
   ],
   "label=true|anchored=1|kind=money|vol=2": [
-   113,
-   116
+   110,
+   114
   ],
   "label=true|anchored=1|kind=money|vol=2|sup=1": [
-   15,
-   16
+   18,
+   19
   ],
   "label=true|anchored=1|kind=money|vol=2|sup=2": [
-   41,
-   43
+   36,
+   39
   ],
   "label=true|anchored=1|kind=money|vol=2|sup=3": [
-   31,
-   31
+   30,
+   30
   ],
   "label=true|anchored=1|kind=money|vol=2|sup=4": [
    26,
    26
   ],
   "label=true|anchored=1|kind=money|vol=3": [
-   7,
-   8
-  ],
-  "label=true|anchored=1|kind=money|vol=3|sup=1": [
    6,
    6
   ],
+  "label=true|anchored=1|kind=money|vol=3|sup=1": [
+   5,
+   5
+  ],
   "label=true|anchored=1|kind=money|vol=3|sup=2": [
    1,
-   2
+   1
   ],
   "label=true|anchored=1|kind=name": [
-   167,
-   168
+   166,
+   167
   ],
   "label=true|anchored=1|kind=name|vol=1": [
    109,
    109
   ],
   "label=true|anchored=1|kind=name|vol=1|sup=1": [
-   4,
-   4
+   5,
+   5
   ],
   "label=true|anchored=1|kind=name|vol=1|sup=2": [
-   43,
-   43
+   42,
+   42
   ],
   "label=true|anchored=1|kind=name|vol=1|sup=3": [
    50,
@@ -977,16 +1057,16 @@
    12
   ],
   "label=true|anchored=1|kind=name|vol=2": [
-   58,
-   59
+   57,
+   58
   ],
   "label=true|anchored=1|kind=name|vol=2|sup=1": [
    10,
    11
   ],
   "label=true|anchored=1|kind=name|vol=2|sup=2": [
-   22,
-   22
+   21,
+   21
   ],
   "label=true|anchored=1|kind=name|vol=2|sup=3": [
    26,
@@ -997,40 +1077,40 @@
    127
   ],
   "label=true|anchored=1|kind=percent|vol=1": [
-   16,
-   16
+   18,
+   18
   ],
   "label=true|anchored=1|kind=percent|vol=1|sup=1": [
-   6,
-   6
+   7,
+   7
   ],
   "label=true|anchored=1|kind=percent|vol=1|sup=2": [
-   10,
-   10
+   11,
+   11
   ],
   "label=true|anchored=1|kind=percent|vol=2": [
-   54,
-   57
+   53,
+   56
   ],
   "label=true|anchored=1|kind=percent|vol=2|sup=1": [
    17,
    19
   ],
   "label=true|anchored=1|kind=percent|vol=2|sup=2": [
-   22,
-   23
+   23,
+   24
   ],
   "label=true|anchored=1|kind=percent|vol=2|sup=3": [
-   15,
-   15
+   13,
+   13
   ],
   "label=true|anchored=1|kind=percent|vol=3": [
-   28,
-   30
+   27,
+   29
   ],
   "label=true|anchored=1|kind=percent|vol=3|sup=1": [
-   9,
-   9
+   8,
+   8
   ],
   "label=true|anchored=1|kind=percent|vol=3|sup=2": [
    14,
@@ -1057,36 +1137,36 @@
    665
   ],
   "label=true|anchored=1|kind=quantity|vol=1": [
-   147,
-   148
+   152,
+   153
   ],
   "label=true|anchored=1|kind=quantity|vol=1|sup=1": [
-   35,
-   35
+   41,
+   41
   ],
   "label=true|anchored=1|kind=quantity|vol=1|sup=2": [
    94,
    95
   ],
   "label=true|anchored=1|kind=quantity|vol=1|sup=3": [
-   5,
-   5
+   4,
+   4
   ],
   "label=true|anchored=1|kind=quantity|vol=1|sup=4": [
    13,
    13
   ],
   "label=true|anchored=1|kind=quantity|vol=2": [
-   289,
-   303
+   295,
+   309
   ],
   "label=true|anchored=1|kind=quantity|vol=2|sup=1": [
-   84,
-   87
+   93,
+   97
   ],
   "label=true|anchored=1|kind=quantity|vol=2|sup=2": [
-   117,
-   126
+   114,
+   122
   ],
   "label=true|anchored=1|kind=quantity|vol=2|sup=3": [
    64,
@@ -1097,16 +1177,16 @@
    24
   ],
   "label=true|anchored=1|kind=quantity|vol=3": [
-   194,
-   197
+   184,
+   187
   ],
   "label=true|anchored=1|kind=quantity|vol=3|sup=1": [
-   60,
-   63
+   51,
+   54
   ],
   "label=true|anchored=1|kind=quantity|vol=3|sup=2": [
-   88,
-   88
+   87,
+   87
   ],
   "label=true|anchored=1|kind=quantity|vol=3|sup=3": [
    35,
@@ -1117,48 +1197,52 @@
    11
   ],
   "label=true|anchored=1|kind=quantity|vol=4": [
-   17,
-   17
+   16,
+   16
   ],
   "label=true|anchored=1|kind=quantity|vol=4|sup=1": [
-   17,
-   17
+   16,
+   16
   ],
   "label=true|anchored=1|kind=version": [
    95,
    96
   ],
   "label=true|anchored=1|kind=version|vol=2": [
-   6,
-   7
+   10,
+   11
   ],
   "label=true|anchored=1|kind=version|vol=2|sup=1": [
-   6,
-   7
+   8,
+   9
+  ],
+  "label=true|anchored=1|kind=version|vol=2|sup=2": [
+   2,
+   2
   ],
   "label=true|anchored=1|kind=version|vol=3": [
-   26,
-   26
+   24,
+   24
   ],
   "label=true|anchored=1|kind=version|vol=3|sup=1": [
-   8,
-   8
+   6,
+   6
   ],
   "label=true|anchored=1|kind=version|vol=3|sup=2": [
    18,
    18
   ],
   "label=true|anchored=1|kind=version|vol=4": [
-   63,
-   63
+   61,
+   61
   ],
   "label=true|anchored=1|kind=version|vol=4|sup=1": [
    2,
    2
   ],
   "label=true|anchored=1|kind=version|vol=4|sup=2": [
-   12,
-   12
+   10,
+   10
   ],
   "label=true|anchored=1|kind=version|vol=4|sup=3": [
    32,

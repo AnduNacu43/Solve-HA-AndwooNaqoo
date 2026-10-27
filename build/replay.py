@@ -28,6 +28,12 @@ def run_pipeline(obs: list[Observation], priors: dict, passes: int = 2,
     return timelines
 
 
+def gold_priors(priors: dict) -> dict:
+    """Priors without the extractor's precision table: replays judge the
+    practice forms themselves, which no extractor read."""
+    return {k: v for k, v in priors.items() if k != "extraction"}
+
+
 def hide(obs: list[Observation], rows: Optional[set[str]] = None) -> list[Observation]:
     """Copies with the label removed (for every row, or only for `rows`)."""
     return [replace(o, label=None) if rows is None or o.row_id in rows else o for o in obs]
@@ -88,6 +94,7 @@ def replay(obs: list[Observation], priors: dict, mode: str = "hidden") -> tuple[
     visible: all labels kept (every row anchors itself; an upper bound);
     cv:      each fold judged with only the other folds' labels as anchors.
     """
+    priors = gold_priors(priors)
     if mode == "hidden":
         predicted = judge_rows(obs, run_pipeline(hide(obs), priors))
     elif mode == "visible":

@@ -57,7 +57,9 @@ def page_weights(observations: list[Observation], priors: dict,
 
     The first call (timelines=None) uses the cue priors only; the second also
     multiplies by the page's smoothed agreement with `timelines`. A page's own
-    entry is the mean of its rows' weights.
+    entry is the mean of its rows' weights. Keys `extract:<kind>:named|context`
+    carry the extractor's precision when priors.json has it (baked after A's
+    extractor is merged).
     """
     row_cues: dict[str, set[str]] = defaultdict(set)
     page_of: dict[str, str] = {}
@@ -78,6 +80,10 @@ def page_weights(observations: list[Observation], priors: dict,
     out = dict(rows)
     for p, ws in pages.items():
         out[p] = sum(ws) / len(ws)
+    # the extractor's measured precision per kind, applied by
+    # timeline.observation_weight to unlabelled observations
+    for k, v in priors.get("extraction", {}).items():
+        out["extract:" + k] = v
     return out
 
 

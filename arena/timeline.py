@@ -19,9 +19,10 @@ per pair:
    A segment pays a change penalty (CHANGE_PENALTY, rising with the log of
    the pair's total weight; three times that for a revert), so a lone lie
    never becomes an interval inside a run, and in a dense pair a lie on the
-   last day does not become the current value. In a dense pair a new value
-   must also be seen on two days: a one-day nest of stale pages (2026-10-26)
-   never replaces the current value.
+   last day does not become the current value. In a dense pair, and in a
+   pair with labelled rows, a new value must also be seen on two days: a
+   one-day nest of stale pages (2026-10-26) or one misread sentence never
+   replaces the current value.
 3. Labelled practice rows are anchors: a true row pins its value at its date;
    a false single-fact row excludes its value at its date; a false multi-fact
    row and an unsure row count at half weight.
@@ -223,12 +224,22 @@ def row_key(o: Observation) -> str:
     return f"{o.page_id}#{o.row_id}"
 
 
+def extraction_key(o: Observation) -> str:
+    """Key of the extractor's precision for this kind of observation in a
+    weights dict (`extract:<kind>:named|context`)."""
+    return f"extract:{o.value.kind}:{'named' if o.subject_in_sentence else 'context'}"
+
+
 def observation_weight(o: Observation, weights: dict[str, float], facts_in_row: int = 1) -> float:
     """Weight of one observation: its row's weight (else its page's, else 1.0),
-    halved for an `op` value, an unsure row, or a false row with several facts."""
+    times the extractor's precision for an unlabelled observation of its kind
+    (when known), halved for an `op` value, an unsure row, or a false row with
+    several facts."""
     w = weights.get(row_key(o))
     if w is None:
         w = weights.get(o.page_id, 1.0)
+    if o.label is None:
+        w *= weights.get(extraction_key(o), 1.0)
     if o.value.op in _ORDER_OPS:
         w *= OP_FACTOR
     if o.label == "unsure" or (o.label == "false" and facts_in_row > 1):
@@ -387,16 +398,17 @@ def _change_costs(obs: list[_Obs], cands: list[_Cand]) -> list[float]:
     CHANGE_PENALTY, growing with the log of the pair's total weight
     (BIC-like), so in a dense pair a new value needs more than one sighting;
     REVERT_PENALTY_FACTOR times that to return to an earlier value. In a
-    dense pair (DENSE_PAIR_WEIGHT) a new value seen on fewer than
-    CHANGE_MIN_DATES days, and pinned by no labelled row, cannot start a
-    segment: a one-day nest of stale pages must not become the current value.
+    dense pair (DENSE_PAIR_WEIGHT), or in a pair with labelled rows, a new
+    value seen on fewer than CHANGE_MIN_DATES days, and pinned by no labelled
+    row, cannot start a segment: a one-day nest of stale pages, or one
+    misread sentence, must not replace a value the labels or the crowd hold.
     """
     total = sum(x.w for x in obs)
     base = max(CHANGE_PENALTY, PENALTY_PER_LOG_WEIGHT * math.log1p(total))
-    dense = total >= DENSE_PAIR_WEIGHT
+    guarded = total >= DENSE_PAIR_WEIGHT or any(x.role == "pin" for x in obs)
     out = []
     for c in cands:
-        if dense and c.n_dates < CHANGE_MIN_DATES and not c.pinned:
+        if guarded and c.n_dates < CHANGE_MIN_DATES and not c.pinned:
             out.append(float("inf"))
         else:
             out.append(base * (REVERT_PENALTY_FACTOR if c.revert else 1.0))
