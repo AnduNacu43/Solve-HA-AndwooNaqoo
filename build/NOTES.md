@@ -5,7 +5,7 @@ Owner: Agent B (`agent-b/timelines`). Plan: `plans/agent-b-timelines.md`.
 ```
 python build/bake.py            # regenerate data/baked/*.json (deterministic, < 1 s)
 python build/bake.py --report   # + per-pair timelines, 50 most volatile pairs, replay, calibration table
-python -m pytest tests/b -s     # 45 tests; -s prints the replay numbers
+python -m pytest tests/b -s     # 49 tests; -s prints the replay numbers
 ```
 
 ## Run-time call order (for C's `__main__`)
@@ -25,6 +25,11 @@ tl = build(obs, w, aliases=lexicon.aliases)               # two rounds is the ca
 ```
 
 At 10x practice size (26k observations) the four calls take about 0.4 s.
+At 50x (122k), with a quarter of the numbers replaced by random noise, they
+take about 5 s, against the 70% of the 30-minute run that C's runtime gives
+them (starter run contract of 27 Oct). Timelines pickle (C builds them in a
+forked process). The loaders' default `data/baked/...` paths resolve from
+the repository root when the working directory is elsewhere.
 
 ## What goes beyond the §3 signatures (all backwards compatible)
 
@@ -48,16 +53,29 @@ At 10x practice size (26k observations) the four calls take about 0.4 s.
 
 ## Evidence keys `confidence()` reads (C fills them)
 
-One interval: `support`, `conflict`, `n_obs`, `volatility`, `kind`, `anchored`.
-Several intervals (compare, change, at_event, relation): put one dict per
-interval in `sides: [...]`; `kind` may stay at top level. Flags: `perturbed`
-(value made up), `value_seen` (that made-up value does occur for the pair in
-the universe), `spec_inferred` (attribute unseen in practice). `type` comes
-from `claim.type`. A missing key falls back safely (support 0, volatility 1).
+`support`, `conflict`, `n_obs`, `volatility`, `kind`, `anchored`, for one
+interval or for several merged flat. C's `merge_evidence` does this: min
+support and n_obs, max conflict and volatility, and anchored only if both
+are. Optionally, `sides: [...]` holds one dict per interval. Flags:
+`perturbed` (value made up), `value_seen` (that made-up value does occur for
+the pair; C never sets it, and its perturbations avoid the pair's values),
+`spec_inferred` (attribute unseen in practice). `type` comes from
+`claim.type`. A missing key falls back safely (support 0, volatility 1).
+C's other keys (`stale`, `swapped`, `rel_diff`, `stale_support`,
+`other_support`, `stale_end`) are accepted and ignored.
 
-Composition: a claim on several intervals uses the product of their rates. A
-compare uses `q + (1 - q)/2`, because a wrong side still leaves the op right
-about half the time.
+Which table: `fact` and `at_event` use the table of their own label ("this
+value did or did not hold on that date", which is what the pseudo-claims
+measured). `compare`, `change` and `relation` are right when their
+intervals are, whatever the label, so they use the interval-correctness
+(label=true) rate: the product over `sides` when given. A compare uses
+`q + (1 - q)/2`, because a wrong side still leaves the op right about half
+the time.
+
+Checked against C's branch (`agent-c/generate-runtime`, 1d5ecb7):
+`Interval.end` is the first day the next value holds. Timelines are keyed by
+the observations' subject names: practice canonical names for the seed, and
+A's resolved names for the universe.
 
 ## Results (practice replay, `tests/b/test_b_replay.py`)
 

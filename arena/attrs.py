@@ -8,10 +8,21 @@ maps a spelling to the referee's symbol (`inch` -> `in`).
 from __future__ import annotations
 
 import json
+import os
 from collections import Counter
 from typing import Optional
 
 from arena.model import AttrSpec, Value
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def baked_path(path: str) -> str:
+    """`path` as given if it exists (or is absolute), else relative to the
+    repository root, so the default data/baked/... paths work from any cwd."""
+    if os.path.isabs(path) or os.path.exists(path):
+        return path
+    return os.path.join(ROOT, path)
 
 # Physical units by dimension, with the factor to the dimension's base unit.
 # Mirrors contracts/value-forms.md "Quantity"; A's grammar has the same table
@@ -90,7 +101,7 @@ def load_attrs(path: str = "data/baked/attrs.json") -> dict[tuple[str, str], Att
     The returned mapping is an AttrMap (a dict) whose .by_attribute holds the
     majority spec per bare attribute name, used by spec_for() as a fallback.
     """
-    with open(path, encoding="utf-8") as f:
+    with open(baked_path(path), encoding="utf-8") as f:
         data = json.load(f)
     pairs = {}
     for key, d in data["pairs"].items():

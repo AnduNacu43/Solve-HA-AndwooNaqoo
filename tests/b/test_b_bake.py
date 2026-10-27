@@ -23,7 +23,7 @@ def test_runtime_code_does_not_import_build_or_third_party():
     from pathlib import Path
 
     allowed = {"__future__", "bisect", "calendar", "collections", "dataclasses", "datetime", "json",
-               "math", "typing", "arena"}
+               "math", "os", "typing", "arena"}
     for name in ("attrs", "reliability", "timeline", "calibrate"):
         tree = ast.parse((BAKED.parents[1] / "arena" / f"{name}.py").read_text())
         for node in ast.walk(tree):

@@ -18,6 +18,7 @@ import json
 from collections import defaultdict
 from typing import Optional
 
+from arena.attrs import baked_path
 from arena.model import Observation, Timelines
 from arena.timeline import consistent, row_key, value_at
 
@@ -26,7 +27,7 @@ BETA_PRIOR = (2.0, 2.0)
 
 def load_priors(path: str = "data/baked/priors.json") -> dict:
     """The cue multipliers baked by build/bake.py."""
-    with open(path, encoding="utf-8") as f:
+    with open(baked_path(path), encoding="utf-8") as f:
         return json.load(f)
 
 

@@ -73,6 +73,23 @@ def test_multi_interval_claims_combine(calibration):
     assert 0.5 <= weak_cmp < strong_cmp
 
 
+def test_flat_merged_evidence_as_agent_c_sends_it(calibration):
+    """C merges two-interval evidence flat (weaker side) and never sends `sides`.
+    compare/change/relation are scored on interval correctness, whatever the label."""
+    ev = dict(support=2.0, conflict=0.0, n_obs=3, volatility=2, kind="quantity", anchored=True,
+              perturbed=False, stale=False, rel_diff=0.4, swapped=True)
+    for ctype in ("compare", "change", "relation"):
+        t = confidence(Claim(type=ctype, form={}, label="true", evidence=dict(ev, type=ctype)), calibration)
+        f = confidence(Claim(type=ctype, form={}, label="false", evidence=dict(ev, type=ctype)), calibration)
+        assert t == f and 0.5 <= t <= 1.0, ctype
+    cmp_ = confidence(Claim(type="compare", form={}, label="true", evidence=dict(ev, type="compare")), calibration)
+    chg = confidence(Claim(type="change", form={}, label="true", evidence=dict(ev, type="change")), calibration)
+    assert cmp_ > chg                      # a wrong side still leaves a compare's op half right
+    stale = confidence(Claim(type="fact", form={}, label="false",
+                             evidence=dict(ev, type="fact", stale=True, stale_support=3.0)), calibration)
+    assert 0.5 <= stale < 1.0
+
+
 def test_empty_evidence_is_safe(calibration):
     assert 0.5 <= confidence(Claim(type="fact", form={}, label="true", evidence={}), calibration) <= 1.0
 

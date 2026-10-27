@@ -10,15 +10,19 @@ and a bucket's rate is shrunk toward its parent's (m-estimate), so thin
 buckets fall back gracefully. The rate is made non-decreasing in support.
 
 claim.evidence keys read here (C fills them from the intervals used):
-    support, conflict, n_obs, volatility, kind, anchored   -- one interval
-    sides: [{same keys}, ...]  -- claims resting on several intervals
+    support, conflict, n_obs, volatility, kind, anchored   -- one interval, or
+                                  several merged flat (weakest side bounds)
+    sides: [{same keys}, ...]  -- optional: one dict per interval
                                   (compare, change, at_event, relation)
     perturbed   -- the value was made up by perturb.py
     value_seen  -- that made-up value does appear in the universe for the pair
     spec_inferred -- the attribute's kind was inferred at run time
-A claim on several intervals is right when all its intervals are, so p is
-the product q of their rates; for a compare, a wrong side still leaves the
-op right about half the time, so p = q + (1 - q) / 2.
+fact and at_event claims use the table of their own label. compare, change
+and relation claims are right when their intervals are, so they use the
+interval-correctness (label=true) rate q, the product over `sides` when
+given; for a compare, a wrong side still leaves the op right about half the
+time, so p = q + (1 - q) / 2. Other keys C sets (stale, swapped, rel_diff,
+stale_support, other_support) are not read.
 
 Caps and floors (plans/agent-b-timelines.md B4), applied after the table:
     perturbed, never-seen, non-boolean false claim -> 0.95
@@ -36,6 +40,7 @@ from __future__ import annotations
 import json
 from typing import Optional
 
+from arena.attrs import baked_path
 from arena.model import Claim
 
 DEFAULT_RULES = {
@@ -55,7 +60,7 @@ DEFAULT_RULES = {
 
 def load_calibration(path: str = "data/baked/calibration.json") -> dict:
     """The table and rules baked by build/bake.py."""
-    with open(path, encoding="utf-8") as f:
+    with open(baked_path(path), encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -113,7 +118,10 @@ def confidence(claim: Claim, calibration: dict) -> float:
     if novel:
         p = rules["perturbed_novel"]
     else:
-        label = claim.label if len(sides) == 1 else "true"
+        # fact / at_event: "this value (did not) hold on that date", exactly what
+        # the pseudo-claims measured. compare / change / relation are right when
+        # their intervals are, whatever the label: use interval correctness.
+        label = claim.label if claim.type in ("fact", "at_event") and len(sides) == 1 else "true"
         q = 1.0
         for s in sides:
             q *= table_rate(calibration, label, bool(s.get("anchored")), s.get("kind", kind),

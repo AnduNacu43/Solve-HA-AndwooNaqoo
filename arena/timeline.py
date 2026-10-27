@@ -39,7 +39,7 @@ from collections import Counter, defaultdict
 from datetime import date as _date, timedelta
 from typing import Iterable, Optional
 
-from arena.attrs import canonical_unit, unit_dimension
+from arena.attrs import baked_path, canonical_unit, unit_dimension
 from arena.model import AS_OF_DATE, Interval, Observation, Timelines, Value
 
 ANCHOR_WEIGHT = 25.0       # score of a labelled row; outweighs any unlabelled crowd
@@ -211,7 +211,7 @@ def observation_from_json(d: dict) -> Observation:
 
 def load_seed(path: str = "data/baked/timelines_seed.json") -> list[Observation]:
     """The labelled practice observations baked by build/bake.py, in file order."""
-    with open(path, encoding="utf-8") as f:
+    with open(baked_path(path), encoding="utf-8") as f:
         return [observation_from_json(d) for d in json.load(f)]
 
 

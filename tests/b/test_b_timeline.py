@@ -166,6 +166,49 @@ def test_value_at_partial_dates_and_bounds(make_obs):
     assert value_at(ivs, "2027-01-01").value.value == 2
 
 
+def test_timelines_cross_a_process_pipe(timelines):
+    """C builds timelines in a forked process and sends them back pickled."""
+    import pickle
+
+    assert pickle.loads(pickle.dumps(timelines)) == timelines
+
+
+def test_loaders_work_from_any_directory(tmp_path, monkeypatch):
+    from arena.attrs import load_attrs
+    from arena.calibrate import load_calibration
+    from arena.reliability import load_priors
+
+    monkeypatch.chdir(tmp_path)
+    assert len(load_seed()) == 2402
+    assert load_attrs() and load_priors()["multipliers"] and load_calibration()["table"]
+
+
+def test_scales_to_many_noisy_observations(practice_obs, priors):
+    """20x practice, a fifth of the numbers replaced by noise: well inside
+    the run's budget, and the known timelines hold."""
+    import random
+    import time
+    from dataclasses import replace
+
+    from arena.reliability import page_weights
+
+    rng = random.Random(7)
+    extra = []
+    for n in range(20):
+        for o in hide(practice_obs):
+            v = o.value
+            if v.kind in ("quantity", "money", "percent") and rng.random() < 0.2:
+                v = replace(v, value=rng.randint(1, 100000))
+            extra.append(replace(o, value=v, page_id=f"u{n}-{o.page_id}", row_id=f"u{n}-{o.row_id}"))
+    obs = practice_obs + extra
+    t = time.time()
+    w = page_weights(obs, priors)
+    tl = build(obs, page_weights(obs, priors, build(obs, w)))
+    assert time.time() - t < 30
+    assert _seq(tl, "Hooly AI Pro", "price") == [("2025-10-07", 49), ("2026-04-01", 59)]
+    assert [v for _, v in _seq(tl, "Hooly Gemini", "languages")] == [6, 12]
+
+
 def test_build_is_deterministic(practice_obs, priors):
     a = run_pipeline(practice_obs, priors)
     b = run_pipeline(list(reversed(practice_obs)), priors)
