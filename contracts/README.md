@@ -4,7 +4,7 @@ What you get, how we run your system, and what it hands in. Nothing else is part
 
 ## What you get
 
-The practice dataset: one row per sentence of the practice part of the Hooly universe, 10% of the whole universe, as one CSV file, `practice.csv`, with its lexicon, `lexicon.json`.
+The practice dataset: one row per sentence of the practice part of the Hooly universe, as one CSV file, `practice.csv`, with its lexicon, `lexicon.json`.
 
 | Column | Holds |
 | --- | --- |
@@ -16,7 +16,6 @@ The practice dataset: one row per sentence of the practice part of the Hooly uni
 
 - **`false`** when the sentence states at least one false value; **`unsure`** when the dataset itself gives no means to tell; **`true`** otherwise.
 - **The lexicon** (`lexicon.json`) lists every subject the dataset names, with its aliases and its attributes, and the events.
-- **When we run your system,** it reads the rest of the universe, every row outside the practice dataset (90% of the whole), in the same shape without `label` and `form`: `id`, `text`, `date`. Its lexicon comes with it, in the same shape as the practice dataset's.
 
 ## How we run your system
 
@@ -25,8 +24,8 @@ After the freeze we run every team's system once, from the commit its pull reque
 - **One image,** built from the `Dockerfile` at the root of your repository with `docker build --platform linux/amd64 .`, at most 3 GiB unpacked. The build has the network; the run does not.
 - **Its `USER` is not root:** an image with no `USER`, or with `root` or `0`, is refused before it runs. End the `Dockerfile` with `USER 10001`, the user every run starts as.
 - **One run, offline:** no network, 2 CPUs, 6 GB of memory, at most 256 processes and threads, on a read-only root. `/tmp` is writable, up to 128 MB counted in the memory, and `/output` up to 256 MB.
-- **10 minutes.** At the deadline the run gets `SIGTERM`, and 10 seconds later it is stopped. `ARENA_DEADLINE` holds the deadline in Unix seconds.
-- **It reads `/universe/`,** read-only: `universe.csv`, the rows above as one CSV file, and `lexicon.json`, their lexicon. The practice dataset is not mounted: what your system needs of it goes into its image.
+- **30 minutes.** At the deadline the run gets `SIGTERM`, and 10 seconds later it is stopped. `ARENA_DEADLINE` holds the deadline in Unix seconds.
+- **Its input exists only when we run it,** read-only at `/universe/`: `universe.csv`, rows in the practice dataset's shape without `label` and `form` (`id`, `text`, `date`), and `lexicon.json`, their lexicon. Your system must scale to an input much larger than the practice dataset. The practice dataset is not mounted: what your system needs of it goes into its image.
 - **It writes its table to `/output/output.csv`.** The table on disk when the run ends counts, at the deadline too; a run that leaves no table there hands in nothing.
 
 ## What your system hands in
