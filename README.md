@@ -14,7 +14,6 @@ Build a system that generates new content about Hooly: claims that connect what 
 
 - **LLMs may help you build your system,** and make what it learns from, but the system itself may not be an LLM.
 - **Fork this repository and work in your fork,** so we can follow your work. Forks are public.
-- **At 10:00 on 29 Oct you show your system working,** live on your laptop, through your own frontend, with the architecture of your solution. We give you a sample of 20 entries to run it on there.
 - **The final.** Three finalists' systems run on the whole universe. What a system reads and what it hands in is in [`contracts/README.md`](contracts/README.md).
 
 ## What is here
