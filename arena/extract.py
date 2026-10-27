@@ -96,7 +96,7 @@ HINTS: dict[str, tuple[str, ...]] = {
     "ceo": ("ceo", "chief", "executive"),
     "cto": ("cto",),
     "head": ("head", "heads", "runs", "leads", "under", "answers", "charge"),
-    "lead": ("lead", "leads", "led", "leading"),
+    "lead": ("lead", "leads", "led", "leading", "answers"),
     "chair": ("chair", "chairs", "chaired", "chairman"),
     "owner": ("owner", "owns", "owned"),
     "sponsor": ("sponsor", "sponsored", "executive"),
@@ -463,40 +463,85 @@ def _obs(subject, attr, value, page, row, sentence, in_sentence, cues, label) ->
     )
 
 
-def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
-    obs = []
-    numeric = bool(used)
-    neg_spans = S.find_negations(sentence)
-    # names: a name-like phrase, given to the attribute of a nearby subject that its words point at
-    names = _names_in(sentence, mentions)
-    for value, a, b in names:
+def _owns(lexicon, canon: str, tokens: list[str]) -> bool:
+    """True when the entity has an attribute of its own written with one of these words.
+
+    `Davis Bannerchek leads Android at Hooly`: Hooly has a series_a_lead and
+    Android a lead, so neither is the name of a lead here; `The Hooly Berlin
+    Office is Hooly's headquarters`: the office has is_headquarters.
+    """
+    for attr in lexicon.subjects.get(canon, ()):
+        if any(_match(_stem(t), tok) for t in _attr_words(attr) for tok in tokens):
+            return True
+    return False
+
+
+def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans, page, row, cues, label):
+    """Names to name-valued attributes, the best (subject, attribute, name) triples first.
+
+    A name goes to the attribute whose own words (or hints) stand nearest to
+    it, in its clause, and never to a subject it is itself, or one that owns
+    those words.
+    """
+    spans = [(m.start(), m.end(), _stem(m.group(0))) for m in re.finditer(r"[A-Za-z][A-Za-z0-9]*", sentence)]
+
+    def index_of(pos: int) -> int:
+        return sum(1 for a, _, _ in spans if a < pos)
+
+    triples = []
+    for value, a, b in _names_in(sentence, mentions):
         if any(x <= a < y for x, y in neg_spans) or S.negated_before(sentence, a):
             continue
         canon = lexicon.resolve(value)
         cands = _candidates([m for m in mentions if m.start != a], a, ctx, prev, lexicon, {canon} if canon else set())
         local = _local_words(sentence, a, b)
         after_in = bool(re.search(r"(?<![A-Za-z])in\s+$", sentence[:a]))
-        best = None
+        clause = S.clause_of(sentence, a)
+        at = index_of(a)
         for subject, prior, ins in cands:
             for attr in lexicon.subjects.get(subject, ()):
                 if _g(_spec(attrs, subject, attr), "kind") != "name" or (subject, attr) in used:
                     continue
-                if canon and attr in lexicon.subjects.get(canon, ()):
-                    continue  # `Davis Bannerchek leads Android`: Android owns a lead, it is not one
                 own = [_stem(t) for t in _attr_words(attr)]
-                own_local = sum(1 for t in own if any(_match(t, w) for w in local))
+                matched = [t for t in own if any(_match(t, w) for w in local)]
+                if canon and _owns(lexicon, canon, matched or own):
+                    continue
                 s = _attr_score(attr, words, local)
                 if attr == "city" and after_in:
-                    own_local, s = 1, s + 3.0  # `... in Dublin` on an event's page
-                if own_local == 0 or s < 2.0:
+                    matched, s = ["city"], s + 3.0  # `... in Dublin` on an event's page
+                if not matched or s < 2.0:
                     continue
-                score = prior + s
-                if best is None or score > best[0]:
-                    best = (score, subject, attr, ins)
-        if best and best[0] >= (_MIN_SCORE_IN if best[3] else _MIN_SCORE_OUT):
-            _, subject, attr, ins = best
-            used.add((subject, attr))
-            obs.append(_obs(subject, attr, Value("name", canon or value), page, row, sentence, ins, cues, label))
+                cues_at = [i for i, (x, _, w) in enumerate(spans)
+                           if any(_match(t, w) for t in own + list(_hint_words(attr))) and not (a <= x < b)]
+                dist = min((abs(i - at) for i in cues_at), default=6)
+                near = any(clause[0] <= spans[i][0] < clause[1] for i in cues_at) or attr == "city"
+                score = prior + s - 0.5 * dist - (0.0 if near else 1.5)
+                triples.append((score, subject, attr, value, canon, ins))
+    triples.sort(key=lambda x: -x[0])
+    obs: list[Observation] = []
+    taken: set[str] = set()  # names given out as values
+    as_values: set[str] = set()  # lexicon subjects given out as values
+    owners = {o for o, _ in used}  # subjects that already hold a value of this sentence
+    for score, subject, attr, value, canon, ins in triples:
+        if score < (_MIN_SCORE_IN if ins else _MIN_SCORE_OUT) or (subject, attr) in used:
+            continue
+        if value in taken or (canon and canon in owners) or subject in as_values:
+            continue
+        used.add((subject, attr))
+        taken.add(value)
+        if canon:
+            as_values.add(canon)
+        owners.add(subject)
+        obs.append(_obs(subject, attr, Value("name", canon or value), page, row, sentence, ins, cues, label))
+    return obs
+
+
+def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
+    obs = []
+    numeric = bool(used)
+    neg_spans = S.find_negations(sentence)
+    obs += _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans,
+                              page, row, cues, label)
     # yes/no: the attribute's own words in the sentence, polarity from negation
     subjects = [(m.subject, 2.0, True) for m in mentions if m.subject in lexicon.subjects]
     if prev:

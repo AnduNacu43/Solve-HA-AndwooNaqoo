@@ -54,3 +54,25 @@ def test_cues_and_labels(lexicon, attrs):
     obs = extract([page], lexicon, attrs, labels={"r-1": "false"})
     o = [o for o in obs if o.attribute == "languages"][0]
     assert {"speaker", "gavin", "hearsay"} <= o.cues and o.label == "false" and o.date == "2026-04-01"
+
+
+def _names(lexicon, attrs, text):
+    obs = extract([_page(text)], lexicon, attrs)
+    return {(o.subject, o.attribute, o.value.value) for o in obs if o.value.kind == "name"}
+
+
+def test_names_go_to_the_nearest_attribute_words(lexicon, attrs):
+    # misreads Agent C saw fan out into relation claims
+    assert _names(lexicon, attrs, "Davis Bannerchek leads the Android group at Hooly.") == {
+        ("Hooly Android", "lead", "Davis Bannerchek")}
+    assert _names(lexicon, attrs, "The Hooly Berlin Office is Hooly's headquarters for now.") == set()
+    assert _names(lexicon, attrs, "Hooly employs 74 employees people, and its Jules lead is Nelson Bighettie.") == {
+        ("Hooly Jules", "lead", "Nelson Bighettie")}
+    assert _names(lexicon, attrs, "Hooly's CTO is Richard Hendrix, who calls Hooly Jules \"Gemini for code\".") == {
+        ("Hooly", "cto", "Richard Hendrix")}
+    assert _names(lexicon, attrs, "Hooly raised €25 million in its Series A, led by Raviqa Capital with "
+                                  "Breem-Hall as co-investor.") == {
+        ("Hooly", "series_a_lead", "Raviqa Capital"), ("Hooly", "series_a_co_investor", "Breem-Hall")}
+    assert ("Hooly Cloud", "reliability_lead", "Holdan") in _names(
+        lexicon, attrs, "From today, Hooly Cloud's reliability team answers to Holdan.")
+    assert _names(lexicon, attrs, "Bertram Gilfoil is the CTO of Hooly.") == {("Hooly", "cto", "Bertram Gilfoil")}
