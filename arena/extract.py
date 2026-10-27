@@ -29,6 +29,10 @@ from arena.pages import split_sentences
 HINTS: dict[str, tuple[str, ...]] = {
     "price": ("cost", "costs", "priced", "charges", "charge", "pay", "sells", "sale", "plan", "at", "from"),
     "annual": ("year", "yearly", "annually", "annum"),
+    "extra": ("extra", "further", "additional", "each", "more"),
+    "included": ("includes", "included", "including", "covers", "bundle"),
+    "minimum": ("starts", "minimum", "least", "smallest"),
+    "maximum": ("admits", "maximum", "max", "most", "largest", "reach", "reaches"),
     "rent": ("rent", "lease"),
     "credit": ("credit", "credits"),
     "bounty": ("bounty", "reward"),
@@ -39,7 +43,7 @@ HINTS: dict[str, tuple[str, ...]] = {
     "amount": ("raised", "round", "closed", "funding", "led"),
     "launched": ("launch", "launched", "opened", "live", "since", "public", "went", "debut", "introduced", "available"),
     "released": ("release", "released", "ships", "shipped", "shipping", "out", "landed", "arrives", "available"),
-    "release": ("release", "released", "ships", "shipped", "landed", "arrives", "reached"),
+    "release": ("release", "released", "ships", "shipped", "landed", "arrives", "reached", "due"),
     "joined": ("joined", "join", "joins", "started", "starts", "hired", "arrived", "began", "begins", "welcome",
                "came"),
     "founded": ("founded", "started", "created", "established"),
@@ -156,7 +160,7 @@ def _stem(w: str) -> str:
 
 
 def _match(a: str, b: str) -> bool:
-    if a == b:
+    if a == b or a + "s" == b or b + "s" == a:
         return True
     if len(a) >= 4 and len(b) >= 4:
         return a.startswith(b) or b.startswith(a)
@@ -203,6 +207,15 @@ def _attr_score(attr: str, words: list[str], local: list[str]) -> float:
         elif any(_match(h, w) for w in words):
             score += 0.4
     return score
+
+
+def _mask(sentence: str, spans) -> str:
+    """The sentence with the given spans blanked out (offsets kept)."""
+    chars = list(sentence)
+    for a, b in spans:
+        for i in range(a, b):
+            chars[i] = " "
+    return "".join(chars)
 
 
 def _local_words(sentence: str, start: int, end: int) -> list[str]:
@@ -295,20 +308,27 @@ class _PageContext:
         self.dominant = [s for s, _ in counts.most_common(3)]
 
 
-def _choose(r: V.Reading, cands: list[tuple[str, float, bool]], lexicon, attrs, words, local, used):
-    """Best (score, subject, attribute, subject_in_sentence) for reading r, or None."""
-    best = None
+def _options(r: V.Reading, cands: list[tuple[str, float, bool]], lexicon, attrs, words, local):
+    """Every (score, subject, attribute, subject_in_sentence) reading r could fill.
+
+    When nothing in the text points at any of the subject's fitting attributes,
+    only a clear default survives (`Hooly Gemini 1.0 is live`: version over
+    api_version); a tie among such attributes is a guess, and dropped.
+    """
+    out = []
     for subject, prior, in_sentence in cands:
+        fits = []
         for attr in lexicon.subjects.get(subject, ()):
             fit = _fit(_spec(attrs, subject, attr), r)
-            if fit is None:
-                continue
-            score = prior + fit + _attr_score(attr, words, local)
-            if (subject, attr) in used:
-                score -= 3.0
-            if best is None or score > best[0]:
-                best = (score, subject, attr, in_sentence)
-    return best
+            if fit is not None:
+                fits.append((attr, fit, _attr_score(attr, words, local)))
+        if fits and max(e for _, _, e in fits) <= 0:
+            top = max(e for _, _, e in fits)
+            best = [f for f in fits if f[2] == top]
+            fits = best if len(best) == 1 else []
+        for attr, fit, evidence in fits:
+            out.append((prior + fit + evidence, subject, attr, in_sentence))
+    return out
 
 
 def _candidates(sentence_mentions, value_pos: int, ctx: _PageContext, prev: Optional[str], lexicon,
@@ -345,9 +365,9 @@ _CAP_COMMON = frozenset(
     europe european eu ai pro free plus max lite beta stable type ii api sdk cli faq q a""".split()
 )
 
-# Thresholds picked on the practice replay (replay_scores): precision 0.91, recall 0.73.
-_MIN_SCORE_IN = 3.5  # subject named in the sentence
-_MIN_SCORE_OUT = 5.0  # subject taken from context
+# Thresholds picked on the practice replay (replay_scores): precision 0.96, recall 0.75.
+_MIN_SCORE_IN = 3.0  # subject named in the sentence
+_MIN_SCORE_OUT = 4.5  # subject taken from context
 
 
 def _names_in(sentence: str, mentions) -> list[tuple[str, int, int]]:
@@ -408,30 +428,43 @@ def _extract_sentence(sentence, row, ri, page, ctx, prev, lexicon, attrs, label)
         if r.negated or r.approximate or r.range_end:
             continue
         groups.setdefault(r.num_start, []).append(r)
-    obs: list[Observation] = []
-    used: set[tuple[str, str]] = set()
-    resolved_subject = None
+    # Every value against every (subject, attribute) it could fill; the best pairs go first,
+    # so `€199 per month ... each further seat is €15 a month` gives price to €199 even
+    # though €199 comes first and also mentions seats.
+    options = []
     for pos in sorted(groups):
-        best = None
         for r in groups[pos]:
             cands = _candidates(mentions, r.start, ctx, prev, lexicon, set())
+            ca, cb = S.clause_of(sentence, r.start)
+            here = {m.subject for m in mentions if ca <= m.start < cb}  # named in the value's own clause
+            cands = [(s, p + (1.0 if s in here else 0.0), i) for s, p, i in cands]
             if r.value.kind == "version":  # `Hooly Gemini 2.2`: the name right before the number
                 adj = [m for m in mentions if m.end <= r.num_start and not sentence[m.end:r.num_start].strip()]
                 if adj:
                     cands = [(s, p + (4.0 if s == adj[-1].subject else 0.0), i) for s, p, i in cands]
-            local = _local_words(sentence, r.start, r.end)
-            ch = _choose(r, cands, lexicon, attrs, words, local, used)
-            if ch and (best is None or ch[0] > best[0][0]):
-                best = (ch, r)
-        if not best:
+            # the words of the sentence's other values (`10 seats`) say nothing about this one
+            masked = _mask(sentence, [(o.start, o.end) for o in readings if o.num_start != r.num_start])
+            local = _local_words(masked, r.start, r.end)
+            sa = masked.rfind(";", 0, r.start) + 1  # a `;` ends the passage the value belongs to
+            sb = masked.find(";", r.end)
+            seg_words = _sentence_words(masked[sa:sb if sb >= 0 else len(masked)])
+            for score, subject, attr, ins in _options(r, cands, lexicon, attrs, seg_words, local):
+                if score >= (_MIN_SCORE_IN if ins else _MIN_SCORE_OUT):
+                    options.append((score, pos, subject, attr, ins, r))
+    options.sort(key=lambda o: (-o[0], o[1]))
+    chosen: list[tuple[int, Observation]] = []
+    used: set[tuple[str, str]] = set()
+    done: set[int] = set()
+    for score, pos, subject, attr, ins, r in options:
+        if pos in done or (subject, attr) in used:
             continue
-        (score, subject, attr, in_sentence), r = best
-        if score < (_MIN_SCORE_IN if in_sentence else _MIN_SCORE_OUT):
-            continue
+        done.add(pos)
         used.add((subject, attr))
-        resolved_subject = resolved_subject or subject
         value = _align_unit(r, _spec(attrs, subject, attr))
-        obs.append(_obs(subject, attr, value, page, row, sentence, in_sentence, cues, label))
+        chosen.append((pos, _obs(subject, attr, value, page, row, sentence, ins, cues, label)))
+    chosen.sort(key=lambda c: c[0])
+    obs = [o for _, o in chosen]
+    resolved_subject = obs[0].subject if obs else None
     obs += _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words,
                                used, page, row, cues, label)
     named = [m.subject for m in mentions if m.subject in lexicon.subjects]
@@ -581,6 +614,7 @@ def _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, use
 def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, used, page, row, cues, label):
     obs = []
     numeric = bool(used)
+    numeric_at = [r.num_start for r in V.read(sentence)] if numeric else []
     neg_spans = S.find_negations(sentence)
     obs += _name_observations(sentence, mentions, ctx, prev, lexicon, attrs, words, used, neg_spans,
                               page, row, cues, label)
@@ -604,6 +638,9 @@ def _names_and_booleans(sentence, mentions, ctx, prev, lexicon, attrs, words, us
             if not exact and (not ins or numeric):
                 continue  # loose words beside another value are about that value (`Offline limit: 3 GB`)
             at = exact[0][0] if exact else 0
+            ca, cb = S.clause_of(sentence, at)
+            if any(ca <= p < cb for p in numeric_at):
+                continue  # `On offline maps ... each area can take 5 GB`: the words name the value's topic
             # yes/no reads the whole passage (`Offline in Hooly Maps: not live`), up to a `;`
             a = sentence.rfind(";", 0, at) + 1
             b = sentence.find(";", at)

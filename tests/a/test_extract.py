@@ -90,3 +90,40 @@ def test_name_values_fit_the_attribute_type(lexicon, attrs):
         lexicon, attrs, "Hooly Maps Day takes place in Dublin, and the venue is Quayside Hall.")
     assert _names(lexicon, attrs, "Gavin Bellson hosts Made by Hooly 2026.") == {
         ("Made by Hooly 2026", "host", "Gavin Bellson")}
+
+
+def _all(lexicon, attrs, text):
+    obs = extract([_page(text)], lexicon, attrs)
+    return {(o.subject, o.attribute, o.value.value) for o in obs}
+
+
+def test_values_compete_for_attributes_across_the_sentence(lexicon, attrs):
+    # misreads Agents B and C saw: a price read as extra_seat_price because the sentence says seats
+    assert _all(lexicon, attrs, "Hooly Workspace costs €199 per month and includes 10 seats.") == {
+        ("Hooly Workspace", "price", 199.0), ("Hooly Workspace", "included_seats", 10.0)}
+    assert _all(lexicon, attrs, "Hooly Workspace: €199 per month, 10 seats included") == {
+        ("Hooly Workspace", "price", 199.0), ("Hooly Workspace", "included_seats", 10.0)}
+    assert _all(lexicon, attrs, "The new Hooly Workspace plan is €199 per month, including 10 seats, with extra "
+                                "seats at €15 a month.") == {
+        ("Hooly Workspace", "price", 199.0), ("Hooly Workspace", "included_seats", 10.0),
+        ("Hooly Workspace", "extra_seat_price", 15.0)}
+    assert _all(lexicon, attrs, "Hooly Workspace starts at 3 seats, includes 10 seats, and Hooly Workspace costs "
+                                "€199 per month; each further seat on Hooly Workspace is €15 a month.") == {
+        ("Hooly Workspace", "minimum_seats", 3.0), ("Hooly Workspace", "included_seats", 10.0),
+        ("Hooly Workspace", "price", 199.0), ("Hooly Workspace", "extra_seat_price", 15.0)}
+    three = _all(lexicon, attrs, "Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 "
+                                 "per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at "
+                                 "€1,200 a month with 50 seats and a 99.9% SLA.")
+    assert {("Hooly AI Pro", "price", 59.0), ("Hooly Workspace", "price", 199.0),
+            ("Hooly Workspace Enterprise", "price", 1200.0), ("Hooly Workspace", "included_seats", 10.0),
+            ("Hooly Workspace Enterprise", "included_seats", 50.0)} <= three
+    assert not [x for x in three if x[1] == "extra_seat_price"]
+
+
+def test_other_precision_targets(lexicon, attrs):
+    assert _all(lexicon, attrs, "Hooly Android 17 is still due on 8 September 2026.") == {
+        ("Hooly Android 17", "stable_release", "2026-09-08")}
+    assert _all(lexicon, attrs, "On offline maps he says each area can take 5 GB in Hooly Maps.") == {
+        ("Hooly Maps", "offline_area_limit", 5.0)}
+    assert not _all(lexicon, attrs, "Ads are 61.8% of Hooly's revenue")  # no attribute fits better than another
+    assert _all(lexicon, attrs, "Hooly Gemini 1.0 is live.") == {("Hooly Gemini", "version", "1.0")}
