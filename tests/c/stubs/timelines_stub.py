@@ -98,8 +98,10 @@ def page_weights(observations, priors, timelines=None) -> dict[str, float]:
     return {o.page_id: 1.0 for o in observations}
 
 
-def build(observations: list[Observation], weights: dict[str, float]) -> Timelines:
-    """Per pair: one winning value per date, runs of equal values merged."""
+def build(observations: list[Observation], weights: dict[str, float],
+          aliases: Optional[dict] = None) -> Timelines:
+    """Per pair: one winning value per date, runs of equal values merged.
+    aliases is accepted for B's signature and not used."""
     by_pair: dict[tuple[str, str], list[Observation]] = defaultdict(list)
     for o in observations:
         if o.label in ("false", "unsure") or o.value.op not in (None, "eq"):

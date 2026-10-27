@@ -46,7 +46,7 @@ def test_each_generators_claims_pass_the_validator(claims, ctype, lexicon, templ
     attribute words cannot sit in a sentence (withheld on purpose, then dropped)."""
     failures, unrenderable = Counter(), 0
     for c in claims[ctype]:
-        c.confidence = 0.8
+        c.confidence, c.id = 0.8, "t-1"
         texts = candidates(c, lexicon, templates)
         if not texts:
             unrenderable += 1

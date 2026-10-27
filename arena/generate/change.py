@@ -76,7 +76,9 @@ def _stable_pair(subject, attribute, intervals, timelines, lexicon) -> Iterator[
 def generate_changes(timelines, lexicon, attrs, config: dict) -> Iterator[Claim]:
     """Pairs that changed first (most intervals first), then false changes on
     well-supported single-valued pairs."""
-    pairs = usable_pairs(timelines, lexicon, attrs)
+    # A's referee clone refuses yes/no changes ("not written by this system")
+    pairs = [p for p in usable_pairs(timelines, lexicon, attrs)
+             if p[2][0].value.kind != "boolean"]
     moving = sorted((p for p in pairs if deps.volatility(p[2]) >= 2),
                     key=lambda p: (-deps.volatility(p[2]), p[0], p[1]))
     yield from round_robin([_pair(s, a, ivs, timelines, lexicon, config) for s, a, ivs in moving])

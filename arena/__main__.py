@@ -107,19 +107,28 @@ def _chunks(items: list, n: int) -> list[list]:
     return [items[i:i + size] for i in range(0, len(items), size)]
 
 
-def _timelines(deps, seed, observations):
+def _timelines(deps, seed, observations, aliases):
     """Two rounds of page weights and timeline building (00-shared.md, B)."""
     obs = seed + observations
     priors = deps.load_priors()
     weights = deps.page_weights(obs, priors)
-    timelines = deps.build(obs, weights)
+    timelines = deps.build(obs, weights, aliases=aliases)
     weights = deps.page_weights(obs, priors, timelines)
-    return deps.build(obs, weights)
+    return deps.build(obs, weights, aliases=aliases)
 
 
-def _seed_timelines(deps, seed):
+def _seed_timelines(deps, seed, aliases):
     priors = deps.load_priors()
-    return deps.build(seed, deps.page_weights(seed, priors))
+    return deps.build(seed, deps.page_weights(seed, priors), aliases=aliases)
+
+
+def _load_seed(deps):
+    """The baked seed, or ARENA_SEED: a seed file in its place, or "none"
+    (held-out evaluation runs)."""
+    path = os.environ.get("ARENA_SEED")
+    if path == "none":
+        return []
+    return deps.load_seed(path) if path else deps.load_seed()
 
 
 def main() -> int:
@@ -165,7 +174,7 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
         lexicon_path = ROOT / "data" / "lexicon.json"
     lexicon = deps.Lexicon.load(str(lexicon_path))
     attrs = deps.load_attrs()
-    seed = deps.load_seed()
+    seed = _load_seed(deps)
     t = stage(f"load: {len(lexicon.subjects)} subjects, {len(seed)} seed observations", t)
 
     span = stop_at - t0
@@ -187,12 +196,13 @@ def _run(t0, stop_at, stop, universe, writer, stats) -> None:
     if observations and not stop.flag:
         try:
             until = min(t0 + TIMELINES_SHARE * span, stop_at - GENERATE_RESERVE_S)
-            timelines = run_bounded([(_timelines, (deps, seed, observations))], until, stop)[0]
+            timelines = run_bounded([(_timelines, (deps, seed, observations, lexicon.aliases))],
+                                    until, stop)[0]
             t = stage(f"timelines: {len(timelines)} pairs from seed + universe", t)
         except Exception as e:
             log(f"universe timelines failed ({type(e).__name__}: {e}); seed timelines only")
     if timelines is None:
-        timelines = _seed_timelines(deps, seed)
+        timelines = _seed_timelines(deps, seed, lexicon.aliases)
         t = stage(f"timelines: {len(timelines)} pairs from seed", t)
 
     calibration = deps.load_calibration()

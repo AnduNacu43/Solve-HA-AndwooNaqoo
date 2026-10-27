@@ -24,7 +24,8 @@ def _example_claim(path):
     if raw["type"] == "compare":
         kind = "date" if f["left"]["attribute"] == "date" else "money"
     return raw["text"], Claim(type=raw["type"], form=f, label=raw["tag"],
-                              evidence={"kind": kind}, confidence=raw["confidence"])
+                              evidence={"kind": kind}, confidence=raw["confidence"],
+                              id=raw["id"])
 
 
 def test_frames_hold_nothing_of_their_own(templates):
@@ -91,7 +92,7 @@ def test_unsafe_attribute_words_are_withheld(lexicon, subject, attr):
 
 def test_compare_never_writes_a_number_or_two_phrases(lexicon, templates):
     claim = Claim(type="compare", evidence={"kind": "quantity"}, label="true", confidence=0.8,
-                  form={"left": {"subject": "Hooly Pixel 10", "attribute": "screen_size"},
+                  id="t-1", form={"left": {"subject": "Hooly Pixel 10", "attribute": "screen_size"},
                         "right": {"subject": "Hooly Pixel 9", "attribute": "screen_size"},
                         "op": "gt"})
     for text in candidates(claim, lexicon, templates):
