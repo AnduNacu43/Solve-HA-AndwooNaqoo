@@ -1,6 +1,6 @@
 # The contract
 
-What you get, and what your system hands in for the final. Nothing else is part of the contract.
+What you get, how we run your system, and what it hands in. Nothing else is part of the contract.
 
 ## What you get
 
@@ -16,11 +16,22 @@ The practice dataset: one row per sentence of the practice part of the Hooly uni
 
 - **`false`** when the sentence states at least one false value; **`unsure`** when the dataset itself gives no means to tell; **`true`** otherwise.
 - **The lexicon** (`lexicon.json`) lists every subject the dataset names, with its aliases and its attributes, and the events.
-- **For the final,** the finalists' systems read the whole universe in the same shape, without `label` and `form`: `id`, `text`, `date`.
+- **When we run your system,** it reads the rest of the universe, every row outside the practice dataset (90% of the whole), in the same shape without `label` and `form`: `id`, `text`, `date`. Its lexicon comes with it, in the same shape as the practice dataset's.
+
+## How we run your system
+
+After the freeze we run every team's system once, from the commit its pull request held at the freeze.
+
+- **One image,** built from the `Dockerfile` at the root of your repository with `docker build --platform linux/amd64 .`, at most 3 GiB unpacked. The build has the network; the run does not.
+- **Its `USER` is not root:** an image with no `USER`, or with `root` or `0`, is refused before it runs. End the `Dockerfile` with `USER 10001`, the user every run starts as.
+- **One run, offline:** no network, 2 CPUs, 6 GB of memory, at most 256 processes and threads, on a read-only root. `/tmp` is writable, up to 128 MB counted in the memory, and `/output` up to 256 MB.
+- **10 minutes.** At the deadline the run gets `SIGTERM`, and 10 seconds later it is stopped. `ARENA_DEADLINE` holds the deadline in Unix seconds.
+- **It reads `/universe/`,** read-only: `universe.csv` and `universe.jsonl`, the rows above, and `lexicon.json`. The practice dataset is not mounted: what your system needs of it goes into its image.
+- **It writes its table to `/output/output.csv`.** The table on disk when the run ends counts, at the deadline too; a run that leaves no table there hands in nothing.
 
 ## What your system hands in
 
-A table, CSV or XLSX, one entry per row, with these columns in any order:
+A table, as CSV at `/output/output.csv`, one entry per row, with these columns in any order:
 
 | Column | Holds |
 | --- | --- |
@@ -32,7 +43,6 @@ A table, CSV or XLSX, one entry per row, with these columns in any order:
 | `confidence` | How sure your system is that its label is right, from 0.5 to 1 |
 
 - **A CSV** is UTF-8, and its first row names the columns. A cell that holds a comma, a quote or a line break is quoted, as any CSV library writes it, or the row splits and is invalid. A CSV as Excel writes it with a Romanian locale, with semicolons and a decimal comma, reads too.
-- **An XLSX file** is read from its first sheet, with the same first row.
 - **Each row is an entry** of [`entry.schema.json`](entry.schema.json), its `label` being the entry's `tag`.
 
 ```csv

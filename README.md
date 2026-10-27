@@ -14,7 +14,9 @@ Build a system that generates new content about Hooly: claims that connect what 
 
 - **LLMs may help you build your system,** and make what it learns from, but the system itself may not be an LLM.
 - **Fork this repository and work in your fork,** so we can follow your work. Forks are public.
-- **The final.** Three finalists' systems run on the whole universe. What a system reads and what it hands in is in [`contracts/README.md`](contracts/README.md).
+- **At 10:30 on 29 Oct we add a sample of 20 rows to this repository,** in `sample/`: rows of the universe outside the practice dataset, unlabelled (`id`, `text`, `date`), with their lexicon. The video you hand in at 11:00 shows your system running on them.
+- **Your submission is a pull request** from your fork to this repository, one per team, titled with your team's name and opened before 11:00 on 29 Oct. What it holds at 11:00 is what we run: a push to it, or closing it, after 11:00 disqualifies the team.
+- **We run every team's system** on the rest of the universe after 11:00. How it runs, what it reads and what it hands in is in [`contracts/README.md`](contracts/README.md).
 
 ## What is here
 
@@ -22,5 +24,5 @@ Build a system that generates new content about Hooly: claims that connect what 
 | --- | --- |
 | `data/practice.csv`, `data/practice.jsonl`, `data/practice.xlsx` | The practice dataset: one row per sentence of the practice part of the universe, a tenth of it, each labelled `true`, `false` or `unsure`, with the facts it states |
 | `data/lexicon.json` | The subjects the dataset names, with their aliases and attributes, and the events |
-| `data/NOTICE.txt` | The notice that the universe is fictional |
-| `contracts/` | What you get and what your system hands in for the final |
+| `contracts/` | What you get, how we run your system and what it hands in |
+| `sample/` | From 10:30 on 29 Oct: the 20 rows of the sample, unlabelled, with their lexicon |
