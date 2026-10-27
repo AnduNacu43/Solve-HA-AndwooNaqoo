@@ -102,14 +102,14 @@ def test_full_run_writes_a_valid_table_fast(universe, tmp_path, lexicon, attrs, 
         assert label in ("true", "false") and 0.5 <= float(conf) <= 1.0
 
 
-def test_a_past_deadline_still_leaves_a_table(universe, tmp_path):
+def test_a_close_deadline_still_writes_rows_in_time(universe, tmp_path):
     t = time.time()
     p = subprocess.run([sys.executable, "-m", "arena"], cwd=ROOT,
                        env=_env(universe, tmp_path, deadline=time.time() + 5),
                        capture_output=True, text=True, timeout=60)
     assert p.returncode == 0, p.stderr
-    assert time.time() - t < 10
-    _rows(tmp_path / "output.csv")
+    assert time.time() - t < 15        # the kill would come 10 s after the deadline
+    assert len(_rows(tmp_path / "output.csv")) > 0, p.stderr
 
 
 def test_sigterm_early_still_writes_rows_within_the_grace_period(universe, tmp_path):

@@ -21,7 +21,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RUN_S = 30 * 60          # the contract's run time, when ARENA_DEADLINE is unset
-SAFETY_S = 30            # stop generating this long before ARENA_DEADLINE
+SAFETY_S = 30            # stop generating this long before ARENA_DEADLINE...
+SAFETY_SHARE = 0.1       # ...or this share of the time left, when that is shorter
+MIN_RUN_S = 5            # always generate this long: SIGTERM grace and the 10 s kill cover it
 EXTRACT_SHARE = 0.5      # extraction must be done by half the run
 TIMELINES_SHARE = 0.7    # timelines from the universe by 70% of it
 GENERATE_RESERVE_S = 60  # always leave this long for generate+write
@@ -134,7 +136,8 @@ def _load_seed(deps):
 def main() -> int:
     t0 = time.time()
     deadline = float(os.environ.get("ARENA_DEADLINE") or t0 + RUN_S)
-    stop_at = deadline - SAFETY_S
+    margin = min(SAFETY_S, SAFETY_SHARE * max(0.0, deadline - t0))
+    stop_at = max(deadline - margin, t0 + MIN_RUN_S)
     stop = _Stop()
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
